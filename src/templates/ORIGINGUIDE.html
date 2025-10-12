@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Step-by-Step Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        /* CGI-Level Floating Popup */
+        .guide-container {
+            width: 520px;
+            padding: 30px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(10, 20, 40, 0.85), rgba(0, 255, 255, 0.1));
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            box-shadow: 0px 15px 50px rgba(0, 255, 255, 0.5);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: popIn 0.8s ease-out;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            z-index: 9999;
+        }
+
+        /* Glowing Animated Border */
+        .guide-container::before {
+            content: "";
+            position: absolute;
+            top: -5px; left: -5px;
+            right: -5px; bottom: -5px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.5), rgba(0, 0, 255, 0.4), rgba(255, 0, 255, 0.5));
+            filter: blur(8px);
+            z-index: -1;
+            opacity: 0.7;
+            animation: pulseBorder 2s infinite alternate;
+        }
+
+        /* Step Content */
+        .step {
+            display: none;
+            font-size: 18px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .active-step {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Headings - Glowing Effect */
+        h2 {
+            color: #00E5FF;
+            text-shadow: 0px 0px 20px rgba(0, 229, 255, 1);
+        }
+
+        h3 {
+            color: #00C6FF;
+            text-shadow: 0px 0px 15px rgba(0, 198, 255, 0.8);
+        }
+
+        p {
+            color: #E3F2FD;
+            font-size: 16px;
+            opacity: 0.85;
+        }
+
+        /* Navigation Buttons */
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-next { background: #00C6FF; color: white; box-shadow: 0px 0px 12px #00C6FF; }
+        .btn-prev { background: #26C6DA; color: white; box-shadow: 0px 0px 12px #26C6DA; }
+        .btn-close { 
+            background: #FF5252; 
+            color: white; 
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 10px rgba(255, 82, 82, 0.6);
+            cursor: pointer;
+        }
+
+        .btn:hover { opacity: 0.8; }
+
+        /* Floating Effect */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: floating 3s infinite ease-in-out;
+        }
+
+        /* Glowing Border Animation */
+        @keyframes pulseBorder {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="guide-container floating">
+    <button class="btn btn-close" onclick="closeGuide()">X</button>
+    <h2>Welcome to Your Journey 🌌</h2>
+    
+    <div id="step-1" class="step active-step">
+        <h3>Step 1: Enter Final Product</h3>
+        <p>Start by entering the name of your final product.</p>
+    </div>
+    
+    <div id="step-2" class="step">
+        <h3>Step 2: Fetch HS Code</h3>
+        <p>Click 'Fetch HS Code' to get an AI-suggested code. If incorrect, try again or enter manually.</p>
+    </div>
+
+    <div id="step-3" class="step">
+        <h3>Step 3: Fetch Product Info</h3>
+        <p>Click 'Fetch Info' to display all matched products.</p>
+    </div>
+
+    <div id="step-4" class="step">
+        <h3>Step 4: Select Exact Product & Save</h3>
+        <p>Choose the correct product and click 'Save'.</p>
+    </div>
+
+    <div id="step-5" class="step">
+        <h3>Step 5: Upload Bill of Materials</h3>
+        <p>If needed, download the template, fill it, and upload your BOM file.</p>
+    </div>
+
+    <div id="step-6" class="step">
+        <h3>Step 6: Process & Download Report</h3>
+        <p>Click 'Process' to generate reports. A ZIP file will be downloaded.</p>
+    </div>
+
+    <div class="btn-container">
+        <button class="btn btn-prev" onclick="prevStep()">Back</button>
+        <button class="btn btn-next" onclick="nextStep()">Next</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 1;
+    const totalSteps = 6;
+
+    function showStep(step) {
+        document.querySelectorAll('.step').forEach((s, index) => {
+            s.classList.remove("active-step");
+            if (index + 1 === step) {
+                s.classList.add("active-step");
+            }
+        });
+    }
+
+    function nextStep() { if (currentStep < totalSteps) { currentStep++; showStep(currentStep); } }
+    function prevStep() { if (currentStep > 1) { currentStep--; showStep(currentStep); } }
+    function closeGuide() { document.querySelector(".guide-container").style.display = "none"; }
+
+    document.addEventListener("DOMContentLoaded", function () { showStep(currentStep); });
+</script>
+
+</body>
+</html>

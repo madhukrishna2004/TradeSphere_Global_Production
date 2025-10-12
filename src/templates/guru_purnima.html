@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guru Purnima Tribute | KrisLynx LLP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #fefcea 0%, #d5dbe5 100%);
+      background-attachment: fixed;
+      color: #1f1f1f;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .moonlight {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+      animation: pulseGlow 6s ease-in-out infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.05); }
+    }
+
+    .sparkles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 10% 10%, #ffd700 2px, transparent 1px),
+        radial-gradient(circle at 30% 60%, #fff8dc 1.5px, transparent 1px),
+        radial-gradient(circle at 50% 80%, #ffdf91 1.8px, transparent 1px),
+        radial-gradient(circle at 70% 40%, #ffeaa7 1.5px, transparent 1px),
+        radial-gradient(circle at 80% 30%, #fffacd 2px, transparent 1px);
+      background-size: 300px 300px;
+      animation: moveSparkles 14s linear infinite;
+    }
+
+    @keyframes moveSparkles {
+      0% { background-position: 0 0; }
+      100% { background-position: 300px 600px; }
+    }
+
+    .falling-petals::before, .falling-petals::after {
+      content: "🌹🌺🌸";
+      font-size: 1.5rem;
+      position: fixed;
+      animation: fallPetals 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fallPetals {
+      0% { top: -10%; left: 10%; transform: rotate(0deg); }
+      100% { top: 110%; left: 90%; transform: rotate(360deg); }
+    }
+
+    .tribute-card {
+      position: relative;
+      z-index: 10;
+      max-width: 960px;
+      margin: 100px auto 60px auto;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      border: 5px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .logo {
+      max-width: 200px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .temple-banner {
+      width: 100%;
+      height: 100px;
+      margin-top: 20px;
+      margin-bottom: -20px;
+      opacity: 0.7;
+      z-index: 5;
+      position: relative;
+    }
+
+    .tribute-header {
+      text-align: center;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #4a148c;
+      text-shadow: 0 0 20px rgba(255, 223, 0, 0.6);
+      margin-bottom: 25px;
+    }
+
+    .sanskrit-line {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #6a1b9a;
+      font-weight: 500;
+      font-style: italic;
+      border-top: 1px dashed #d1a;
+      border-bottom: 1px dashed #d1a;
+      padding: 5px;
+      margin: 20px 0;
+      background: rgba(255, 240, 255, 0.2);
+    }
+
+    .content p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #6a1b9a;
+    }
+
+    .signature {
+      margin-top: 40px;
+    }
+
+    .signature p {
+      margin: 4px 0;
+    }
+
+    .signature .name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #4a148c;
+    }
+
+    .signature .role {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .signature a {
+      color: #0a58ca;
+      text-decoration: none;
+    }
+
+    .signature a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 20px;
+    }
+
+    .diya-left, .diya-right {
+      position: fixed;
+      bottom: 20px;
+      width: 70px;
+      height: 70px;
+      z-index: 11;
+      pointer-events: none;
+    }
+
+    .diya-left { left: 20px; }
+    .diya-right { right: 20px; }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      body {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+      }
+      .moonlight, .sparkles, .footer, .diya-left, .diya-right {
+        display: none !important;
+      }
+      .tribute-card {
+        box-shadow: none;
+        background: white;
+        padding: 0;
+      }
+    }
+    .guru-animation-container {
+  position: relative;
+  z-index: 5;
+  margin-bottom: 30px;
+}
+
+.guru-wrapper {
+  display: inline-block;
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+  animation: fadeInUp 2s ease-out;
+  transform: translateY(0);
+}
+
+.guru-image {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease;
+}
+
+.guru-wrapper:hover .guru-image {
+  transform: scale(1.02);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sparkles inside image */
+.image-sparkles {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 224, 0.8) 2px, transparent 2px),
+    radial-gradient(circle, rgba(255, 255, 200, 0.5) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 120px 120px;
+  animation: sparkleFloat 14s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 12px;
+}
+
+@keyframes sparkleFloat {
+  0% { background-position: 0 0; }
+  100% { background-position: 120px 240px; }
+}
+
+  </style>
+</head>
+<body class="falling-petals">
+  <div class="moonlight"></div>
+  <div class="sparkles"></div>
+
+  <!-- 🛕 Temple Banner (Animated SVG) -->
+  <div class="temple-banner">
+    <svg width="100%" height="100" viewBox="0 0 600 100" preserveAspectRatio="xMidYMid meet">
+      <path d="M10 90 Q 100 10 190 90 Q 280 10 370 90 Q 460 10 550 90" fill="none" stroke="#6a1b9a" stroke-width="4" />
+      <circle cx="100" cy="20" r="5" fill="#ba68c8">
+        <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="280" cy="20" r="5" fill="#ab47bc">
+        <animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="460" cy="20" r="5" fill="#9c27b0">
+        <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+  <!-- 🪔 Left Diya -->
+  <div class="diya-left">
+    <svg width="70" height="70" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="70" rx="30" ry="10" fill="#6d4c41"/>
+      <path d="M50 50 C45 45, 55 30, 50 20 C55 30, 60 45, 50 50" fill="#ff9800">
+        <animate attributeName="d" dur="1s" repeatCount="indefinite"
+          values="M50 50 C45 45, 55 30, 50 20 C55 30, 60 45, 50 50;
+                  M50 50 C44 44, 56 32, 50 18 C56 32, 62 44, 50 50;
+                  M50 50 C45 45, 55 30, 50 20 C55 30, 60 45, 50 50"/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- 🪔 Right Diya -->
+  <div class="diya-right">
+    <svg width="70" height="70" viewBox="0 0 100 100">
+      <ellipse cx="50" cy="70" rx="30" ry="10" fill="#6d4c41"/>
+      <path d="M50 50 C45 45, 55 30, 50 20 C55 30, 60 45, 50 50" fill="#ff9800">
+        <animate attributeName="d" dur="1s" repeatCount="indefinite"
+          values="M50 50 C45 45, 55 30, 50 20 C55 30, 60 45, 50 50;
+                  M50 50 C44 44, 56 32, 50 18 C56 32, 62 44, 50 50;
+                  M50 50 C45 45, 55 30, 50 20 C55 30, 60 45, 50 50"/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- 🌕 Tribute Card -->
+  <div class="tribute-card">
+    <div class="guru-animation-container text-center">
+  <div class="guru-wrapper">
+    <img src="{{ url_for('static', filename='assets/images/guru-sishya.png') }}"
+         alt="Guru and Shishya"
+         class="guru-image fadeInUp">
+    <div class="image-sparkles"></div>
+  </div>
+</div>
+
+    <div class="tribute-header">Guru Purnima Tribute</div>
+    <div class="sanskrit-line">तमसो मा ज्योतिर्गमय ॥</div>
+    <div class="content">
+      <p>Happy Guru Purnima, <span class="highlight">Manohar Sir</span> (Pranam),</p>
+      <p>This is <span class="highlight">Madhu Krishna</span>, once a student of <strong>7th B/S</strong> in your classroom — today, the <span class="highlight">Founder & CEO of KrisLynx LLP</span>.</p>
+      <p>It all began under your guidance — where I first learned the power of language, confidence, and vision. You didn't just teach me English — you helped shape the way I think, communicate, and lead.</p>
+      <p>Today, as I build future-ready tech through <span class="highlight">KrisLynx</span>, your teachings remain the foundation of my journey.</p>
+      <p><em>A true Guru shows the path from darkness to light — and for me, that light has always been you.</em></p>
+    </div>
+    <div class="signature">
+      <p>From your 7th class student to the boardroom,</p>
+      <p class="name">Madhu Krishna</p>
+      <p class="role">Founder & CEO</p>
+      <p><a href="https://www.krislynx.com" target="_blank">KrisLynx LLP</a></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 KrisLynx LLP · Igniting Tomorrow’s Solutions
+  </div>
+  <audio id="bg-music" loop>
+  <source src="{{ url_for('static', filename='assets/audio/flute.mp3') }}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<script>
+  const bgMusic = document.getElementById("bg-music");
+
+  const startMusic = () => {
+    if (bgMusic.paused) {
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(err => {
+        console.warn("Playback error:", err);
+      });
+    }
+    document.removeEventListener("click", startMusic);
+  };
+
+  // First interaction trigger
+  document.addEventListener("click", startMusic);
+</script>
+
+</body>
+</html>

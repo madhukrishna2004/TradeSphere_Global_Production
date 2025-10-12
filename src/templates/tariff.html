@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% import 'modals.html' as modals %}
+{% set filter = request.args.get('q', '') %}
+
+{% block content %}
+<div class="container p-4 mt-3" style="background: linear-gradient(to right, #f0f4fa, #e9f5fb); border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif;">
+  <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+    <div>
+      <h4 class="text-primary fw-semibold">Hello, <span class="text-dark">{{ session['user'] }}</span> </h4>
+      <p class="text-muted mb-0">Welcome to <strong>TradeSphere Global</strong> Commodity Lookup Tool</p>
+    </div>
+    <div class="text-end text-muted">
+      <div><strong>Date:</strong> <span id="live-date"></span></div>
+      <div><strong>Time:</strong> <span id="live-time"></span></div>
+    </div>
+  </div>
+
+  <div style="color: #2c2c2c;">
+    <p>
+      Use the <strong>TradeSphere Global</strong> lookup tool to classify your goods and find the appropriate HS/commodity code for <strong>UK, EU, Japan, and other global regions</strong>.
+    </p>
+
+    <p>To classify goods accurately, gather product details like:</p>
+    <ul>
+      <li>Product category and function</li>
+      <li>Material composition</li>
+      <li>Usage and purpose</li>
+      <li>Manufacturing method</li>
+      <li>Packaging or presentation style</li>
+    </ul>
+
+    <p>
+      <strong>Note:</strong> Most HS code classifications are based on the first 6–8 digits. Country-specific codes may be longer (up to 10 digits). Use only the required digits when searching.
+    </p>
+  </div>
+</div>
+
+<!-- Live Date & Time Script -->
+<script>
+  function updateDateTime() {
+    const now = new Date();
+    document.getElementById('live-date').textContent = now.toLocaleDateString('en-GB');
+    document.getElementById('live-time').textContent = now.toLocaleTimeString('en-GB');
+  }
+  setInterval(updateDateTime, 1000);
+  updateDateTime();
+</script>
+
+
+<div id="dataTable">
+  <noscript>
+    <div class="dataTable-wrapper">
+      <form class="data-options" action="" method="get">
+        <div class="data-options__filter">
+          <input type="search" name="q" aria-label="Search" placeholder="Search commodity code, description..." class="govuk-input" value="{{ filter }}" aria-controls="alltable" style="border: 2px solid #005EA5; padding: 8px;" />
+        </div>
+        <div class="data-options__length" style="margin-top: 12px;">
+          <label class="govuk-label" style="color: #2c2c2c;">
+            Show
+            <select name="n" aria-controls="alltable" class="govuk-select">
+              {% for size in [10, 25, 50, 100] %}
+                <option value="{{ size }}" {% if sample_size == size %}selected{% endif %}>{{ size }}</option>
+              {% endfor %}
+            </select> commodities
+          </label>
+        </div>
+      </form>
+
+      <div class="govuk-body" style="margin-top: 10px;">
+        <a href="https://www.gov.uk/guidance/using-the-trade-tariff-tool-to-find-a-commodity-code" target="_blank" class="govuk-link govuk-link--no-visited-state">Need help? Learn more here</a>.
+      </div>
+
+      <table class="table table-hover govuk-table sticky dataTable no-footer" id="alltable" role="grid">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">Commodity</th>
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">Description</th>
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">Global Tariff</th>
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">UK Tariff</th>
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">VAT</th>
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">Rule of Origin UK</th>
+            <th scope="col" class="govuk-table__header" style="background-color: #005EA5; color: white;">Rule of Origin Japan</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for item in data %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell hs-cell" style="color: #2c2c2c;">
+                <span class="hs-cell__heading">{{ item.commodity[:4] }}</span>
+                <span class="hs-cell__subheading">{{ item.commodity[4:6] }}</span>
+                <span class="hs-cell__subheading">{{ item.commodity[6:8] }}</span>
+              </td>
+              <td class="govuk-table__cell">{{ item.description }}</td>
+              <td class="govuk-table__cell">{{ item.cet_duty_rate }}</td>
+              <td class="govuk-table__cell">{{ item.ukgt_duty_rate }}</td>
+              <td class="govuk-table__cell">{{ item.vat or "N/A" }}</td>
+              <td class="govuk-table__cell">{{ item.product_specific_rule_of_origin or "N/A" }}</td>
+            </tr>
+          {% endfor %}
+          {% if data|length == 0 %}
+            <tr>
+              <td colspan="6" class="govuk-body" style="text-align: center;">No results found. Try adjusting your search.</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+
+      <div class="pagination">
+        <div class="pagination__info" role="status" aria-live="polite">
+          <span class="govuk-body">Showing {{ start_index }} to {{ stop_index }} of {{ total }} commodities</span>
+        </div>
+        <div class="pagination__links">
+          {% if page > 1 %}
+            <a href="{{ url_for('tariff', p=page - 1, n=sample_size, q=filter) }}" class="govuk-link">Previous</a>
+          {% endif %}
+          {% for page_option in pages %}
+            {% if page_option == page %}
+              <span class="govuk-link" style="font-weight: bold; color: #005EA5;">{{ page_option }}</span>
+            {% elif page_option is number %}
+              <a href="{{ url_for('tariff', p=page_option, n=sample_size, q=filter) }}" class="govuk-link">{{ page_option }}</a>
+            {% else %}
+              <span class="govuk-body">{{ page_option }}</span>
+            {% endif %}
+          {% endfor %}
+          {% if page < max_page %}
+            <a href="{{ url_for('tariff', p=page + 1, n=sample_size, q=filter) }}" class="govuk-link">Next</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </noscript>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/filterTable.js') }}"></script>
+<script>
+  window.renderFilterTable(
+    "dataTable",
+    {{ sample_size }},
+    {{ page }},
+    "{{ filter|safe }}",
+    "{{ url_for('static', filename='assets/images/search.svg') }}",
+    {{ all_data|tojson }},
+    {{ pages|tojson }}
+  );
+</script>
+{% endblock %}

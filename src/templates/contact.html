@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – TradeSphere Global</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- 🔷 Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-2xl font-extrabold text-blue-900">TradeSphere Global</div>
+      <nav class="space-x-6 hidden md:block text-sm font-medium text-blue-900">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <a href="/solutions.html" class="hover:text-blue-600">Solutions</a>
+        <a href="/pricing.html" class="hover:text-blue-600">Pricing</a>
+        <a href=/contact_page class="text-blue-700 font-semibold hover:underline">Contact</a>
+        <a href="/blogs.html" class="hover:text-blue-500">Blogs</a>
+        <a href="/login" class="text-blue-700 font-semibold hover:underline">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!--    Contact Hero -->
+  <section class="bg-blue-50 py-20 text-center">
+    <h1 class="text-4xl font-bold text-blue-900">Let’s Talk Trade</h1>
+    <p class="mt-4 text-lg text-blue-700 max-w-xl mx-auto">Reach out to our team with questions, partnerships, or product demos.</p>
+  </section>
+
+  <!-- 📝 Contact Form & Info -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+
+      <!-- 📋 Form -->
+<form action="{{ url_for('contact') }}" method="POST" class="space-y-6">
+  <div>
+    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+    <input type="text" id="name" name="name" required 
+           class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200"/>
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+    <input type="email" id="email" name="email" required 
+           class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200"/>
+  </div>
+
+  <div>
+    <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+    <input type="text" id="subject" name="subject" 
+           class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200"/>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+    <textarea id="message" name="message" rows="5" required 
+              class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-200"></textarea>
+  </div>
+
+  <button type="submit" 
+          class="bg-blue-800 text-white font-semibold px-6 py-2 rounded hover:bg-blue-900 transition">
+    Send Message
+  </button>
+</form>
+
+      <!-- 🏢 Contact Info -->
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-blue-800 mb-2">KrisLynx LLP</h2>
+          <p class="text-gray-700">   Kurnool, Andhra Pradesh, India</p>
+          <p class="text-gray-700">   <a href="tel:+919381757484" class="text-blue-600 hover:underline">+91 93817 57484</a></p>
+          <p class="text-gray-700">   <a href="mailto:connect@trade-sphereglobal.com" class="text-blue-600 hover:underline">connect@trade-sphereglobal.com</a></p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-blue-700 mb-1">LinkedIn</h3>
+          <a href="https://www.linkedin.com/company/krislynx" target="_blank" class="text-blue-500 hover:underline">
+            linkedin.com/company/krislynx
+          </a>
+        </div>
+        <div>
+          <h3 class="font-semibold text-blue-700 mb-1">Working Hours</h3>
+          <p class="text-gray-700">Monday – Saturday: 9 AM – 7 PM IST</p>
+          <p class="text-gray-700">Support: 24/7 via Email & Portal</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+<!-- FLOATING CHATBOT -->
+<button onclick="toggleChat()" class="fixed bottom-6 right-6 bg-purple-700 hover:bg-purple-800 text-white p-4 rounded-full shadow-lg z-50">
+  💬
+</button>
+
+<div id="chatbot" class="hidden fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 z-50 flex flex-col">
+  <div class="bg-purple-700 text-white px-4 py-2 font-semibold rounded-t-lg">KlynnAI – Trade Assistant</div>
+  
+  <div id="chat-messages" class="p-3 space-y-2 text-sm text-gray-800 h-64 overflow-y-auto">
+    <div class="bg-gray-100 p-2 rounded">Hi! I’m KlynnAI. Ask anything about TradeSphere Global or choose a question below  </div>
+  </div>
+
+  <div class="p-2 border-t text-sm text-gray-700">
+    <div class="flex flex-wrap gap-2 mb-2">
+      <button onclick="askBot('What is TradeSphere Global?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">What is TradeSphere Global?</button>
+      <button onclick="askBot('What does KlynnAI do?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">What does KlynnAI do?</button>
+      <button onclick="askBot('How does origin check work?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">How does origin check work?</button>
+      <button onclick="askBot('Is this ready for production?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">Is this ready for production?</button>
+    </div>
+    <input id="user-input" type="text" placeholder="Type your question..." class="w-full border rounded px-2 py-1 mb-1" onkeydown="if(event.key==='Enter'){askBot(this.value)}">
+  </div>
+</div>
+
+<script>
+  function toggleChat() {
+    document.getElementById('chatbot').classList.toggle('hidden');
+  }
+
+  function askBot(question) {
+    if (!question.trim()) return;
+    const chatBox = document.getElementById('chat-messages');
+    
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = "text-right";
+    userMsg.innerHTML = `<div class="inline-block bg-purple-100 text-purple-800 px-2 py-1 rounded mb-1">${question}</div>`;
+    chatBox.appendChild(userMsg);
+
+    // Clear input
+    document.getElementById('user-input').value = '';
+
+    // Bot response (match simplified)
+    let answer = "I'm still learning! Please ask something else.";
+
+    if (question.toLowerCase().includes("what is tradesphere")) {
+      answer = " TradeSphere Global is a project by KrisLynx LLP to simplify UK–EU trade compliance using AI tools.";
+    } else if (question.toLowerCase().includes("klynnai")) {
+      answer = "KlynnAI is the AI assistant for HS code lookup, rule-of-origin checks, VAT guidance, and auto-filling trade forms.";
+    } else if (question.toLowerCase().includes("origin check")) {
+      answer = "Origin check uses smart rules for EU–UK and UK–Japan agreements to determine trade eligibility and request supplier declarations.";
+    } else if (question.toLowerCase().includes("production")) {
+      answer = "Yes, this is built with real backend logic, secure uploads, PostgreSQL DB, and can scale to 10,000+ users.";
+    } else if (question.toLowerCase().includes("features")) {
+      answer = "Features include HS Code Lookup, Tariff Data, Origin Check, Supplier Upload, Excel Export, and Auto Duty Estimate.";
+    } else if (question.toLowerCase().includes("tech stack")) {
+      answer = "Frontend: HTML + Tailwind, Backend: Python Flask/FastAPI, DB: PostgreSQL on Render. Data preloaded from CSV.";
+    } else if (question.toLowerCase().includes("demo")) {
+      answer = "Demo builds are available. You can request a trial via our landing page contact form.";
+    }
+
+    // Add bot response
+    const botMsg = document.createElement('div');
+    botMsg.className = "text-left";
+    botMsg.innerHTML = `<div class="inline-block bg-gray-100 px-2 py-1 rounded mb-1">${answer}</div>`;
+    chatBox.appendChild(botMsg);
+
+    // Auto-scroll to bottom
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+</script>
+
+  <!-- 🔚 Footer -->
+  <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 text-sm">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8">
+
+    <!-- Company Intro -->
+    <div class="md:col-span-2">
+      <h5 class="text-yellow-400 font-semibold mb-2">KrisLynx & TradeSphere Global</h5>
+      <p class="mb-2">
+        <strong>KrisLynx LLP</strong> is your AI/IT innovation partner — igniting tomorrow’s solutions with intelligence, insight, and integrity. From enterprise AI to compliance tools, we engineer modern systems that simplify and empower businesses globally.
+      </p>
+      <p>
+        <strong>TradeSphere Global</strong> is our flagship platform simplifying supplier declarations and tariff compliance across UK, EU, Japan & more.
+      </p>
+    </div>
+
+    <!-- Explore -->
+    <div>
+      <h6 class="text-cyan-400 font-semibold mb-3">Explore</h6>
+      <ul class="space-y-2">
+        <li><a href="/" class="hover:underline text-gray-300">Home</a></li>
+        <li><a href="/solutions.html" class="hover:underline text-gray-300">Services</a></li>
+        <li><a href="/our-story.html" class="hover:underline text-gray-300">About</a></li>
+        <li><a href="/industries.html" class="hover:underline text-gray-300">Industries</a></li>
+      </ul>
+    </div>
+
+    <!-- Products -->
+    <div>
+      <h6 class="text-cyan-400 font-semibold mb-3">Products</h6>
+      <ul class="space-y-2">
+        <li>
+          <a href="https://trade-sphereglobal.com" target="_blank" class="hover:underline text-gray-300">
+            TradeSphere Global
+          </a>
+        </li>
+        <li><span class="text-gray-400">AI Insights (Coming Soon)</span></li>
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div>
+      <h6 class="text-cyan-400 font-semibold mb-3">Resources</h6>
+      <ul class="space-y-2">
+        <li><a href="/contact" class="hover:underline text-gray-300">Contact</a></li>
+        <li><a href="/privacy-policy" class="hover:underline text-gray-300">Privacy Policy</a></li>
+        <li><a href="/terms-of-service" class="hover:underline text-gray-300">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h6 class="text-cyan-400 font-semibold mb-3">Contact</h6>
+      <p class="mb-1">
+        <a href="mailto:connect@trade-sphereglobal.com" class="text-blue-400 hover:underline">connect@trade-sphereglobal.com</a>
+      </p>
+      <p>   Kurnool, Andhra Pradesh, India</p>
+      <p>   <a href="tel:+919381757484" class="hover:underline text-gray-300">+91 93817 57484</a></p>
+      <p>
+        <a href="https://www.krislynx.com" target="_blank" class="hover:underline text-gray-300">Explore KrisLynx</a>
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/company/krislynx" target="_blank" class="hover:underline text-gray-300">LinkedIn: @KrisLynx</a>
+      </p>
+      <p class="italic mt-2 text-gray-400">Building trust globally. Delivering locally.</p>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-10 pt-4 px-6 text-center md:text-left text-xs flex flex-col md:flex-row justify-between items-center gap-2 text-gray-400">
+    <span>© 2025 KrisLynx LLP. All rights reserved.</span>
+    <div class="flex gap-4">
+      <span>SSL Secure</span>
+      <span>ISO Compliant</span>
+      <span>AI-Ready</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

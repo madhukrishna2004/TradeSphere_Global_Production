@@ -1,0 +1,91 @@
+1
+00:00:00,000 --> 00:00:04,500
+Welcome to the Gmail API OAuth Verification Demo for TradeSphere Global.
+
+2
+00:00:04,501 --> 00:00:09,000
+Developed by KrisLynx LLP, a part of RKLS Groups Pvt. Ltd.
+
+3
+00:00:09,001 --> 00:00:14,000
+This video demonstrates how our platform securely uses the Gmail API `gmail.send` scope.
+
+4
+00:00:14,001 --> 00:00:18,500
+OAuth Client ID: 114692921129511160415
+
+5
+00:00:18,501 --> 00:00:23,000
+Let’s walk through the real use case of how our users interact with the Gmail API.
+
+6
+00:00:23,001 --> 00:00:28,000
+The user logs into TradeSphere Global using their Google account on our secure dashboard.
+
+7
+00:00:28,001 --> 00:00:34,000
+Upon clicking the “Send Email Page” button, the user is redirected to the email composer screen.
+
+8
+00:00:34,001 --> 00:00:39,000
+Here, the user enters recipient email, subject, message body, and optionally attaches a file.
+
+9
+00:00:39,001 --> 00:00:44,000
+Once ready, they click “Send Email” to trigger the Gmail API authentication flow.
+
+10
+00:00:44,001 --> 00:00:49,000
+Google’s OAuth screen is shown, and the user selects their Gmail account to continue.
+
+11
+00:00:49,001 --> 00:00:54,000
+The consent screen appears, requesting the `gmail.send` permission only.
+
+12
+00:00:54,001 --> 00:01:00,000
+After the user grants permission, the email is sent from their Gmail account using our system.
+
+13
+00:01:00,001 --> 00:01:06,000
+The user immediately sees a success confirmation inside our app dashboard.
+
+14
+00:01:06,001 --> 00:01:11,000
+To ensure transparency, the user can also check their Gmail "Sent" folder.
+
+15
+00:01:11,001 --> 00:01:16,000
+The email appears as if they sent it directly from their Gmail account.
+
+16
+00:01:16,001 --> 00:01:21,000
+Additionally, we log this email event inside the app’s “Sent Email” section.
+
+17
+00:01:21,001 --> 00:01:26,000
+No Gmail content is stored, and we never access or read user inboxes.
+
+18
+00:01:26,001 --> 00:01:31,000
+We only use `gmail.send` to send user-initiated messages with their full consent.
+
+19
+00:01:31,001 --> 00:01:36,000
+Tokens are encrypted and scoped per session. No token is stored persistently.
+
+20
+00:01:36,001 --> 00:01:41,000
+This implementation is fully compliant with Google’s API Services User Data Policy.
+
+21
+00:01:41,001 --> 00:01:46,000
+We respect user privacy, and no data is sold, shared, or used outside intended scope.
+
+22
+00:01:46,001 --> 00:01:51,000
+Our app ensures that users stay in control of what is sent from their account.
+
+23
+00:01:51,001 --> 00:01:56,000
+Thank you for reviewing the OAuth implementation of TradeSphere Global by KrisLynx LLP.

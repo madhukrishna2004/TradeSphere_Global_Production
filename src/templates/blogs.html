@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeSphere Global – AI Trade Compliance Insights</title>
+  <meta name="description" content="TradeSphere Global: AI-powered HS code classification, preferential trade modules, supplier validation, and real-time compliance alerts for SMEs globally."/>
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css"/>
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    /* Enhanced Glassmorphism effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Enhanced Morphic shapes with animation */
+    .morphic-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      z-index: -1;
+      animation: morph 20s ease-in-out infinite;
+    }
+    
+    @keyframes morph {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+    
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--primary);
+      top: -150px;
+      left: -150px;
+    }
+    
+    .shape-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--secondary);
+      bottom: -150px;
+      right: -150px;
+    }
+    
+    .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: 5s;
+    }
+    
+    /* Advanced card hover effects */
+    .hover-card {
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      perspective: 1000px;
+    }
+    
+    .hover-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 12px 12px 0 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .hover-card:hover {
+      transform: translateY(-15px) scale(1.05) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    }
+    
+    .hover-card:hover::before {
+      opacity: 1;
+    }
+    
+    /* Read more content animation with fade */
+    .read-more-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, opacity 0.6s ease;
+      opacity: 0;
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .read-more-content.active {
+      max-height: 2000px;
+      opacity: 1;
+    }
+    
+    /* Animated underline effect with glow */
+    .nav-link {
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.4s ease;
+      box-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .floating {
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    /* Enhanced Particle background */
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      opacity: 0;
+      animation: particle-float 12s infinite ease-in-out;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    
+    @keyframes particle-float {
+      0% {
+        transform: translateY(100%) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200%) translateX(100px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Glow effect */
+    .glow {
+      box-shadow: 0 0 30px rgba(79, 70, 229, 0.4);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 10px;
+      border: 2px solid #f1f1f1;
+    }
+    
+    /* Chatbot enhancements */
+    .chat-message {
+      max-width: 85%;
+      margin-bottom: 20px;
+      padding: 14px 18px;
+      border-radius: 20px;
+      animation: message-appear 0.4s ease-out;
+      position: relative;
+      line-height: 1.5;
+    }
+    
+    @keyframes message-appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .user-message {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 8px;
+    }
+    
+    .bot-message {
+      background: #f1f5f9;
+      color: var(--dark);
+      margin-right: auto;
+      border-bottom-left-radius: 8px;
+    }
+    
+    /* Button enhancements */
+    .btn-primary {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      transition: left 0.6s ease;
+      z-index: -1;
+    }
+    
+    .btn-primary:hover::before {
+      left: 0;
+    }
+    
+    .btn-primary:hover {
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px) scale(1.05);
+    }
+    
+    /* Mobile Nav Styles */
+    .mobile-nav {
+      transform: translateY(-100%);
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .mobile-nav.active {
+      transform: translateY(0);
+    }
+    
+    /* NEW: Corporate enhancements */
+    .corporate-card {
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .corporate-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-8px);
+    }
+    
+    .corporate-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 2.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .corporate-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.2;
+    }
+    
+    .corporate-section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .corporate-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    
+    .corporate-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    
+    .corporate-stats {
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+      padding: 2rem 0;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .stat-item {
+      padding: 0 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--dark);
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .corporate-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.3), transparent);
+      margin: 2rem 0;
+    }
+    
+    .corporate-cta {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 4rem 0;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .corporate-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.2;
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+    }
+    
+    .corporate-timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    
+    .corporate-timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      border-radius: 3px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+    
+    .timeline-content {
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+    
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      right: -10px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -10px;
+    }
+    
+    .timeline-date {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      .corporate-timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-content::after {
+        left: -10px !important;
+        right: auto !important;
+      }
+      
+      .corporate-stats {
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body class="scroll-smooth relative">
+
+  <!-- Animated background elements -->
+  <div class="morphic-shape shape-1"></div>
+  <div class="morphic-shape shape-2"></div>
+  <div class="morphic-shape shape-3"></div>
+  
+  <!-- Navbar -->
+  <header class="glass fixed w-full top-0 z-50 transition-all duration-300">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <a href="/" class="text-2xl font-bold text-indigo-700 flex items-center">
+        <span class="bg-gradient-to-r from-indigo-600 to-blue-500 text-white p-2 rounded-lg mr-2 shadow-md">
+          <i class="fas fa-globe-americas"></i>
+        </span>
+        TradeSphere Global
+      </a>
+      <nav class="hidden md:flex space-x-8 text-base font-medium text-indigo-800">
+        <a href="/our-story.html" class="nav-link hover:text-blue-500">Our Story</a>
+        <a href="/solutions.html" class="nav-link hover:text-blue-500">Solutions</a>
+        <a href="/pricing.html" class="nav-link hover:text-indigo-600">Pricing</a>
+        <a href="/blogs.html" class="nav-link font-semibold text-indigo-700">Insights</a>
+        <a href="/contact_page" class="nav-link hover:text-blue-500">Contact</a>
+        <a href="/login" class="text-indigo-700 font-semibold hover:underline">Login</a>
+      </nav>
+      <button id="mobile-menu-btn" class="md:hidden text-indigo-700 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <nav id="mobile-nav" class="mobile-nav md:hidden bg-white shadow-lg px-6 py-4 space-y-4 text-center text-indigo-800 font-medium absolute w-full z-40">
+      <a href="/our-story.html" class="block nav-link hover:text-blue-500">Our Story</a>
+      <a href="/solutions.html" class="block nav-link hover:text-blue-500">Solutions</a>
+      <a href="/pricing.html" class="block nav-link hover:text-indigo-600">Pricing</a>
+      <a href="/blogs.html" class="block nav-link font-semibold text-indigo-700">Insights</a>
+      <a href="/contact" class="block nav-link hover:text-blue-500">Contact</a>
+      <a href="/login" class="block text-indigo-700 font-semibold hover:underline">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="corporate-header text-white pt-32 pb-24 overflow-hidden">
+    <div class="particles-container" id="particles"></div>
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Global trade network" class="w-full h-full object-cover opacity-20">
+    </div>
+    <div class="relative container mx-auto px-6 text-center">
+      <span class="corporate-badge">Industry Insights</span>
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 text-white leading-tight" data-aos="fade-down" data-aos-delay="100">Trade Compliance Intelligence</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 opacity-90 leading-relaxed" data-aos="fade-up" data-aos-delay="200">Strategic insights for global trade professionals. Leverage AI-powered analysis to navigate complex compliance landscapes with confidence.</p>
+      <a href="#blogs" class="btn-primary inline-block glow floating" data-aos="zoom-in" data-aos-delay="300">
+        Explore Insights <i class="fas fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="container mx-auto px-6 -mt-16 relative z-10">
+    <div class="corporate-stats" data-aos="fade-up">
+      <div class="stat-item">
+        <div class="stat-number" data-count="250">0</div>
+        <div class="stat-label">Articles Published</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-count="95">0</div>
+        <div class="stat-label">Industry Experts</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-count="120">0</div>
+        <div class="stat-label">Countries Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-count="98">0</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Post -->
+  <section class="container mx-auto px-6 py-20">
+    <h2 class="corporate-section-title text-center mb-16" data-aos="fade-up">Featured Analysis</h2>
+    
+    <div class="corporate-card overflow-hidden max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      <div class="md:flex">
+        <div class="md:flex-1">
+          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Global Trade Analysis" class="w-full h-64 md:h-full object-cover">
+        </div>
+        <div class="md:flex-1 p-8">
+          <span class="corporate-badge">Trending</span>
+          <h3 class="text-2xl font-bold mb-4 text-blue-800">Global Trade Shifts: Navigating Post-Pandemic Supply Chain Realities</h3>
+          <p class="mb-4 text-gray-700 leading-relaxed">An in-depth analysis of how global supply chains have transformed in the wake of pandemic disruptions, and what trade professionals need to know to stay competitive.</p>
+          <div class="flex items-center mt-6">
+            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+              <i class="fas fa-user text-indigo-600"></i>
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Dr. Elena Rodriguez</p>
+              <p class="text-xs text-gray-500">Senior Trade Analyst</p>
+            </div>
+            <p class="text-xs text-gray-500 ml-auto">June 15, 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blogs -->
+  <section id="blogs" class="container mx-auto px-6 py-16 relative">
+    <h2 class="corporate-section-title text-center mb-16" data-aos="fade-up">Latest Intelligence</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Blog 1 -->
+      <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <span class="corporate-badge">Technology</span>
+        <h3 class="text-xl font-bold mb-4 text-blue-800">How AI Transforms HS Code Classification for SMEs</h3>
+        <p class="mb-4 text-gray-700 leading-relaxed">Discover how AI-powered HS code classification helps SMEs save time, cut costs, and stay compliant with live tariff database automation.</p>
+        <div class="read-more-content text-gray-700 space-y-4">
+          <p><strong>Introduction:</strong> Wrong HS codes can cause delays, penalties, or overpaid duties. AI changes the game for SMEs.</p>
+          <p><strong>The Challenge:</strong> Varying product descriptions, human errors, and tariff changes make compliance difficult.</p>
+          <p><strong>AI-Powered Solution:</strong> Enter a description → AI interprets → cross-checks live tariff database → recommends accurate HS code.</p>
+          <p><strong>Benefits:</strong> Accuracy, time savings, adaptability, and scalability for SMEs of any size.</p>
+          <p><strong>Example:</strong> Indian exporter ships auto parts to EU, instantly gets correct HS code → smooth customs clearance → accurate duties.</p>
+        </div>
+        <div class="flex justify-between items-center mt-6">
+          <button class="text-blue-600 font-semibold read-more-btn flex items-center group">
+            <span class="mr-2 group-hover:mr-3 transition-all">Read Analysis</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </button>
+          <span class="text-xs text-gray-500">8 min read</span>
+        </div>
+      </div>
+
+      <!-- Blog 2 -->
+      <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <span class="corporate-badge">Compliance</span>
+        <h3 class="text-xl font-bold mb-4 text-blue-800">Navigating Preferential Trade with AI-Powered Compliance</h3>
+        <p class="mb-4 text-gray-700 leading-relaxed">Simplify preferential trade compliance for UK–EU, UK–Japan, and more with automated eligibility checks and country of origin validation.</p>
+        <div class="read-more-content text-gray-700 space-y-4">
+          <p><strong>The Complexity:</strong> Different agreements, HS code conditions, and origin rules make manual validation hard.</p>
+          <p><strong>TradeSphere Solution:</strong> Upload data → AI checks rules → generates instant reports.</p>
+          <p><strong>Benefits:</strong> Save hours, boost savings, stay audit-ready, scalable as trade grows.</p>
+        </div>
+        <div class="flex justify-between items-center mt-6">
+          <button class="text-blue-600 font-semibold read-more-btn flex items-center group">
+            <span class="mr-2 group-hover:mr-3 transition-all">Read Analysis</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </button>
+          <span class="text-xs text-gray-500">6 min read</span>
+        </div>
+      </div>
+
+      <!-- Blog 3 -->
+      <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-icon">
+          <i class="fas fa-file-contract"></i>
+        </div>
+        <span class="corporate-badge">Operations</span>
+        <h3 class="text-xl font-bold mb-4 text-blue-800">Automating Supplier Document Validation</h3>
+        <p class="mb-4 text-gray-700 leading-relaxed">Save time and minimize errors managing supplier compliance documents like certificates and quality declarations.</p>
+        <div class="read-more-content text-gray-700 space-y-4">
+          <p><strong>Pain Points:</strong> Human errors, missed expirations, compliance risks during audits.</p>
+          <p><strong>AI Solution:</strong> Bulk upload documents → AI flags missing/expired/invalid → renewal alerts.</p>
+          <p><strong>Benefits:</strong> Reduce risks, save time, maintain audit-ready supplier database.</p>
+        </div>
+        <div class="flex justify-between items-center mt-6">
+          <button class="text-blue-600 font-semibold read-more-btn flex items-center group">
+            <span class="mr-2 group-hover:mr-3 transition-all">Read Analysis</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </button>
+          <span class="text-xs text-gray-500">7 min read</span>
+        </div>
+      </div>
+
+      <!-- Blog 4 -->
+      <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="feature-icon">
+          <i class="fas fa-bell"></i>
+        </div>
+        <span class="corporate-badge">Risk Management</span>
+        <h3 class="text-xl font-bold mb-4 text-blue-800">Why Real-Time Trade Compliance Alerts Matter</h3>
+        <p class="mb-4 text-gray-700 leading-relaxed">Stay updated with global trade rules, tariffs, sanctions, and regulatory changes with AI-powered alerts.</p>
+        <div class="read-more-content text-gray-700 space-y-4">
+          <p><strong>The Risks:</strong> Missed updates can invalidate deals, overpay duties, or trigger penalties.</p>
+          <p><strong>AI Alerts:</strong> Monitor global databases 24/7 → instant alerts → actionable insights for SMEs.</p>
+          <p><strong>Benefits:</strong> Always compliant, avoid shipment delays, increase agility globally.</p>
+        </div>
+        <div class="flex justify-between items-center mt-6">
+          <button class="text-blue-600 font-semibold read-more-btn flex items-center group">
+            <span class="mr-2 group-hover:mr-3 transition-all">Read Analysis</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </button>
+          <span class="text-xs text-gray-500">5 min read</span>
+        </div>
+      </div>
+
+      <!-- Blog 5 -->
+      <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <span class="corporate-badge">Strategy</span>
+        <h3 class="text-xl font-bold mb-4 text-blue-800">Strategic Sourcing in an Era of Trade Volatility</h3>
+        <p class="mb-4 text-gray-700 leading-relaxed">How leading companies are adapting their sourcing strategies to navigate increasing trade tensions and supply chain disruptions.</p>
+        <div class="read-more-content text-gray-700 space-y-4">
+          <p><strong>Current Landscape:</strong> Trade tensions, pandemic aftereffects, and geopolitical shifts are reshaping global sourcing.</p>
+          <p><strong>Strategic Approaches:</strong> Diversification, near-shoring, and digital transformation of supply chains.</p>
+          <p><strong>Case Studies:</strong> How industry leaders are successfully navigating these challenges.</p>
+        </div>
+        <div class="flex justify-between items-center mt-6">
+          <button class="text-blue-600 font-semibold read-more-btn flex items-center group">
+            <span class="mr-2 group-hover:mr-3 transition-all">Read Analysis</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </button>
+          <span class="text-xs text-gray-500">10 min read</span>
+        </div>
+      </div>
+
+      <!-- Blog 6 -->
+      <div class="corporate-card p-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="feature-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <span class="corporate-badge">Global Trends</span>
+        <h3 class="text-xl font-bold mb-4 text-blue-800">The Future of Digital Customs Documentation</h3>
+        <p class="mb-4 text-gray-700 leading-relaxed">Exploring how blockchain and other technologies are transforming customs processes and documentation worldwide.</p>
+        <div class="read-more-content text-gray-700 space-y-4">
+          <p><strong>Digital Transformation:</strong> The shift from paper-based to digital customs documentation.</p>
+          <p><strong>Emerging Technologies:</strong> Blockchain, AI, and IoT applications in customs processes.</p>
+          <p><strong>Global Initiatives:</strong> Key programs and standards driving this transformation.</p>
+        </div>
+        <div class="flex justify-between items-center mt-6">
+          <button class="text-blue-600 font-semibold read-more-btn flex items-center group">
+            <span class="mr-2 group-hover:mr-3 transition-all">Read Analysis</span>
+            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+          </button>
+          <span class="text-xs text-gray-500">9 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-16">
+      <a href="#" class="btn-primary inline-block">View All Insights</a>
+    </div>
+  </section>
+
+  <!-- Industry Trends Timeline -->
+  <section class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="corporate-section-title text-center mb-16">2023 Global Trade Outlook</h2>
+      
+      <div class="corporate-timeline">
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-date">Q1 2023</div>
+          <div class="timeline-content">
+            <h3 class="font-bold text-lg mb-2">Supply Chain Normalization</h3>
+            <p>Post-pandemic recovery trends and their impact on global trade flows and compliance requirements.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-date">Q2 2023</div>
+          <div class="timeline-content">
+            <h3 class="font-bold text-lg mb-2">EU Carbon Border Adjustments</h3>
+            <p>New regulatory frameworks and their implications for international trade compliance.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-date">Q3 2023</div>
+          <div class="timeline-content">
+            <h3 class="font-bold text-lg mb-2">Digital Trade Agreements</h3>
+            <p>The rise of digital-only trade agreements and their compliance implications.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="fade-left">
+          <div class="timeline-date">Q4 2023</div>
+          <div class="timeline-content">
+            <h3 class="font-bold text-lg mb-2">AI Regulation Frameworks</h3>
+            <p>Emerging global standards for AI in trade and compliance applications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-28 relative overflow-hidden">
+    <div class="morphic-shape shape-1" style="background: var(--secondary); top: 20%; left: -250px; width: 400px; height: 400px;"></div>
+    <div class="morphic-shape shape-2" style="background: var(--primary); bottom: 20%; right: -250px; width: 400px; height: 400px;"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <h2 class="corporate-section-title text-center mb-16">Industry Recognition</h2>
+      <div class="swiper testimonialsSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="corporate-card p-8 h-full">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4 shadow-sm">
+                  <i class="fas fa-user text-indigo-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg">Sarah M.</h4>
+                  <p class="text-sm text-gray-500">Operations Manager (UK)</p>
+                </div>
+              </div>
+              <p class="mb-4 italic text-gray-700 leading-relaxed">"We used to spend hours figuring out HS codes. TradeSphere Global gives accurate codes in seconds. The insights blog keeps our team updated on regulatory changes."</p>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="corporate-card p-8 h-full">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 shadow-sm">
+                  <i class="fas fa-user text-green-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg">Anil K.</h4>
+                  <p class="text-sm text-gray-500">Customs Compliance Specialist (EU)</p>
+                </div>
+              </div>
+              <p class="mb-4 italic text-gray-700 leading-relaxed">"Template upload & instant reports saved days. Shipments now qualify correctly & maximize savings. The analysis on preferential trade agreements has been invaluable."</p>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="corporate-card p-8 h-full">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 shadow-sm">
+                  <i class="fas fa-user text-purple-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg">Emily R.</h4>
+                  <p class="text-sm text-gray-500">Procurement Lead</p>
+                </div>
+              </div>
+              <p class="mb-4 italic text-gray-700 leading-relaxed">"Bulk upload & automatic validation gave us a clean, audit-ready supplier database. The insights on supplier document management transformed our processes."</p>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="corporate-card p-8 h-full">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4 shadow-sm">
+                  <i class="fas fa-user text-red-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg">Kenji S.</h4>
+                  <p class="text-sm text-gray-500">CEO</p>
+                </div>
+              </div>
+              <p class="mb-4 italic text-gray-700 leading-relaxed">"Export control module ensures safe new market entries without hiring a big compliance team. The geopolitical risk analysis has helped us avoid several potential issues."</p>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button-next text-blue-800 bg-white p-4 rounded-full shadow-md hover:shadow-xl transition-shadow hover:scale-110"></div>
+        <div class="swiper-button-prev text-blue-800 bg-white p-4 rounded-full shadow-md hover:shadow-xl transition-shadow hover:scale-110"></div>
+        <div class="swiper-pagination mt-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="corporate-cta">
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">Stay Ahead of Global Trade Compliance</h2>
+      <p class="text-xl max-w-3xl mx-auto mb-8 opacity-90" data-aos="fade-up" data-aos-delay="100">Subscribe to receive exclusive insights and analysis from our team of trade compliance experts.</p>
+      <form class="max-w-2xl mx-auto flex flex-col md:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
+        <input type="email" placeholder="Enter your business email" class="flex-1 px-6 py-4 rounded-full border-0 focus:ring-4 focus:ring-white focus:ring-opacity-30 transition-all">
+        <button type="submit" class="btn-primary bg-white text-indigo-700 hover:bg-gray-100 px-8 py-4">Subscribe Now</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 text-sm relative overflow-hidden">
+    <div class="morphic-shape shape-1" style="background: var(--primary); top: -100px; left: -250px; width: 400px; height: 400px;"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8 relative z-10">
+      <div class="md:col-span-2">
+        <h5 class="text-yellow-400 font-semibold mb-2 text-lg">KrisLynx & TradeSphere Global</h5>
+        <p class="mb-2 leading-relaxed">TradeSphere Global is our flagship AI-powered compliance platform simplifying supplier declarations and tariff checks worldwide.</p>
+        <div class="flex space-x-4 mt-4">
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors hover:scale-110">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors hover:scale-110">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors hover:scale-110">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3 text-base">Explore</h6>
+        <ul class="space-y-2">
+          <li><a href="/" class="hover:underline transition-all hover:pl-2">Home</a></li>
+          <li><a href="/solutions.html" class="hover:underline transition-all hover:pl-2">Solutions</a></li>
+          <li><a href="/our-story.html" class="hover:underline transition-all hover:pl-2">About</a></li>
+          <li><a href="/industries.html" class="hover:underline transition-all hover:pl-2">Industries</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3 text-base">Insights</h6>
+        <ul class="space-y-2">
+          <li><a href="/blogs.html" class="hover:underline transition-all hover:pl-2">All Articles</a></li>
+          <li><a href="#" class="hover:underline transition-all hover:pl-2">Compliance</a></li>
+          <li><a href="#" class="hover:underline transition-all hover:pl-2">Technology</a></li>
+          <li><a href="#" class="hover:underline transition-all hover:pl-2">Global Trends</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3 text-base">Contact</h6>
+        <p><a href="mailto:connect@trade-sphereglobal.com" class="text-blue-400 hover:underline transition-all hover:pl-2">connect@trade-sphereglobal.com</a></p>
+        <p>Kurnool, Andhra Pradesh, India</p>
+        <p><a href="tel:+919381757484" class="hover:underline transition-all hover:pl-2">+91 93817 57484</a></p>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-10 pt-4 px-6 text-center text-xs text-gray-400 relative z-10">
+      © 2025 KrisLynx LLP. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Floating Chat -->
+  <button onclick="toggleChat()" class="fixed bottom-6 right-6 bg-purple-700 hover:bg-purple-800 text-white p-4 rounded-full shadow-lg z-50 transition-all hover:scale-110 hover:rotate-12">
+    <i class="fas fa-comment"></i>
+  </button>
+  <div id="chatbot" class="hidden fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-2xl border z-50 flex flex-col glass">
+    <div class="bg-purple-700 text-white px-4 py-3 font-semibold rounded-t-lg flex justify-between items-center shadow-md">
+      <span>KlynnAI – Trade Assistant</span>
+      <button onclick="toggleChat()" class="text-white hover:text-gray-300">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div id="chat-messages" class="p-4 text-sm text-gray-800 h-72 overflow-y-auto flex flex-col space-y-2">
+      <div class="chat-message bot-message">
+        Hi! I'm KlynnAI. Ask anything about TradeSphere Global.
+      </div>
+    </div>
+    <div class="p-3 border-t text-sm flex">
+      <input id="user-input" type="text" placeholder="Type your question..." class="flex-1 border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all">
+      <button onclick="askBot(document.getElementById('user-input').value)" class="bg-purple-700 text-white px-5 rounded-r-lg hover:bg-purple-800 transition-colors hover:scale-105">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Back to top button -->
+  <button id="backToTop" class="fixed bottom-24 right-6 bg-indigo-700 text-white p-3 rounded-full shadow-lg z-50 opacity-0 transition-all hover:scale-110">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize AOS
+    AOS.init({ 
+      once: true,
+      duration: 1000,
+      offset: 150,
+      easing: 'ease-in-out-back'
+    });
+
+    // Create particles for hero section
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 12 + 6;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 12;
+        const duration = Math.random() * 10 + 10;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        container.appendChild(particle);
+      }
+    }
+    
+    // Read more functionality
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.closest('.corporate-card').querySelector('.read-more-content');
+        content.classList.toggle('active');
+        btn.querySelector('span').textContent = content.classList.contains('active') ? 'Read Less' : 'Read Analysis';
+        
+        // Smooth scroll to expanded content
+        if (content.classList.contains('active')) {
+          content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
+
+    // Initialize Swiper
+    const testimonialsSwiper = new Swiper(".testimonialsSwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: { 
+        delay: 4000, 
+        disableOnInteraction: false 
+      },
+      pagination: { 
+        el: ".swiper-pagination", 
+        clickable: true 
+      },
+      navigation: { 
+        nextEl: ".swiper-button-next", 
+        prevEl: ".swiper-button-prev" 
+      },
+      breakpoints: { 
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 } 
+      }
+    });
+
+    // Chatbot functionality
+    function toggleChat() {
+      document.getElementById('chatbot').classList.toggle('hidden');
+    }
+    
+    function askBot(q) {
+      if (!q.trim()) return;
+      
+      const chatBox = document.getElementById('chat-messages');
+      const userMsg = document.createElement('div');
+      userMsg.className = "chat-message user-message";
+      userMsg.textContent = q;
+      chatBox.appendChild(userMsg);
+      
+      document.getElementById('user-input').value = '';
+      
+      // Simulate bot thinking
+      setTimeout(() => {
+        let answer = "I'm still learning about that! Please contact our team for more detailed assistance.";
+        
+        if (q.toLowerCase().includes("tradesphere")) {
+          answer = "TradeSphere Global is our AI compliance platform for SMEs worldwide. It helps with HS code classification, preferential trade agreements, supplier validation, and real-time compliance alerts.";
+        } else if (q.toLowerCase().includes("ai") || q.toLowerCase().includes("artificial intelligence")) {
+          answer = "We use advanced AI algorithms for HS codes classification, origin checks, supplier document validation, and monitoring global trade regulations.";
+        } else if (q.toLowerCase().includes("pricing") || q.toLowerCase().includes("cost")) {
+          answer = "Our pricing starts at just $350/month. Would you like me to connect you with our sales team for a detailed quote?";
+        } else if (q.toLowerCase().includes("contact") || q.toLowerCase().includes("support")) {
+          answer = "You can reach us at connect@trade-sphereglobal.com or call +91 93817 57484. Our support team is available Monday-Friday, 9AM-6PM IST.";
+        } else if (q.toLowerCase().includes("blog") || q.toLowerCase().includes("insight")) {
+          answer = "Our insights blog features expert analysis on global trade compliance, AI applications in trade, regulatory changes, and industry best practices. New articles are published weekly.";
+        }
+        
+        const botMsg = document.createElement('div');
+        botMsg.className = "chat-message bot-message";
+        botMsg.textContent = answer;
+        chatBox.appendChild(botMsg);
+        
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 800);
+    }
+    
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 400) {
+        backToTopBtn.classList.add('opacity-100');
+        backToTopBtn.classList.remove('opacity-0');
+      } else {
+        backToTopBtn.classList.add('opacity-0');
+        backToTopBtn.classList.remove('opacity-100');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+    });
+    
+    // Animated counter for stats
+    function animateCounter() {
+      const counters = document.querySelectorAll('.stat-number');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const count = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+        
+        if (count < target) {
+          counter.innerText = Math.min(count + increment, target);
+          setTimeout(() => animateCounter(), 1);
+        }
+      });
+    }
+    
+    // Initialize particles when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      
+      // Allow Enter key in chatbot
+      document.getElementById('user-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          askBot(e.target.value);
+        }
+      });
+      
+      // Initialize counter animation when stats section is in view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounter();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      const statsSection = document.querySelector('.corporate-stats');
+      if (statsSection) {
+        observer.observe(statsSection);
+      }
+    });
+  </script>
+</body>
+</html>

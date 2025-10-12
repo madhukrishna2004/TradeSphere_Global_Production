@@ -1,0 +1,42 @@
+<section class="thanks-section">
+  <div class="container">
+    <h2>🎉 You're All Set!</h2>
+    <p>Welcome to TradeSphere Global. Your registration is complete.</p>
+
+    <div class="credentials-box">
+      <p><strong>Username (Email):</strong> {{ email }}</p>
+      <p><strong>Password:</strong> {{ password }}</p>
+    </div>
+
+    <p>You can now log in and access all your features.</p>
+    <a href="/login" class="btn-primary">Login to Dashboard</a>
+  </div>
+</section>
+
+<style>
+  .thanks-section {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #f5faff;
+  }
+  .credentials-box {
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    font-size: 1.1rem;
+  }
+  .btn-primary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background-color: #0073e6;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+</style>

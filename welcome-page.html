@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TradeSphere</title>
+    <link rel="stylesheet" href="static/css/govuk-frontend-3.4.0.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: hsl(0, 0%, 10%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome-container {
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Welcome, <span id="username-display"></span>!</h1>
+        <p>You are successfully logged in to TradeSphere.</p>
+        <p>Explore the features using the menu on the left.</p>
+        <p><a href="/">Go to Dashboard</a></p>
+    </div>
+
+    <script>
+        // Retrieve the username from the session storage or backend state
+        var username = sessionStorage.getItem('username') || 'User';
+        document.getElementById('username-display').textContent = username;
+    </script>
+</body>
+</html>

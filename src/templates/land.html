@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeSphere Global | Powered by KrisLynx</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f6f9;
+      color: #1a1a1a;
+    }
+
+    header {
+      background-color: #101626;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      color: #d4af37;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #ffffffcc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1a2b49, #101626);
+      color: #fff;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-button {
+      background-color: #d4af37;
+      color: #101626;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #b8952f;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-cards, .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card, .pricing-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover, .pricing-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .pricing-card h3 {
+      color: #1a2b49;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pricing-card li {
+      padding: 0.5rem 0;
+    }
+
+    .contact p {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      background-color: #101626;
+      color: #ccc;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Cookie Notice */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #101626;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      z-index: 9999;
+    }
+
+    #cookie-banner button {
+      margin-left: 15px;
+      padding: 6px 14px;
+      background-color: #d4af37;
+      color: #101626;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo"><h1>TradeSphere Global</h1></div>
+  <nav>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-container">
+    <h1>AI-Powered Trade Compliance</h1>
+    <p>TradeSphere Global, powered by KrisLynx, helps you unlock intelligent HS code classification, tariff management & compliance automation.</p>
+    <a href="#pricing" class="cta-button">Get Started</a>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <h2>Key Features at a Glance</h2>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <h3>AI Commodity Search</h3>
+        <p>Find detailed information on products and their classifications instantly.</p>
+      </div>
+      <div class="feature-card">
+        <h3>HS Code Lookup</h3>
+        <p>Access accurate and up-to-date tariff codes for global trade.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Product Origin Tracing</h3>
+        <p>Trace the origin of goods directly from your bill of materials.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Real-Time Alerts</h3>
+        <p>Receive instant notifications about tariff changes or regulatory updates.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Customizable Dashboards</h3>
+        <p>Personalize your workspace for quick access to tools and data.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Advanced Analytics</h3>
+        <p>Gain insights into trade patterns, compliance risks, and cost-saving opportunities.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Seamless Integration</h3>
+        <p>Integrate TradeSphere Global with your existing systems for a hassle-free experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing">
+  <div class="container">
+    <h2>Choose the Plan That Suits You</h2>
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <h3>Beginner Plan</h3>
+        <p><strong>$25/month</strong></p>
+        <ul>
+          <li>4 Country of Origin Calculations</li>
+          <li>Unlimited Expired Commodity Code Data</li>
+          <li>10 AI Input Questions</li>
+          <li>1 Login Access</li>
+        </ul>
+        <a href="#contact" class="cta-button">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Small Business</h3>
+        <p><strong>$50/month</strong></p>
+        <ul>
+          <li>10 Country of Origin Calculations</li>
+          <li>40 AI Input Questions</li>
+          <li>2 Login Access</li>
+        </ul>
+        <a href="#contact" class="cta-button">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Enterprise</h3>
+        <p><strong>$150/month</strong></p>
+        <ul>
+          <li>Unlimited Origin Calculations</li>
+          <li>Unlimited AI Inputs</li>
+          <li>5 Login Access</li>
+        </ul>
+        <a href="#contact" class="cta-button">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Enterprise + Supplier</h3>
+        <p><strong>$200/month</strong></p>
+        <ul>
+          <li>All Enterprise Features</li>
+          <li>Request Supplier Declaration</li>
+        </ul>
+        <a href="#contact" class="cta-button">Request Access</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p>For product demos, enterprise integration, or partnership inquiries:</p>
+    <a href="mailto:contact@tradesphereglobal.com" class="cta-button">contact@tradesphereglobal.com</a>
+  </div>
+</section>
+
+<div id="cookie-banner" style="display:none;">
+  We use cookies to enhance your browsing experience.
+  <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookieNotice', 'accepted')">Accept</button>
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("cookieNotice")) {
+      document.getElementById("cookie-banner").style.display = "block";
+    }
+  });
+</script>
+
+<footer>
+  <p>&copy; 2025 TradeSphere Global. Powered by KrisLynx LLP. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

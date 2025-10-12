@@ -1,0 +1,315 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F8FA; /* Fresh and positive background color */
+    color: #333333; /* Neutral dark text for readability */
+    padding: 0;
+    margin: 0;
+    line-height: 1.8;
+    text-align: center; /* Center all text by default */
+}
+
+/* Headings */
+h2, h3, h4 {
+    color: #1D3557; /* Deep blue for headings */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 450px;
+    background: #FFFFFF; /* White background for form contrast */
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Inputs and Buttons */
+input, button {
+    padding: 10px; /* Reduced padding for compact size */
+    margin: 8px 0; /* Vertical spacing for consistency */
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    font-size: 0.95rem; /* Slightly smaller font size */
+    width: 85%; /* Center-aligned and responsive */
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+input {
+    background-color: #F0F4F8; /* Light grey for input background */
+    color: #333333;
+}
+
+input:focus {
+    border-color: #1D3557; /* Deep blue border on focus */
+    box-shadow: 0 0 6px #1D3557;
+    outline: none;
+}
+
+button {
+    background-color: #457B9D; /* Positive blue for buttons */
+    color: #FFFFFF;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #1D3557; /* Darker blue on hover */
+    color: #FFFFFF;
+}
+
+button:focus {
+    outline: 2px solid #1D3557;
+    outline-offset: 2px;
+}
+
+button:active {
+    background-color: #A8DADC; /* Softer greenish-blue for pressed state */
+}
+
+/* Spinner Design */
+.spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;  /* Adjust for exact centering */
+    margin-left: -20px; /* Adjust for exact centering */
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.spinner div {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #1D3557; /* Deep blue spinner blocks */
+    animation: rotate 1s linear infinite;
+}
+
+.spinner div:nth-child(1) {
+    animation-delay: 0s;
+    top: 0;
+    left: 0;
+}
+
+.spinner div:nth-child(2) {
+    animation-delay: 0.3s;
+    top: 0;
+    right: 0;
+}
+
+.spinner div:nth-child(3) {
+    animation-delay: 0.6s;
+    bottom: 0;
+    right: 0;
+}
+
+.spinner div:nth-child(4) {
+    animation-delay: 0.9s;
+    bottom: 0;
+    left: 0;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+
+/* Table Styles */
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px auto; /* Center the table */
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    border: 1px solid #E5E5E5;
+    padding: 10px; /* Reduced padding for compact design */
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+table th {
+    background-color: #1D3557; /* Deep blue for table headers */
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #F8FAFC; /* Light background for even rows */
+}
+
+table tr:nth-child(odd) {
+    background-color: #FFFFFF; /* White background for odd rows */
+}
+
+table tr:hover {
+    background-color: #A8DADC; /* Highlight row on hover */
+    color: #1D3557; /* Text color on hover */
+}
+
+/* Animations for Buttons and Table Rows */
+button:hover, table tr:hover {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    input, button {
+        font-size: 0.85rem; /* Further reduce font size for smaller screens */
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table th, table td {
+        padding: 8px; /* Compact padding for smaller screens */
+    }
+}
+#chatbot-toggle {
+    padding: 15px; /* Keep the padding to create a circular shape */
+    border-radius: 50%; /* Circular button */
+    width: 60px; /* Set a fixed width */
+    height: 60px; /* Set a fixed height */
+    background-color: #3d3e3f; /* Dark gray background */
+    color: rgb(0, 0, 0); /* Black text (emoji) */
+    border: none; /* No border */
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1); /* Subtle shadow */
+    cursor: pointer;
+    display: flex; /* Ensures the emoji is centered */
+    justify-content: center; /* Center the emoji horizontally */
+    align-items: center; /* Center the emoji vertically */
+}
+/* Cinematic CGI-Level Onboarding Popup */
+/* Cinematic CGI-Level Onboarding Popup */
+.onboarding-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    background: rgba(0, 10, 20, 0.85); /* Deep dark blue sci-fi */
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgba(0, 200, 255, 0.8); /* Avatar-style glow */
+    padding: 30px;
+    text-align: center;
+    color: #00eaff; /* High contrast neon blue */
+    font-family: 'Poppins', sans-serif;
+    display: none;
+    z-index: 9999;
+    animation: fadeIn 0.7s ease-out;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+/* Heading Section */
+.onboarding-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+.onboarding-header h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #0ff, #0f0);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
+    margin: 0;
+    text-align: left;
+}
+
+
+
+/* Step Box */
+.step {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s ease-out;
+}
+
+.active-step {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Heading */
+.step h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #0ff, #0f0);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
+}
+
+/* Step Description */
+.step p {
+    font-size: 16px;
+    margin: 15px 0;
+    line-height: 1.5;
+    color: #e0ffff; /* Soft white-blue */
+}
+
+/* Buttons */
+.next-step, .prev-step, #finish-onboarding {
+    background: rgba(0, 255, 255, 0.15);
+    border: 2px solid #0ff;
+    color: #00eaff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-size: 14px;
+}
+
+.next-step:hover, .prev-step:hover, #finish-onboarding:hover {
+    background: rgba(0, 255, 255, 0.5);
+}
+
+/* Smooth Fade In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}

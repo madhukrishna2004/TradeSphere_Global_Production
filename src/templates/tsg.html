@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard – TradeSphere Global</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f0f4fa, #e9f5fb);
+    }
+    .sidebar {
+      width: 240px;
+      background-color: #0f172a;
+      min-height: 100vh;
+    }
+    .sidebar a {
+      color: #d1d5db;
+      text-decoration: none;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background-color: #1e293b;
+      color: #0ea5e9 !important;
+    }
+    .card {
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+    .card h5 {
+      font-weight: 600;
+    }
+    .metric-icon {
+      font-size: 1.5rem;
+      color: #0ea5e9;
+    }
+    .chart-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Layout -->
+  <div class="d-flex">
+
+    <!-- Sidebar -->
+    <aside class="sidebar d-flex flex-column p-3">
+      <h4 class="text-white fw-bold mb-4">Explore</h4>
+      <a href="/dashboard" class="py-2 px-3 rounded mb-1 active">Dashboard</a>
+      <a href="/profile" class="py-2 px-3 rounded mb-1">Profile</a>
+      <a href="/tariff" class="py-2 px-3 rounded mb-1">HS Code Lookup</a>
+      <a href="/expired-codes" class="py-2 px-3 rounded mb-1">Expired Codes</a>
+      <a href="/origin" class="py-2 px-3 rounded mb-1">Trade Eligibility</a>
+      <a href="/preferential-origin/exports" class="py-2 px-3 rounded mb-1">Exports Dashboard</a>
+      <a href="/preferential-origin/upload" class="py-2 px-3 rounded mb-1">BOM Upload</a>
+      <a href="https://supplierdeclarations.com/" class="py-2 px-3 rounded mb-1" target="_blank">Supplier Portal</a>
+      <a href="/logout" class="py-2 px-3 mt-auto text-danger">Logout</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1 p-4">
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">Dashboard</h2>
+        <div class="text-muted small">
+          Logged in as: <span class="fw-semibold text-dark">{{ session['user'] }}</span>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+        <div class="btn-group" role="group">
+          <button class="btn btn-sm btn-primary">Today</button>
+          <button class="btn btn-sm btn-outline-secondary">This Week</button>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label class="text-muted small">From:</label>
+          <input type="date" class="form-control form-control-sm" />
+          <label class="text-muted small">To:</label>
+          <input type="date" class="form-control form-control-sm" />
+        </div>
+      </div>
+
+      <!-- Metric Cards -->
+      <div class="row g-4 mb-5">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-center p-3">
+            <div class="metric-icon mb-2"></div>
+            <h6 class="text-muted">Total Declarations</h6>
+            <h3 class="text-primary">154</h3>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-center p-3">
+            <div class="metric-icon mb-2"></div>
+            <h6 class="text-muted">BOM Imports</h6>
+            <h3 class="text-primary">42</h3>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-center p-3">
+            <div class="metric-icon mb-2"></div>
+            <h6 class="text-muted">Emails Sent</h6>
+            <h3 class="text-primary">67</h3>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-center p-3">
+            <div class="metric-icon mb-2"></div>
+            <h6 class="text-muted">Exports</h6>
+            <h3 class="text-primary">23</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h5 class="chart-title mb-3">Origin Distribution</h5>
+            <canvas id="originChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h5 class="chart-title mb-3">Supplier Declarations</h5>
+            <canvas id="supplierChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h5 class="chart-title mb-3">Emails Sent</h5>
+            <canvas id="emailChart"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3">
+            <h5 class="chart-title mb-3">BOM Imports & Exports</h5>
+            <canvas id="bomExportChart"></canvas>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card p-3">
+            <h5 class="chart-title mb-3 text-danger">Expired Codes (Last 5 Days)</h5>
+            <canvas id="expiredChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-5 text-muted small fst-italic">
+        — TradeSphere Global — Keeping Goods in Motion, Powered by Intelligence.
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Chart.js Configs -->
+  <script>
+    const colors = {
+      blue: '#3b82f6',
+      indigo: '#6366f1',
+      violet: '#7c3aed',
+      emerald: '#10b981',
+      amber: '#f59e0b',
+      red: '#ef4444'
+    };
+
+    new Chart(document.getElementById('originChart'), {
+      type: 'pie',
+      data: {
+        labels: ['UK', 'EU', 'Japan'],
+        datasets: [{ data: [40, 35, 25], backgroundColor: [colors.blue, colors.indigo, colors.emerald] }]
+      }
+    });
+
+    new Chart(document.getElementById('supplierChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [{ label: 'Declarations', data: [12, 18, 10, 15, 19], backgroundColor: colors.indigo }]
+      }
+    });
+
+    new Chart(document.getElementById('emailChart'), {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [{
+          label: 'Emails Sent',
+          data: [21, 32, 28, 35, 38],
+          borderColor: colors.violet,
+          backgroundColor: 'rgba(124,58,237,0.1)',
+          tension: 0.4
+        }]
+      }
+    });
+
+    new Chart(document.getElementById('bomExportChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [
+          { label: 'BOM Imports', data: [4, 8, 5, 9, 6], backgroundColor: colors.emerald },
+          { label: 'Exports', data: [3, 6, 4, 7, 5], backgroundColor: colors.amber }
+        ]
+      }
+    });
+
+    new Chart(document.getElementById('expiredChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [{
+          label: 'Expired Codes',
+          data: [3, 5, 2, 4, 1],
+          backgroundColor: colors.red
+        }]
+      }
+    });
+  </script>
+</body>
+</html>

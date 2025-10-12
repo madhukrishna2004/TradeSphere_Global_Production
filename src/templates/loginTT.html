@@ -1,0 +1,3401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">
+    
+    <!-- Title -->
+    <title>TradeSphere Dashboard - AI-Powered UK Trade Compliance Software</title>
+    
+    <!-- Meta Description -->
+    <meta name="description" content="TradeSphere Global provides AI-driven software for HS code lookup, UK trade compliance, UK preference origin calculation, EU-UK trade agreement eligibility, and supplier declarations. Get solutions for global and UK import/export compliance." />
+    
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="HS code lookup, HS code search, HS code for commodities, tariff calculation, accurate HS code lookup, HS code for UK trade, UK HS code lookup, HS code for imports/exports, expired commodities, expired goods trade, commodity expiration details, expired products insights, import export expired commodities, expired commodity lookup, EU-UK trade agreement eligibility, EU-UK preferential trade agreements, EU-UK trade compliance, UK-EU trade agreement, EU-UK tariffs eligibility, UK-EU preferential origin, request supplier declaration, supplier declaration for trade, UK origin declaration, EU supplier declaration, supplier origin declaration, UK preference origin declaration, UK preference origin, UK origin rules, UK preference origin calculation, trade origin UK, origin rules for UK trade, TradeSphere global HS codes, global HS codes, TradeSphere HS code lookup, AI-powered HS code search, global trade tariff solution, TradeSphere tariff compliance, TradeSphere Global, TradeSphere Global UK, TradeSphere Global software, TradeSphere UK trade compliance, UK HS code lookup, UK preference origin, UK tariff calculation, UK trade compliance software, AI-driven UK trade tariffs, TradeSphere UK solution, UK import export compliance" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="TradeSphere Global - UK Trade Compliance, HS Code Lookup & EU-UK Tariff Calculation Software" />
+    <meta property="og:description" content="TradeSphere Global provides AI-powered solutions for UK trade compliance, HS code lookup, UK preference origin calculation, EU-UK trade agreement eligibility, and supplier declarations." />
+    <meta property="og:image" content="https://trade-sphereglobal.com/assets/tradesphere-banner.jpg" />
+    <meta property="og:url" content="https://trade-sphereglobal.com/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" sizes="192x192" href="static/assets/images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="static/assets/images/android-chrome-512x512.png">
+    <!-- In <head> -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Tradesphere Global</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="/privacy-policy" style="color: #edece9; font-weight: normal">Privacy Policy</a></li>
+                <li><a href="/terms-of-service" style="color: #edece9; font-weight: normal">Terms of Service</a></li>
+            </ul>
+            
+            <div class="cta-buttons">
+                <a href="#login" class="btn login-container">Login</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Unlock the Full Potential of Tradesphere Global</h1>
+            <p>Efficient solutions for businesses navigating global trade regulations.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn demo-btn">Request a Demo</a>
+                <a href="#services" class="btn services-btn">Our Services</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="logo.png" alt="TradeSphere Global Logo - AI for Trade Compliance""Tradesphere Global">
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+<!-- Gallery Section -->
+<section id="gallery-section">
+    <div class="gallery-container">
+        <div class="slideshow">
+            <div class="slide active">
+                <img src="/static/assets/images/img1.webp" alt="TradeSphere Global Logo - AI for Trade Compliance""Image 1">
+            </div>
+            <div class="slide">
+                <img src="/static/assets/images/img2.webp" alt="TradeSphere Global Logo - AI for Trade Compliance""Image 2">
+            </div>
+            <div class="slide">
+                <img src="/static/assets/images/img3.webp" alt="TradeSphere Global Logo - AI for Trade Compliance""Image 3">
+            </div>
+            
+        </div>
+        <!-- Navigation Arrows -->
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        <!-- Dots Navigation -->
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+           
+        </div>
+    </div>
+</section>
+<!-- JavaScript for Slideshow -->
+<script>
+    (function () {
+        let slideIndex = 1;
+        let timeout;
+        showSlides(slideIndex);
+
+        // Change slide by increment
+        window.changeSlide = function (n) {
+            clearTimeout(timeout);
+            showSlides(slideIndex += n);
+        };
+
+        // Jump to specific slide
+        window.currentSlide = function (n) {
+            clearTimeout(timeout);
+            showSlides(slideIndex = n);
+        };
+
+        // Main function to display slides
+        function showSlides(n) {
+            const slides = document.querySelectorAll(".slide");
+            const dots = document.querySelectorAll(".dot");
+
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+
+            slides.forEach((slide) => (slide.style.opacity = "0"));
+            dots.forEach((dot) => dot.classList.remove("active"));
+
+            slides[slideIndex - 1].style.opacity = "1";
+            dots[slideIndex - 1].classList.add("active");
+
+            // Change slide every **5 seconds (5000ms)**
+            timeout = setTimeout(() => {
+                showSlides(slideIndex += 1);
+            }, 10000); 
+        }
+    })();
+</script>
+
+
+
+<style>
+    /* General Reset */
+/* Reset & Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f0f4fa, #e9f5fb);
+  color: #212529;
+  line-height: 1.6;
+}
+
+/* Header */
+#header {
+  background-color: #0d6efd; /* Bootstrap Primary */
+  padding: 20px 0;
+  color: #fff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.navbar .logo h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #ffc107;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-buttons .btn {
+  background-color: #0073e6; /* Calm Blue */
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 115, 230, 0.15); /* Soft subtle glow */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-buttons .btn:hover {
+  background-color: #005bb5;
+  transform: translateY(-3px);
+}
+
+/* Hero Section */
+#hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0d6efd;
+  color: white;
+  padding: 50px 100px;
+  height: 400px;
+}
+
+/* Logo Section */
+#logo-section {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+#logo-section img {
+  max-width: 240px;
+  height: auto;
+}
+
+/* Section Base Style */
+section {
+  padding: 3rem 1rem;
+}
+
+section h2 {
+  font-weight: 600;
+  color: #0d6efd;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* About Us */
+.about-us-container {
+  max-width: 960px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  line-height: 1.8;
+}
+
+ 
+.lottie-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.lottie-icon lottie-player {
+  width: 100%;
+  height: 100%;
+}
+
+ 
+
+/* Services Section */
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.service-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+/* Why Choose Us */
+.why-choose-us {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  max-width: 1140px;
+  margin: auto;
+  padding: 2.5rem;
+}
+
+.choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.choose-box {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  flex: 1 1 280px;
+  transition: transform 0.3s ease;
+}
+
+.choose-box:hover {
+  transform: scale(1.02);
+}
+
+/* Gallery Section */
+#gallery-section {
+  width: 80%;
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 400px;
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slideshow {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Arrows */
+button.prev, button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+button.prev:hover, button.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dots .dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dots .dot.active {
+  background-color: #0d6efd;
+}
+
+/* Buttons */
+.buy-now-button {
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  padding: 0.625rem 2rem;
+  font-weight: 600;
+  background-color: #ffc107;
+  color: #000000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.buy-now-button:hover {
+  background-color: #e0a800;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .feature-card,
+  .service-card,
+  .choose-box {
+    flex: 1 1 100%;
+  }
+
+  #hero {
+    flex-direction: column;
+    padding: 30px 20px;
+    height: auto;
+    text-align: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  #logo-section img {
+    max-width: 180px;
+  }
+
+  section {
+    padding: 2rem 1rem;
+  }
+}
+ 
+
+/* Services Section */
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.service-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  max-width: 1140px;
+  margin: auto;
+  padding: 2.5rem;
+}
+
+.choose-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.choose-box {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  flex: 1 1 280px;
+  transition: transform 0.3s ease;
+}
+
+.choose-box:hover {
+  transform: scale(1.02);
+}
+
+/* Button Fixes */
+.buy-now-button {
+  border-radius: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  background-color: #FFD140;
+  color: #000;
+  padding: 0.625rem 2rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.buy-now-button:hover {
+  background-color: #ffc107;
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .feature-card,
+  .service-card,
+  .choose-box {
+    flex: 1 1 100%;
+  }
+
+  #logo-section img {
+    max-width: 180px;
+  }
+
+  section {
+    padding: 2rem 1rem;
+  }
+}
+
+#hero .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#hero .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.hero-image img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Slideshow */
+#hero .hero-image {
+    width: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+#hero .hero-image img {
+    position: absolute;
+    width: 100%;
+    animation: slide 9s infinite;
+}
+
+@keyframes slide {
+    0% { opacity: 1; transform: translateX(0); }
+    33.33% { opacity: 0; transform: translateX(-100%); }
+    66.66% { opacity: 0; transform: translateX(100%); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Features Section */
+#features {
+    background-color: #f1f1f1;
+    padding: 50px 100px;
+    text-align: center;
+}
+
+#features h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 23%;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Services Section */
+#services {
+    padding: 50px 100px;
+    background-color: #fff;
+}
+
+#services h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.services-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #f1f1f1;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card h3 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.service-card p {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* ---------------- Pricing Section ---------------- */
+#pricing {
+  padding: 4rem 1rem;
+  background-color: transparent;
+  text-align: center;
+}
+
+#pricing h2 {
+  font-size: 2.25rem;
+  color: #0d6efd;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.pricing-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.pricing-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  flex: 1 1 280px;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.12);
+}
+
+.pricing-card h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #0d6efd;
+  margin-bottom: 1rem;
+}
+
+.pricing-card .price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #212529;
+  margin-bottom: 1rem;
+}
+
+.pricing-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card ul li {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+.pricing-card .btn {
+  background-color: #ffc107;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pricing-card .btn:hover {
+  background-color: #e0a800;
+  transform: translateY(-4px);
+}
+
+/* ---------------- Contact Section ---------------- */
+#contact {
+  padding: 4rem 1rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: 2.25rem;
+  color: #0d6efd;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.contact-form-container {
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact-form-container .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.contact-form-container input,
+.contact-form-container textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-form-container button {
+  background-color: #198754;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form-container button:hover {
+  background-color: #146c43;
+  transform: translateY(-3px);
+}
+
+/* ---------------- Login Section ---------------- */
+#login {
+  padding: 4rem 1rem;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+#login h2 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: #0d6efd;
+  margin-bottom: 2rem;
+}
+
+.login-container {
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 0.75rem 1rem rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  margin: auto;
+}
+
+.login-container .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-container button {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #0a58ca;
+  transform: translateY(-3px);
+}
+
+/* ---------------- Footer ---------------- */
+#footer {
+  background-color: #0d6efd;
+  color: #ffffff;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+#footer p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+#footer .footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+#footer .footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+#footer .footer-links a:hover {
+  color: #ffc107;
+}
+
+/* ---------------- Responsive Fixes ---------------- */
+@media (max-width: 768px) {
+  .pricing-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing-card {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .contact-form-container,
+  .login-container {
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+/* Heading Section */
+#heading-container {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+}
+
+#heading-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#heading-container p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Image Section */
+#image-section {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #fff;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add spacing between images */
+    overflow: hidden;
+    flex-wrap: wrap; /* Wrap for smaller screens */
+}
+
+.image-slide {
+    flex: 1 1 calc(33.333% - 20px); /* 3 images per row */
+    max-width: calc(33.333% - 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Hover Effects */
+.image-slide:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .image-slide {
+        flex: 1 1 calc(50% - 20px); /* 2 images per row on tablets */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .image-slide {
+        flex: 1 1 100%; /* 1 image per row on mobile */
+        max-width: 100%;
+    }
+}
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Heading Section */
+#heading-container {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+}
+
+#heading-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#heading-container p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Gallery Section */
+#gallery-section {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.gallery-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slideshow {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Navigation Arrows */
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button.prev:hover, button.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+/* Dots Navigation */
+.dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dots .dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dots .dot.active {
+    background-color: #333;
+}
+
+.dots .dot:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    button.prev, button.next {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .dots .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+/* Logo Section Styling */
+#logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0; /* Increase padding to give more space around the logo */
+    background-color: #f4f4f9; /* Background color of the logo section */
+    margin-bottom: 50px; /* Space between logo and login section */
+    transition: transform 0.5s ease-in-out;
+}
+
+#logo-section img {
+    max-width: 400px; /* Increased size */
+    max-height: 300px; /* Increased size */
+    object-fit: contain;
+    border-radius: 15px; /* Optional for rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Adds a stronger shadow for a more prominent look */
+    transform: scale(1);
+}
+
+#logo-section img:hover {
+    transform: scale(1.1); /* Slightly larger zoom effect on hover */
+}
+.forgot-password {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* Popup Styling */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(145, 173, 171, 0.5);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .popup-content p {
+            margin-bottom: 20px;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+        }
+
+        .popup-content input:focus {
+            border-color: #0d9470;
+            outline: none;
+        }
+
+        .popup-content button {
+            background: linear-gradient(90deg, #0d798d, #1e6d8d);
+            border: none;
+            color: #121212;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.5s, transform 0.3s;
+        }
+
+        .popup-content button:hover {
+            background: linear-gradient(90deg, #047692, #327b94);
+            transform: translateY(-5px);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #10546f;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .forgot-password {
+        display: block;
+        margin-top: 10px;
+        color: #128fac;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+    /* Pop-up Container Styling */
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(201, 209, 212, 0.982);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .popup-content {
+        background: #dadbdf;
+        color: #282626;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 20px rgba(246, 243, 243, 0.4);
+        text-align: center;
+        max-width: 400px;
+        width: 80%;
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-30px);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .popup-content h3 {
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+
+    .popup-content p {
+        margin-bottom: 15px;
+    }
+
+    .email-link {
+        color: #237ea8;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .email-link:hover {
+        text-decoration: underline;
+    }
+
+    .close-btn {
+        padding: 10px 20px;
+        background: #1da9a2;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+        background: #157e7e;
+    }
+
+    .about-modern-section {
+  padding: 60px 20px;
+  background: linear-gradient(to right, #f0f4fa, #e9f5fb);
+  font-family: 'Poppins', sans-serif;
+  color: #212529;
+}
+
+.container-modern {
+  max-width: 1140px;
+  margin: auto;
+}
+
+.intro-block {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro-block h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.intro-block .highlight {
+  color: #0073e6;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 10px;
+}
+
+.about-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 115, 230, 0.08);
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+}
+
+.icon-container {
+  margin-bottom: 16px;
+}
+
+.about-card h4 {
+  font-size: 1.25rem;
+  color: #0073e6;
+  margin-bottom: 10px;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.trust-note {
+  text-align: center;
+}
+
+.trust-note p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.btn-cta {
+  background-color: #0073e6;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 115, 230, 0.15);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: #005bb5;
+  transform: translateY(-3px);
+}
+.features-section {
+  padding: 60px 20px;
+  background-color: #f5faff;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #0073e6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 20px rgba(0, 115, 230, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 320px;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 115, 230, 0.15);
+}
+
+.svg-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.svg-icon img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 115, 230, 0.2));
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: #0073e6;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Licensing Notice Section */
+.region-expansion-section {
+  padding: 60px 20px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.region-expansion-box {
+  background: #e8f3ff;
+  border-left: 6px solid #0073e6;
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 5px 15px rgba(0, 115, 230, 0.08);
+}
+
+.region-message h4 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #0073e6;
+}
+
+.region-message p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.lottie-icon-sm lottie-player {
+  width: 100px;
+  height: 100px;
+}
+
+.btn-cta {
+  background-color: #0073e6;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: #005bb5;
+  transform: translateY(-3px);
+}
+.tsg-features-section {
+  padding: 60px 20px;
+  background-color: #f5faff;
+  text-align: center;
+}
+
+.tsg-section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: #0073e6;
+}
+
+.tsg-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tsg-feature-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 20px rgba(0, 115, 230, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tsg-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 115, 230, 0.15);
+}
+
+.tsg-svg-icon {
+  margin-bottom: 20px;
+  animation: tsg-float 3s ease-in-out infinite;
+}
+
+.tsg-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.tsg-feature-title {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #0073e6;
+  font-weight: 600;
+}
+
+.tsg-feature-text {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@keyframes tsg-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.region-expansion-section {
+  background: #eef7ff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.region-expansion-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 115, 230, 0.08);
+}
+
+.region-lottie-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.region-lottie-icon lottie-player {
+  width: 100%;
+  height: 100%;
+}
+
+.region-message h4 {
+  font-size: 1.5rem;
+  color: #0073e6;
+  margin-bottom: 10px;
+}
+
+.region-message p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.btn-cta {
+  display: inline-block;
+  background-color: #0073e6;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 115, 230, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+  background-color: #005bb5;
+  transform: translateY(-3px);
+}
+
+
+</style>
+
+<section id="logo-section">
+    <img src="/static/assets/images/logo.png" alt="TradeSphere Global Logo - AI for Trade Compliance""Company Logo">
+</section>
+    <section id="about-us" class="about-modern-section">
+  <div class="container-modern">
+    <div class="intro-block">
+      <h2>About <span class="highlight">TradeSphere Global</span></h2>
+      <p class="subtitle">AI-Powered UK, EU & Japan Trade Tariff Portal</p>
+    </div>
+
+    <div class="about-content-grid">
+
+      <!-- AI Insight -->
+      <div class="about-card">
+        <div class="icon-container">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z"
+              fill="#0073e6">
+              <animate attributeName="fill" values="#0073e6;#005bb5;#0073e6" dur="2s" repeatCount="indefinite" />
+            </path>
+          </svg>
+        </div>
+        <h4>AI That Understands Trade</h4>
+        <p>We simplify global trade complexities with powerful AI tools—so you can focus on scaling, not searching. Our HS code intelligence reads your BOMs and maps tariff risks in seconds.</p>
+      </div>
+
+      <!-- Tariff Search -->
+      <div class="about-card">
+        <div class="icon-container">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="#0073e6" stroke-width="2">
+              <animate attributeName="r" values="8;9;8" dur="1.5s" repeatCount="indefinite" />
+            </circle>
+            <line x1="16" y1="16" x2="22" y2="22" stroke="#0073e6" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Tariff Navigation Simplified</h4>
+        <p>Navigate thousands of tariff codes with an interface built to feel intuitive. Designed for traders, not just tech users. Accuracy. Speed. Familiarity.</p>
+      </div>
+
+      <!-- Real-Time -->
+      <div class="about-card">
+        <div class="icon-container">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M12 8v4l3 2" stroke="#0073e6" stroke-width="2">
+              <animate attributeName="stroke-dashoffset" from="10" to="0" dur="1s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="12" cy="12" r="10" stroke="#0073e6" stroke-width="2"/>
+          </svg>
+        </div>
+        <h4>Real-Time Regulatory Awareness</h4>
+        <p>Stay ahead with live updates on trade agreements and tariff changes across the UK, EU, and Japan. Never miss a shift that affects your compliance.</p>
+      </div>
+
+      <!-- Compliance -->
+      <div class="about-card">
+        <div class="icon-container">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L20 6V12C20 17 16 21 12 22C8 21 4 17 4 12V6L12 2Z"
+              fill="#0073e6">
+              <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite" />
+            </path>
+          </svg>
+        </div>
+        <h4>Compliance with Confidence</h4>
+        <p>Trust is everything. Our platform is ISO-compliant, SSL-secured, and built with data accuracy at its core. Your compliance is our priority.</p>
+      </div>
+
+    </div>
+
+    <div class="trust-note">
+      <p>Join the new era of <strong>digitized trade intelligence</strong> with TradeSphere Global — engineered by <strong>KrisLynx LLP</strong>.</p>
+      <a href="/request-demo" class="btn-cta">Request a Demo</a>
+    </div>
+  </div>
+</section>
+
+   <section id="features" class="tsg-features-section">
+  <div class="tsg-container">
+    <h2 class="tsg-section-title" data-aos="fade-up">Our Core Features</h2>
+
+    <div class="tsg-features-grid">
+      
+      <!-- Feature 1 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <circle cx="25" cy="25" r="16"></circle>
+            <line x1="45" y1="45" x2="33" y2="33"></line>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">HS Code Lookup</h3>
+        <p class="tsg-feature-text">Identify commodity codes accurately for UK, EU, and Japan — ensuring tariff precision.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <circle cx="30" cy="30" r="25"></circle>
+            <polyline points="30,15 30,30 42,36"></polyline>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">Expired Commodity Details</h3>
+        <p class="tsg-feature-text">Automatically detect and alert about expired tariff records.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <circle cx="30" cy="30" r="25"></circle>
+            <path d="M5,30h50M30,5a45,45 0 0,1 0,50a45,45 0 0,1 0,-50"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">EU-UK-Japan Trade Eligibility</h3>
+        <p class="tsg-feature-text">Instantly check if your product qualifies under global FTAs.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <rect x="12" y="12" width="36" height="36" rx="8"></rect>
+            <path d="M20 30l6 6 12-12"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">AI-Powered Declaration Validation</h3>
+        <p class="tsg-feature-text">Verify completeness, HS accuracy, and origin logic with AI.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <path d="M15 10h30v10H15zM10 25h40v10H10zM20 40h20v10H20z"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">Bulk Supplier Requests</h3>
+        <p class="tsg-feature-text">Send and monitor multiple declaration requests at once.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="600">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <circle cx="30" cy="30" r="25"></circle>
+            <path d="M30 10v20l15 10"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">Analytics & Expiry Tracking</h3>
+        <p class="tsg-feature-text">Get compliance dashboards, renewal alerts, and performance metrics.</p>
+      </div>
+
+      <!-- Feature 7 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="700">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <path d="M12 20h36M12 30h36M12 40h24"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">Automated FTA Checker</h3>
+        <p class="tsg-feature-text">Run full FTA rule checks in real-time — no manual effort.</p>
+      </div>
+
+      <!-- Feature 8 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="800">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <rect x="10" y="10" width="40" height="40" rx="8"></rect>
+            <path d="M20 25h20M20 35h12"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">Bulk Report Exports</h3>
+        <p class="tsg-feature-text">Download full compliance data in Excel and PDF — instantly.</p>
+      </div>
+
+      <!-- Feature 9 -->
+      <div class="tsg-feature-card" data-aos="fade-up" data-aos-delay="900">
+        <div class="tsg-svg-icon">
+          <svg width="60" height="60" fill="none" stroke="#0073e6" stroke-width="2">
+            <circle cx="30" cy="30" r="25"></circle>
+            <path d="M20 20h20v20H20z"></path>
+            <path d="M35 35l10 10"></path>
+          </svg>
+        </div>
+        <h3 class="tsg-feature-title">24/7 AI Support</h3>
+        <p class="tsg-feature-text">Never stuck. Get intelligent answers, any time, any region.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Licensing & Expansion Message -->
+<section class="region-expansion-section">
+  <div class="region-expansion-box">
+    <div class="region-lottie-icon">
+      <lottie-player
+        src="/static/Animation - 1751911039247.json"
+        background="transparent"
+        speed="1"
+        loop
+        autoplay>
+      </lottie-player>
+    </div>
+    <div class="region-message">
+      <h4>Currently Licensed in:</h4>
+      <p><strong>UK • EU • Japan</strong></p>
+      <p>
+        Need support for another country or trade zone? 
+        We’ll tailor it for you in just <strong>10 working days</strong> — 
+        fully localized, AI-optimized, and trade-compliant.
+      </p>
+      <a href="#contact" class="btn-cta">Request Country Module</a>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <h3>Custom Tariff Solutions</h3>
+                <p>Tailored tariff solutions for businesses of all sizes, helping you navigate complex regulations.</p>
+            </div>
+            <div class="service-card">
+                <h3>Consulting & Support</h3>
+                <p>Expert consultation services to help you stay compliant and optimize your international trade operations.</p>
+            </div>
+            <div class="service-card">
+                <h3>Data Analysis & Reporting</h3>
+                <p>Comprehensive data analysis for trade compliance and reporting, delivered on time, every time.</p>
+            </div>
+        </div>
+    </section>
+
+ <!-- Styling for Buttons -->
+<style>
+    .buy-now-button {
+      text-align: center;
+      border: none;
+      border-radius: 0.25rem;
+      min-width: 11.625rem;
+      padding: 0 2rem;
+      height: 2.625rem;
+      font-weight: bold;
+      background-color: #FFD140;
+      color: #000000;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.25rem;
+      cursor: pointer;
+    }
+  
+    .buy-now-form {
+      display: inline-grid;
+      justify-items: center;
+      align-content: start;
+      gap: 0.5rem;
+    }
+  
+    .paypal-logo {
+      height: 0.875rem;
+      vertical-align: middle;
+    }
+    .pricing-section {
+  background: #f9fbff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.promo-banner {
+  background: #0073e6;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.demo-cta {
+  margin: 30px auto;
+  text-align: center;
+  max-width: 750px;
+}
+
+.demo-cta h2 {
+  font-size: 1.8rem;
+  color: #003366;
+}
+
+.demo-cta p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.btn-glow {
+  background: #0073e6;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0, 115, 230, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  background: #005bb5;
+  transform: translateY(-1px);
+}
+
+.pricing-title {
+  font-size: 2.4rem;
+  margin-top: 20px;
+  color: #002d5f;
+}
+
+.pricing-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.roi-note {
+  font-size: 1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.pricing-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.pricing-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 115, 230, 0.08);
+  padding: 30px;
+  width: 100%;
+  max-width: 330px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 115, 230, 0.15);
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  color: #0073e6;
+}
+
+.price-tag {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.price-tag span {
+  font-size: 1rem;
+  color: #777;
+}
+
+.billing-note {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.feature-list li {
+  margin: 8px 0;
+}
+
+.btn-pricing {
+  display: inline-block;
+  margin-top: 20px;
+  background: #0073e6;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-pricing:hover {
+  background: #005bb5;
+}
+
+.popular {
+  border: 2px solid #0073e6;
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0073e6;
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.tsg-pricing-section {
+  padding: 80px 20px;
+  background: #f7fbff;
+  text-align: center;
+}
+
+.tsg-pricing-banner {
+  background: #eaf4ff;
+  color: #0073e6;
+  font-weight: 600;
+  padding: 12px 0;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.tsg-pricing-header {
+  margin-bottom: 40px;
+}
+
+.tsg-section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #002b5e;
+}
+
+.tsg-section-subtext {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.roi-message {
+  font-size: 0.95rem;
+  color: #008000;
+  margin-top: 10px;
+}
+
+.tsg-pricing-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.tsg-pricing-card {
+  background: #ffffff;
+  border: 1px solid #d6e9ff;
+  border-radius: 16px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 6px 18px rgba(0, 115, 230, 0.06);
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.tsg-pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 115, 230, 0.1);
+}
+
+.popular-plan {
+  border: 2px solid #0073e6;
+}
+
+.tsg-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0073e6;
+  color: white;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0073e6;
+}
+
+.price span {
+  font-size: 1rem;
+  color: #444;
+}
+
+.billing-note {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.tsg-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.tsg-feature-list li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #ddd;
+  font-size: 0.95rem;
+}
+
+.btn-pricing {
+  display: inline-block;
+  margin-top: 20px;
+  background: #0073e6;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-pricing:hover {
+  background: #005bb5;
+}
+
+  </style>
+  <section class="why-choose-us">
+        <h2>Why Choose Us</h2>
+        <div class="choose-container">
+            <div class="choose-box">
+                <h3>💰 Cost Efficient</h3>
+                <p>We provide solutions that are budget-friendly without compromising on quality.</p>
+            </div>
+            <div class="choose-box">
+                <h3>🏭 Small-Medium Industry Focus</h3>
+                <p>Tailored services for small and medium-scale industries for better scalability.</p>
+            </div>
+            <div class="choose-box">
+                <h3>🤖 AI-Based Theme</h3>
+                <p>Our platform uses AI to enhance automation and smart decision-making.</p>
+            </div>
+            <div class="choose-box">
+                <h3>👥 Client-Centric Design</h3>
+                <p>User-friendly interface built with your customers in mind, ensuring ease of use.</p>
+            </div>
+            <div class="choose-box">
+                <h3>📡 Live Updates</h3>
+                <p>Get real-time data and alerts to keep your business agile and responsive.</p>
+            </div>
+            <div class="choose-box">
+                <h3>📈 Industry Trends</h3>
+                <p>Stay ahead with insights and updates on the latest market and industry trends.</p>
+            </div>
+        </div>
+    </section>
+
+ <!-- 🌐 TradeSphere Global Pricing Section -->
+<section id="pricing" class="tsg-pricing-section">
+
+  <!-- 🔥 Limited Offer Banner -->
+  <div class="tsg-pricing-banner">
+    🎯 Save <strong>25%</strong> on annual billing – <em>Offer valid until July 30</em>
+  </div>
+
+  <!-- 🧠 Demo CTA -->
+  <div class="tsg-pricing-header">
+    <h2 class="tsg-section-title">Choose the Plan That Powers Your Trade</h2>
+    <p class="tsg-section-subtext">Join exporters, suppliers, and compliance teams leveraging AI-powered automation.</p>
+    <a href="#contact" class="btn-glow">   Request a Live Demo</a>
+    <p class="roi-message">💸 Save up to <strong>$42,000/year</strong> by avoiding trade penalties and delays</p>
+  </div>
+
+  <!-- 💼 Pricing Plans Grid -->
+  <div class="tsg-pricing-grid">
+
+    <!-- 📦 Trade Essentials -->
+    <div class="tsg-pricing-card popular-plan">
+      <div class="tsg-badge">Best Value</div>
+      <h3>Trade Essentials</h3>
+      <p class="price">$350<span>/month</span></p>
+      <p class="billing-note">🔥 25% OFF on annual billing</p>
+      <ul class="tsg-feature-list">
+        <li>✅ Unlimited Origin Calculations</li>
+        <li>✅ 50+ Global FTAs Supported</li>
+        <li>✅ Supplier Declaration Automation</li>
+        <li>✅ AI-Powered HS Code & Expiry Checks</li>
+        <li>✅ Risk Validation & FTA Matching</li>
+        <li>✅ Up to 10 Users</li>
+        <li>✅ 14-Day Risk-Free Onboarding</li>
+      </ul>
+      <a href="/register" class="btn-pricing">Start with Essentials</a>
+    </div>
+
+    <!-- 💼 TradeSphere Elite -->
+    <div class="tsg-pricing-card">
+      <h3>TradeSphere Elite</h3>
+      <p class="price">$500<span>/month</span></p>
+      <p class="billing-note">🔥 25% OFF on annual billing</p>
+      <ul class="tsg-feature-list">
+        <li>✅ Everything in Essentials</li>
+        <li>✅ Dedicated Account Manager</li>
+        <li>✅ Custom Country Expansion</li>
+        <li>✅ Unlimited User Access + Admin Panel</li>
+        <li>✅ Full Audit Trail & Reporting</li>
+        <li>✅ White-Labeled Supplier Access</li>
+        <li>✅ Early Access to New Features</li>
+      </ul>
+      <a href="/register" class="btn-pricing">Upgrade to Elite</a>
+    </div>
+
+  </div>
+</section>
+
+
+ <!-- YouTube Video Embed -->
+ <!-- Stylish Video Embed Section -->
+ <style> 
+    /* Center the video container and set width to 70% */
+    .video-wrapper {
+        display: flex;
+        flex-direction: column; /* Stack videos vertically */
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 30px; /* Space between videos */
+        margin-bottom: 50px; /* Prevent overlap with next section */
+    }
+
+    .video-container {
+        width: 70%; /* Increased to 70% of the page width */
+        max-width: 900px; /* Increased maximum width for large screens */
+        position: relative;
+        padding-bottom: 39.375%; /* Adjusted 16:9 aspect ratio (70% width) */
+        height: 0;
+        overflow: hidden;
+        background: #000;
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+        cursor: pointer;
+    }
+
+    .video-container:hover {
+        transform: scale(1.05); /* Slight zoom effect */
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+    }
+
+    /* Make the iframe responsive and fill the container */
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px; /* Optional rounded corners */
+    }
+
+    /* Play button styling */
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video-container:hover .play-button {
+        background: rgba(0, 0, 0, 0.8);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Hide play button when video is playing */
+    .video-container.playing .play-button {
+        display: none;
+    }
+
+    /* Section title styling */
+    .video-section-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Fix Login Section Overlapping */
+    #login {
+        padding-top: 50px; /* Add space above the login section */
+    }
+</style>
+<style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .why-choose-us {
+            padding: 40px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .choose-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .choose-box {
+            background-color: #f0f4f8;
+            border-radius: 12px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .choose-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .choose-box h3 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+
+        .choose-box p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .choose-box {
+                width: 100%;
+            }
+        }
+
+    .tsg-feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+}
+
+.tsg-feature-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 115, 230, 0.15);
+}
+    .global-trust-section {
+  background: linear-gradient(to right, #f0f8ff, #e8f2fc);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.global-section-title {
+  font-size: 2.6rem;
+  color: #003366;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.global-subtitle {
+  color: #444;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.global-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.global-stat-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: #0073e6;
+}
+
+.stat-text h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0073e6;
+  margin: 0;
+}
+
+.stat-text p {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0;
+}
+
+.global-globe {
+  margin: 40px auto 30px;
+}
+
+.global-cta .cta-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.global-btn {
+  background-color: #0073e6;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0, 115, 230, 0.4);
+  transition: all 0.3s ease;
+}
+
+.global-btn:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+/* 🌐 Global Impact Styling */
+.global-impact-section {
+  background-color: #f0f7ff;
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0073e6;
+  margin-bottom: 50px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 115, 230, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 115, 230, 0.15);
+}
+
+.stat-card h3 {
+  color: #0073e6;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.counter {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.globe-wrapper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.cta-text {
+  margin-top: 40px;
+}
+
+.btn-glow {
+  background-color: #0073e6;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(0, 115, 230, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+.contact-section {
+  background-color: #f5faff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 115, 230, 0.1);
+}
+
+.contact-title {
+  font-size: 2.2rem;
+  color: #0073e6;
+  margin-bottom: 12px;
+}
+
+.contact-subtitle {
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d3e4f4;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #f9fcff;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0073e6;
+  outline: none;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.btn-glow {
+  background-color: #0073e6;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 115, 230, 0.4);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+.thank-you-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.thank-you-content {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 115, 230, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+.thank-you-content h2 {
+  color: #0073e6;
+  margin-bottom: 10px;
+}
+
+.thank-you-content p {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+
+    </style>
+
+<!-- Section Title -->
+<h2 class="video-section-title">TradeSphere Global: Vision & Walkthrough</h2>
+
+<div class="video-wrapper">
+    <!-- Introduction (Theme) Video -->
+    <div class="video-container" onclick="playVideo(this)">
+        <div class="play-button">▶</div>
+        <iframe id="video1" src="https://www.youtube.com/embed/t0tY9Agcsps?autoplay=0" title="Introduction Video - Theme" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <!-- TradeSphere Global Walkthrough Video -->
+    <div class="video-container" onclick="playVideo(this)">
+        <div class="play-button">▶</div>
+        <iframe id="video2" src="https://www.youtube.com/embed/Wg3p4RgFgMs?autoplay=0" title="TradeSphere Global Walkthrough" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+<!-- Login Section -->
+<section id="login">
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="email" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn login-btn">Login</button>
+            </div>
+            <a href="javascript:void(0);" class="forgot-password" onclick="showPopup()">Forgot Password?</a>
+        </form>
+
+        <!-- Error Message Display -->
+        {% if error %}
+        <div class="error-message">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+    
+</section>
+
+<script>
+    function playVideo(container) {
+        let iframe = container.querySelector("iframe");
+        let src = iframe.src;
+        
+        // Add autoplay if not already playing
+        if (!src.includes("autoplay=1")) {
+            iframe.src = src + "&autoplay=1";
+            container.classList.add("playing"); // Hide play button
+        }
+    }
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5769664707235138"
+     crossorigin="anonymous"></script>
+
+
+
+    <!-- Stylish Pop-up Container for Forgot Password -->
+<div class="popup-container" id="forgotPasswordPopup" style="display: none;">
+    <div class="popup-content">
+        <h3>Forgot Password?</h3>
+        <p>Oops! It seems you've forgotten your password. Please contact our support team at:</p>
+        <p>
+            <a href="mailto:tradesphereglobalqueries@gmail.com" class="email-link">
+                tradesphereglobalqueries@gmail.com
+            </a>
+        </p>
+        <button class="close-btn" onclick="closeForgotPasswordPopup()">Close</button>
+    </div>
+</div>
+
+
+
+<!-- JavaScript -->
+<script>
+    function showPopup() {
+        document.getElementById('forgotPasswordPopup').style.display = 'flex';
+    }
+
+    function closeForgotPasswordPopup() {
+        document.getElementById('forgotPasswordPopup').style.display = 'none';
+    }
+</script>
+
+    
+
+ 
+<!-- 🌍 Global Stats & Animated Globe Section -->
+<section id="global-impact" class="global-impact-section">
+  <div class="container">
+    <h2 class="section-title">Trusted Globally. Powered by AI.</h2>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid" id="stats-hover-area">
+      <div class="stat-card">
+        <h3>🌐 Live Users</h3>
+        <p><span class="counter" data-target="120">0</span><span class="plus">+</span> active across <strong>15+ countries</strong></p>
+      </div>
+      <div class="stat-card">
+        <h3>📩 Declarations Processed</h3>
+        <p><span class="counter" data-target="10000">0</span><span class="plus">+</span> supplier declarations validated</p>
+      </div>
+      <div class="stat-card">
+        <h3>🧠 AI HS Code Checks</h3>
+        <p><span class="counter" data-target="25000">0</span><span class="plus">+</span> commodity codes verified</p>
+      </div>
+      <div class="stat-card">
+        <h3>📜 Trade Agreements Supported</h3>
+        <p>UK • EU • Japan <br><strong>+ 10 FTAs on Demand</strong></p>
+      </div>
+      <div class="stat-card">
+        <h3>⚙️ AI Rule Validations</h3>
+        <p><span class="counter" data-target="100000">0</span><span class="plus">+</span> compliance checks performed</p>
+      </div>
+      <div class="stat-card">
+        <h3>📬 Supplier Email Requests</h3>
+        <p><span class="counter" data-target="500000">0</span><span class="plus">+</span> emails sent through automation</p>
+      </div>
+      <div class="stat-card">
+        <h3>📈 Origin Rules Calculated</h3>
+        <p><span class="counter" data-target="75000">0</span><span class="plus">+</span> AI-powered matches</p>
+      </div>
+      <div class="stat-card">
+        <h3>🕒 System Uptime</h3>
+        <p><strong>99.98%</strong> enterprise-grade availability</p>
+      </div>
+    </div>
+
+    <!-- Animated Globe -->
+    <div class="globe-wrapper">
+  <lottie-player
+    src="/static/Animation - 1751949854427.json"
+    background="transparent"
+    speed="1"
+    style="width: 280px; height: 280px;"
+    loop autoplay>
+  </lottie-player>
+</div>
+
+
+    <div class="cta-text">
+      <p>Join a growing global network. Transform your compliance process today.</p>
+      <a href="#contact" class="btn-glow">Become Trade-Ready</a>
+    </div>
+  </div>
+</section>
+
+<!-- Counter on Hover Script -->
+<script>
+  const counters = document.querySelectorAll('.counter');
+  let animated = false;
+
+  function animateCounters() {
+    if (animated) return;
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      let count = 0;
+      const increment = Math.ceil(target / 80);
+      const update = () => {
+        if (count < target) {
+          count += increment;
+          counter.innerText = count > target ? target : count;
+          setTimeout(update, 30);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      update();
+    });
+    animated = true;
+  }
+
+  document.getElementById('stats-hover-area').addEventListener('mouseenter', animateCounters);
+</script>
+
+<!-- Styles -->
+<style>
+  .global-impact-section {
+    background-color: #f0f7ff;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .section-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #0073e6;
+    margin-bottom: 40px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .stat-card h3 {
+    color: #0073e6;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .stat-card p {
+    font-size: 0.95rem;
+    color: #333;
+  }
+  .counter {
+    font-size: 2rem;
+    color: #1a1a1a;
+    font-weight: bold;
+  }
+  .plus {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-left: 2px;
+  }
+  .globe-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  .cta-text {
+    margin-top: 30px;
+  }
+  .btn-glow {
+    background-color: #0073e6;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 115, 230, 0.4);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .btn-glow:hover {
+    background-color: #005bb5;
+    transform: translateY(-2px);
+  }
+  .admin-panel-buttons {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.admin-btn {
+  background-color: #0073e6;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,115,230,0.1);
+}
+
+.admin-btn:hover {
+  background-color: #005bb5;
+  transform: translateY(-3px);
+}
+
+</style>
+
+<!-- 🌐 Contact Us Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <h2 class="contact-title">Get in Touch</h2>
+    <p class="contact-subtitle">We would love to hear from you. Whether it's a question, partnership inquiry, or demo request — let's connect.</p>
+
+    <form class="contact-form" id="contact-form">
+      <div class="form-group">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Your Email Address" required>
+      </div>
+      <div class="form-group">
+        <input type="text" name="company" placeholder="Company / Organization">
+      </div>
+      <div class="form-group">
+        <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+      </div>
+      <button type="submit" class="btn-glow">Send Message</button>
+    </form>
+    <!-- ✅ Thank You Modal -->
+<div id="thankYouModal" class="thank-you-modal">
+  <div class="thank-you-content">
+    <h2>Thank You!</h2>
+    <p>Your message has been received. We’ll be in touch shortly.</p>
+    <button onclick="closeThankYou()" class="btn-glow">Close</button>
+  </div>
+</div>
+  </div>
+  <!-- 🔒 Admin Quick Actions -->
+<div class="admin-panel-buttons">
+  <a href="/admin/contacts?password=admin123" class="admin-btn">View Contact Submissions</a>
+  <!-- Future Buttons:
+  <a href="/admin/stats?password=admin123" class="admin-btn">📊 Site Stats</a>
+  <a href="/admin/export?password=admin123" class="admin-btn">📁 Export Data</a>
+  -->
+</div>
+
+</section>
+
+
+ <script>
+  const form = document.getElementById('contact-form');
+  const modal = document.getElementById('thankYouModal');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      company: form.company.value,
+      message: form.message.value
+    };
+
+    try {
+      const res = await fetch('/submit_contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        form.reset();
+        modal.style.display = 'flex';
+      } else {
+        alert("Failed to submit form: " + result.error);
+      }
+    } catch (error) {
+      alert("Something went wrong: " + error);
+    }
+  });
+
+  function closeThankYou() {
+    modal.style.display = 'none';
+  }
+
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
+<footer class="tradesphere-footer bg-dark text-light pt-5 mt-5">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- Company Intro -->
+      <div class="col-md-4">
+        <h5 class="text-warning fw-semibold">KrisLynx & TradeSphere Global</h5>
+        <p class="small text-light mb-2">
+          <strong>KrisLynx LLP</strong> is your AI/IT innovation partner, igniting tomorrow’s solutions with intelligence, insight, and integrity. From enterprise AI to compliance tools, we engineer modern systems that simplify and empower businesses globally.
+        </p>
+        <p class="small text-light">
+          <strong>TradeSphere Global</strong> is a flagship product by KrisLynx — an AI-powered platform that streamlines supplier declarations and tariff compliance across the UK, EU, Japan, and beyond.
+        </p>
+      </div>
+
+      <!-- Explore -->
+      <div class="col-md-2">
+        <h6 class="text-info mb-3">Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="/" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="/services" class="text-light text-decoration-none">Services</a></li>
+          <li><a href="/about" class="text-light text-decoration-none">About</a></li>
+          <li><a href="/careers" class="text-light text-decoration-none">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Products -->
+      <div class="col-md-2">
+        <h6 class="text-info mb-3">Products</h6>
+        <ul class="list-unstyled small">
+          <li>
+            <a href="https://trade-sphereglobal.com" target="_blank" class="text-light text-decoration-none">
+              TradeSphere Global
+            </a>
+          </li>
+          <li><span class="text-light">AI Insights</span></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div class="col-md-2">
+        <h6 class="text-info mb-3">Resources</h6>
+        <ul class="list-unstyled small">
+           <li><a href="#contact" class="text-light text-decoration-none">Contact</a></li>
+          <li><a href="/privacy-policy" class="text-light text-decoration-none">Privacy Policy</a></li>
+          <li><a href="/terms-of-service" class="text-light text-decoration-none">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-2">
+        <h6 class="text-info mb-3">Contact</h6>
+        <p class="small mb-1">
+          <a href="mailto:connect@trade-sphereglobal.com" class="text-info text-decoration-none">connect@trade-sphereglobal.com</a>
+        </p>
+        <p class="small text-light mb-1">   Kurnool, Andhra Pradesh, India</p>
+        <p class="small text-light mb-1">   <a href="tel:+919381757484" class="text-light text-decoration-none">+91 93817 57484</a></p>
+        <p class="small">
+          <a href="https://www.linkedin.com/company/krislynx" target="_blank" class="text-light text-decoration-none">
+            LinkedIn: @KrisLynx
+          </a>
+        </p>
+        <p class="text-light small fst-italic mt-2">Building trust globally, delivering locally.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-top border-secondary mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-center text-light small">
+      <div>© 2025 KrisLynx LLP. All rights reserved.</div>
+      <div class="d-flex gap-3 mt-2 mt-md-0">
+        <span>SSL Secure</span>
+        <span>ISO Compliant</span>
+        <span>AI-Ready</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".slide");
+    let slideIndex = 0;
+
+    function showSlides() {
+      // Remove active class from all
+      slides.forEach((slide) => slide.classList.remove("active"));
+
+      // Move to next slide
+      slideIndex = (slideIndex + 1) % slides.length;
+
+      // Add active class to current
+      slides[slideIndex].classList.add("active");
+    }
+
+    // Start slideshow every 3 seconds
+    setInterval(showSlides, 3000);
+  });
+</script>
+
+
+<script>
+  let animated = false;
+
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const increment = target / 60;
+
+      const update = () => {
+        const current = +counter.innerText;
+        if (current < target) {
+          counter.innerText = Math.ceil(current + increment);
+          setTimeout(update, 30);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      update();
+    });
+  }
+
+  document.querySelector('.global-impact-section').addEventListener('mouseenter', () => {
+    if (!animated) {
+      animated = true;
+      animateCounters();
+    }
+  });
+</script>
+
+<!-- TradeSphere Cookie Consent -->
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <strong class="cookie-title">📜 Cookies & Compliance</strong><br />
+    This website uses cookies to improve your experience, enable AI insights, and ensure compliance.
+    <a href="/privacy-policy" target="_blank">Learn more</a>
+  </div>
+  <div class="cookie-actions">
+    <button class="btn-accept" onclick="acceptCookies()">Got it</button>
+    <button class="btn-decline" onclick="declineCookies()">Decline</button>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: -200px;
+    left: 20px;
+    max-width: 360px;
+    background-color: #bed9cd;
+    color: #f8f9fa;
+    padding: 20px;
+    border-left: 6px solid #ffcc00;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    z-index: 9999;
+    transition: bottom 0.5s ease-in-out;
+  }
+
+  .cookie-banner.show {
+    bottom: 20px;
+  }
+
+  .cookie-content a {
+    color: #00bcd4;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+
+  .cookie-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-accept {
+    background-color: #ffcc00;
+    color: #1c1c1c;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-accept:hover {
+    background-color: #e6b800;
+  }
+
+  .btn-decline {
+    background-color: transparent;
+    color: #be9898;
+    border: 1px solid #666;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-decline:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const modal = document.getElementById('thankYouModal');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent actual form submission
+
+    // Simulate success (replace this with actual backend call if needed)
+    setTimeout(() => {
+      form.reset(); // Clear form
+      modal.style.display = 'flex'; // Show popup
+    }, 400); // Simulate delay
+  });
+
+  function closeThankYou() {
+    modal.style.display = 'none';
+  }
+
+  // Optional: Close popup when clicking outside
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem("cookieConsent", "accepted");
+    document.getElementById("cookie-banner").classList.remove("show");
+  }
+
+  function declineCookies() {
+    localStorage.setItem("cookieConsent", "declined");
+    document.getElementById("cookie-banner").classList.remove("show");
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const consent = localStorage.getItem("cookieConsent");
+    // Show banner every time or until accepted
+    if (!consent || consent === "declined") {
+      setTimeout(() => {
+        document.getElementById("cookie-banner").classList.add("show");
+      }, 500); // Slide in after short delay
+    }
+  });
+</script>
+
+<!-- Before </body> -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+  });
+</script>
+
+</body>
+</html>

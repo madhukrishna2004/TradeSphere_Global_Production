@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeSphere Global | User Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f0f4fa, #e9f5fb);
+      margin: 0;
+    }
+    .sidebar {
+      min-height: 100vh;
+      background-color: #0c0f1c;
+      color: white;
+      padding: 20px;
+    }
+    .sidebar img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+    .sidebar a {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #1a1f33;
+      color: #ffffff;
+    }
+    .tab-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+    .status-badge {
+      font-size: 0.9rem;
+    }
+    .table-responsive {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 sidebar text-center">
+      <img src="/static/user.png" class="rounded-circle mb-3" alt="User">
+      <h5 class="fw-semibold mb-1">{{ username }}</h5>
+      <small class="text-muted d-block mb-4">TradeSphere User</small>
+      <hr class="bg-light">
+
+      <ul class="nav flex-column text-start">
+        <li><a href="#" class="nav-link text-light" onclick="switchTab('overview')">👤 Overview</a></li>
+        <li><a href="#" class="nav-link text-light" onclick="switchTab('activity')">📊 Activity Logs</a></li>
+        <li><a href="#" class="nav-link text-light" onclick="switchTab('preferences')">⚙️ Preferences</a></li>
+        <li><a href="#" class="nav-link text-light" onclick="switchTab('security')">🔒 Security</a></li>
+        <li><a href="#" class="nav-link text-light" onclick="switchTab('billing')">💳 Billing</a></li>
+        <li><a href="/logout" class="nav-link text-danger">🚪 Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <!-- Overview -->
+      <div id="overview" class="tab-card">
+        <h4 class="mb-3 text-primary">User Overview</h4>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded shadow-sm">
+              <h6 class="fw-bold">Email</h6>
+              <p class="mb-0 text-muted">{{ user_info[0] }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded shadow-sm">
+              <h6 class="fw-bold">Phone</h6>
+              <p class="mb-0 text-muted">{{ user_info[1] }}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded shadow-sm">
+              <h6 class="fw-bold">Language</h6>
+              <select class="form-select">
+                <option {% if user_info[2] == 'English' %}selected{% endif %}>English</option>
+                <option {% if user_info[2] == 'हिन्दी' %}selected{% endif %}>Japanese</option>
+                <option {% if user_info[2] == 'Français' %}selected{% endif %}>French</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="p-3 bg-light rounded shadow-sm">
+              <h6 class="fw-bold">Account Status</h6>
+              <span class="badge bg-success status-badge">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity -->
+      <div id="activity" class="tab-card d-none">
+        <h4 class="mb-3 text-primary">Activity Logs</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
+          <div class="col"><div class="bg-light p-3 rounded text-center shadow-sm">📧 Emails Sent <h5>{{ stats.emails_sent }}</h5></div></div>
+          <div class="col"><div class="bg-light p-3 rounded text-center shadow-sm">📤 Declarations Sent <h5>{{ stats.declarations_sent }}</h5></div></div>
+          <div class="col"><div class="bg-light p-3 rounded text-center shadow-sm">📦 BOMs Input <h5>{{ stats.boms_input }}</h5></div></div>
+          <div class="col"><div class="bg-light p-3 rounded text-center shadow-sm">🌍 Preferential Origin <h5>{{ stats.preferential_checked }}</h5></div></div>
+          <div class="col"><div class="bg-light p-3 rounded text-center shadow-sm">🤖 AI Lookups <h5>{{ stats.ai_lookups }}</h5></div></div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle">
+            <thead class="table-primary">
+              <tr>
+                <th>Activity</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Email Sent to Supplier A</td>
+                <td>2025-07-08</td>
+                <td><span class="badge bg-success">Completed</span></td>
+                <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+              </tr>
+              <tr>
+                <td>BOM Uploaded</td>
+                <td>2025-07-07</td>
+                <td><span class="badge bg-warning text-dark">Pending</span></td>
+                <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div id="preferences" class="tab-card d-none">
+        <h4 class="mb-3 text-primary">Preferences</h4>
+        <form>
+          <div class="mb-3">
+            <label for="languageSelect" class="form-label">Language</label>
+            <select class="form-select" id="languageSelect">
+              <option selected>English</option>
+              <option>हिन्दी</option>
+              <option>Español</option>
+            </select>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="notifyToggle" checked>
+            <label class="form-check-label" for="notifyToggle">Enable Notifications</label>
+          </div>
+        </form>
+      </div>
+
+      <!-- Security -->
+      <div id="security" class="tab-card d-none">
+        <h4 class="mb-3 text-primary">Security</h4>
+        <form>
+          <div class="mb-3">
+            <label for="currentPassword" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="currentPassword">
+          </div>
+          <div class="mb-3">
+            <label for="newPassword" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="newPassword">
+          </div>
+          <button class="btn btn-primary">Update Password</button>
+        </form>
+        <hr>
+        <p class="text-danger mt-3">Last login: {{ stats.last_login }}</p>
+      </div>
+
+      <!-- Billing -->
+      <div id="billing" class="tab-card d-none">
+        <h4 class="mb-3 text-primary">💳 Billing & Subscription</h4>
+
+        {% if subscription %}
+        <div class="card p-3 mb-4">
+          <h5 class="fw-bold text-success">{{ subscription[0] }} Plan</h5>
+          <p><strong>Status:</strong> {{ subscription[3] | capitalize }}</p>
+          <p><strong>Start Date:</strong> {{ subscription[1] }}</p>
+          <p><strong>End Date:</strong> {{ subscription[2] }}</p>
+          <p><strong>Next Billing:</strong> {{ subscription[4] }}</p>
+          <p><strong>Payment Method:</strong> {{ subscription[5] }}</p>
+        </div>
+        {% else %}
+        <div class="alert alert-warning">No active subscription found.</div>
+        {% endif %}
+
+        <h5 class="mt-4">🧾 Invoices</h5>
+        {% if invoices %}
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped mt-3">
+            <thead class="table-light">
+              <tr>
+                <th>Invoice</th>
+                <th>Amount</th>
+                <th>Issue Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>PDF</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for invoice in invoices %}
+              <tr>
+                <td>{{ invoice[0] }}</td>
+                <td>₹ {{ invoice[1] }}</td>
+                <td>{{ invoice[2] }}</td>
+                <td>{{ invoice[3] }}</td>
+                <td>
+                  {% if invoice[4] %}
+                    <span class="badge bg-success">Paid</span>
+                  {% else %}
+                    <span class="badge bg-danger">Unpaid</span>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if invoice[5] %}
+                    <a href="{{ invoice[5] }}" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+                  {% else %}
+                    <span class="text-muted">N/A</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p>No invoices found.</p>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function switchTab(tabId) {
+    const tabs = ['overview', 'activity', 'preferences', 'security', 'billing'];
+    tabs.forEach(id => {
+      document.getElementById(id).classList.add('d-none');
+    });
+    document.getElementById(tabId).classList.remove('d-none');
+  }
+</script>
+</body>
+</html>

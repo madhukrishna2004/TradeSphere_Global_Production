@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="TradeSphere Global provides AI-driven software for HS code lookup, UK trade compliance, UK preference origin calculation, EU-UK trade agreement eligibility, and supplier declarations. Get solutions for global and UK import/export compliance.">
+    <meta name="keywords" content="HS code lookup, HS code search, HS code for commodities, tariff calculation, accurate HS code lookup, HS code for UK trade, UK HS code lookup, HS code for imports/exports, expired commodities, expired goods trade, commodity expiration details, expired products insights, import export expired commodities, expired commodity lookup, EU-UK trade agreement eligibility, EU-UK preferential trade agreements, EU-UK trade compliance, UK-EU trade agreement, EU-UK tariffs eligibility, UK-EU preferential origin, request supplier declaration, supplier declaration for trade, UK origin declaration, EU supplier declaration, supplier origin declaration, UK preference origin declaration, UK preference origin, UK origin rules, UK preference origin calculation, trade origin UK, origin rules for UK trade, TradeSphere global HS codes, global HS codes, TradeSphere HS code lookup, AI-powered HS code search, global trade tariff solution, TradeSphere tariff compliance, TradeSphere Global, TradeSphere Global UK, TradeSphere Global software, TradeSphere UK trade compliance, UK HS code lookup, UK preference origin, UK tariff calculation, UK trade compliance software, AI-driven UK trade tariffs, TradeSphere UK solution, UK import export compliance">
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="TradeSphere Global - HS Code Lookup, UK Trade Compliance & Tariff Calculation Software">
+    <meta property="og:description" content="TradeSphere Global provides AI-powered solutions for UK trade compliance, HS code lookup, UK preference origin calculation, EU-UK trade agreement eligibility, and supplier declarations.">
+    <meta property="og:image" content="https://trade-sphereglobal.com/assets/tradesphere-banner.jpg">  <!-- Update with your actual image URL -->
+    <meta property="og:url" content="https://trade-sphereglobal.com/">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" sizes="192x192" href="static/assets/images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="static/assets/images/android-chrome-512x512.png">
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/originjapan.css') }}">
+
+    <!-- Link to JavaScript -->
+    <script src="{{ url_for('static', filename='js/originjapan.js') }}" defer></script>
+
+    <!-- Title of the Page -->
+    <title>HS Code and Commodity Details | TradeSphere Global</title>
+    
+</head>
+<body>
+    
+    <!-- Fetch HS Code Section -->
+    <div>
+        <h2>Enter Final Product</h2>
+        <input type="text" id="final-product" placeholder="Enter product name" required>
+        <button id="fetch-hs-code">Fetch HS Code</button>
+        <i class="info-icon"></i>
+        <span id="info-message"></span>
+    </div>
+    <div id="fetch-status-message"></div>
+
+    <!-- Animated Indicator Section -->
+    <div id="animated-indicator">
+        <span class="spinner"></span>
+        <span id="animated-message"></span>
+    </div>
+
+    <!-- HS Code Info Section -->
+    <div id="hs-code-section">
+        <label for="hs-code"></label>
+        <input type="text" id="hs-code" name="hs_code" placeholder="Enter HS Code" required>
+        <button id="fetch-info">Fetch Info</button>
+    </div>
+
+    <!-- Commodity Info Section -->
+    <div id="commodity-info">
+        <h3>Commodity Details:</h3>
+        <table id="commodity-table">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>HS Code</th>
+                    <th>Description</th>
+                    <th>Rule of Origin</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="save-selected">Save Selected</button>
+    </div>
+
+    <div style="width: 50%; padding: 10px; font-size: 0.7em; margin: auto; text-align: left;">
+        <h4>Need help finding Commodity Code?</h4>
+        <p>Use <strong>TradesphereChat AI</strong> in the corner for further assistance.</p>
+    </div>
+    
+    
+<!--
+    <script>
+        // Handle file upload and processing
+        const uploadForm = document.getElementById('upload-form');
+if (uploadForm) {
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const spinner = document.getElementById('spinner');
+        const content = document.getElementById('content');
+
+        // Show spinner and hide content
+        if (spinner) spinner.style.display = 'block';
+        if (content) content.style.display = 'none';
+
+        alert('The processed files will be available for download shortly');
+        const formData = new FormData(e.target);
+
+        // Append all selected files to FormData
+        const fileInput = document.getElementById('template-upload');
+        if (fileInput.files.length > 0) {
+            for (let file of fileInput.files) {
+                formData.append('files', file); // Use 'files' as the key for multiple files
+            }
+        }
+
+        try {
+            const response = await fetch('/process-file', { method: 'POST', body: formData });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || `Error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+
+            // Handle multiple files (e.g., a zip file or individual download links)
+            if (result.download_url) {
+                const downloadLink = document.createElement('a');
+                downloadLink.href = result.download_url;
+                downloadLink.download = result.filename || 'Processed_Files.zip'; // Default filename
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                alert('Files downloaded successfully!');
+            } else if (result.message) {
+                alert(result.message);
+            } else {
+                throw new Error('Unexpected server response.');
+            }
+        } catch (error) {
+            console.error('File upload error:', error);
+            alert('Failed to process the files. Please check your connection and try again.');
+        } finally {
+            // Hide spinner and show content
+            if (spinner) spinner.style.display = 'none';
+            if (content) content.style.display = 'block';
+        }
+    });
+}
+
+        // HS Code fetching and info retrieval scripts
+        document.getElementById('fetch-hs-code').addEventListener('click', () => {
+            const productName = document.getElementById('final-product').value;
+            fetch('/fetch-hs-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_name: productName })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('hs-code').value = data.hs_code;
+                }
+            })
+            .catch(error => console.error('Error fetching HS Code:', error));
+        });
+
+        document.getElementById('fetch-info').addEventListener('click', () => {
+            const hsCode = document.getElementById('hs-code').value;
+            fetch(`/hs-code-info/${hsCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        const tableBody = document.getElementById('commodity-table').getElementsByTagName('tbody')[0];
+                        tableBody.innerHTML = '';
+                        data.matched_commodities.forEach(row => {
+                            let newRow = tableBody.insertRow();
+                            newRow.innerHTML = `
+                                <td><input type="checkbox" data-hs="${row.hs_code}"></td>
+                                <td>${row.hs_code}</td>
+                                <td>${row.description}</td>
+                                <td>${row.rule_of_origin}</td>
+                            `;
+                        });
+                    }
+                })
+                .catch(error => console.error('Error fetching HS Code info:', error));
+        });
+
+        document.getElementById('save-selected').addEventListener('click', () => {
+            const selectedHSCodes = Array.from(document.querySelectorAll('#commodity-table input:checked')).map(input => input.dataset.hs);
+            if (selectedHSCodes.length) {
+                console.log('Selected HS Codes:', selectedHSCodes);
+                alert('Selected HS Codes saved successfully!');
+            } else {
+                alert('No HS Codes selected.');
+            }
+        });
+    </script>
+-->
+<div id="content">
+    <h2>Upload File</h2>
+    <p>Make sure the files are in the preferred format. 
+        <a href="/static/template_bill.xlsx" download>[Download Template]</a>
+    </p>
+
+    <form id="upload-form" action="/process-file" method="POST" enctype="multipart/form-data">
+        <label for="template-upload">Choose your "Bill Of Material" files:</label>
+        <input type="file" id="template-upload" name="files" accept=".xlsx" multiple required>
+        <button type="submit">Process and Download</button>
+    </form>
+</div>
+
+<!-- Spinner Element -->
+<div id="spinner-loader" style="display: none;">
+    <div class="spinner-squares">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <span>Processing, please wait...</span>
+</div>
+
+
+
+
+<style>
+    /* Spinner container */
+    #spinner-loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Spinner squares */
+    .spinner-squares {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .spinner-squares div {
+        width: 15px;
+        height: 15px;
+        background-color: #3498db;
+        animation: square-bounce 1.2s infinite ease-in-out;
+    }
+
+    .spinner-squares div:nth-child(2) {
+        animation-delay: -1.1s;
+    }
+
+    .spinner-squares div:nth-child(3) {
+        animation-delay: -1s;
+    }
+
+    .spinner-squares div:nth-child(4) {
+        animation-delay: -0.9s;
+    }
+
+    /* Animation for squares */
+    @keyframes square-bounce {
+        0%, 80%, 100% {
+            transform: scale(0);
+        }
+        40% {
+            transform: scale(1);
+        }
+    }
+
+    /* Loading text */
+    #spinner-loader span {
+        display: block;
+        margin-top: 10px;
+        font-size: 16px;
+        color: #555;
+        font-family: Arial, sans-serif;
+    }
+</style>
+
+
+    <!-- Chatbot Integration -->
+<div id="chatbot-container">
+    <button id="chatbot-toggle" aria-label="Open Chatbot">💬</button>
+  </div>
+  
+  <style>
+    /* Chatbot container styling */
+    #chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+  
+    /* Chatbot button styling */
+    #chatbot-toggle {
+        background-color: #9cb3ca;
+        color: rgb(80, 140, 160);
+        border: none;
+        padding: 18px;
+        border-radius: 50%;
+        font-size: 22px;
+        cursor: pointer;
+        transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        animation: rajamouliFloat 5s cubic-bezier(0.5, 0.05, 0.1, 1) infinite, 
+                   pulseAura 2.5s infinite alternate;
+    }
+  
+    /* Epic Heroic Floating */
+    @keyframes rajamouliFloat {
+        0% { transform: translateY(0px) rotate(0deg) scale(1); }
+        20% { transform: translateY(-12px) rotate(-3deg) scale(1.08); }
+        40% { transform: translateY(5px) rotate(2deg) scale(1); }
+        60% { transform: translateY(-8px) rotate(-1deg) scale(1.04); }
+        80% { transform: translateY(3px) rotate(1deg) scale(1.02); }
+        100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    }
+  
+    /* Electrifying Aura */
+    @keyframes pulseAura {
+        0% { box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); }
+        100% { box-shadow: 0px 15px 35px rgba(80, 140, 160, 0.8), 
+                      0px 0px 10px rgba(80, 140, 160, 0.6); }
+    }
+  
+    /* Hover: Shockwave Explosion */
+    #chatbot-toggle:hover {
+        transform: scale(1.3) rotate(6deg);
+        box-shadow: 0px 20px 50px rgba(80, 140, 160, 0.9), 
+                    0px 0px 15px rgba(255, 255, 255, 0.8);
+        animation: impactShockwave 0.4s ease-out;
+    }
+  
+    /* Hover Shockwave */
+    @keyframes impactShockwave {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.4); }
+        100% { transform: scale(1.3); }
+    }
+  </style>
+
+    <div id="chatbot-ui" 
+        style="display: none; position: fixed; bottom: 20px; right: 20px; width: 400px; height: 600px; background: rgb(16, 16, 16); border: 1px solid #292828; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0,0,0,0.1); overflow: hidden; transform: translateX(100%); transition: transform 0.5s ease-in-out;">
+        <iframe 
+            src="/chatbot/" 
+            title="Chatbot Assistant" 
+            style="width: 100%; height: 100%; border: none;">
+        </iframe>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const chatbotToggle = document.getElementById("chatbot-toggle");
+        const chatbotUI = document.getElementById("chatbot-ui");
+
+        chatbotToggle.addEventListener("click", () => {
+            const isOpen = chatbotUI.style.display === "block";
+            if (isOpen) {
+                chatbotUI.style.transform = "translateX(100%)";
+                chatbotUI.style.display = "none";
+            } else {
+                chatbotUI.style.transform = "translateX(0%)";
+                chatbotUI.style.display = "block";
+            }
+        });
+    });
+
+    </script>
+   <div id="spinner-loader" style="display: none;">
+    <div class="spinner-squares">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <span>Loading, please wait...</span>
+</div>
+
+<div id="onboarding-popup" class="onboarding-container">
+    <div id="popup-content">
+        <div class="onboarding-header">
+            <h1>Quick Start Guide</h1>
+            <p></p>
+            <span id="skip-onboarding">Skip</span> <!-- Skip button -->
+        </div>
+    <div class="onboarding-content">
+        <div class="step active-step" id="step-1">
+            <h2>Step 1: Enter Your Final Product</h2>
+            <p>Start by entering the name of your final product.</p>
+            <button class="next-step" data-next="step-2">Next</button>
+        </div>
+        <div class="step" id="step-2">
+            <h2>Step 2: Fetch HS Code</h2>
+            <p>Click Fetch HS Code to let AI determine the HS Code for your product. If incorrect, retry or enter manually.</p>
+            <button class="prev-step" data-prev="step-1">Back</button>
+            <button class="next-step" data-next="step-3">Next</button>
+        </div>
+        <div class="step" id="step-3">
+            <h2>Step 3: Fetch Information</h2>
+            <p>Click Fetch Info to display all matched products.</p>
+            <button class="prev-step" data-prev="step-2">Back</button>
+            <button class="next-step" data-next="step-4">Next</button>
+        </div>
+        <div class="step" id="step-4">
+            <h2>Step 4: Select and Save</h2>
+            <p>Select the exact product from the list and save.</p>
+            <button class="prev-step" data-prev="step-3">Back</button>
+            <button class="next-step" data-next="step-5">Next</button>
+        </div>
+        <div class="step" id="step-5">
+            <h2>Step 5: Upload Bill of Materials</h2>
+            <p>If needed, download the template, upload your Bill of Materials, click Process and download the generated reports.</p>
+            <button class="prev-step" data-prev="step-4">Back</button>
+            <button id="finish-onboarding">Finish</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

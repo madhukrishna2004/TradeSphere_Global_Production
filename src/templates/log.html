@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">
+    
+    <!-- Title -->
+    <title>TradeSphere Dashboard - AI-Powered UK Trade Compliance Software</title>
+    
+    <!-- Meta Description -->
+    <meta name="description" content="TradeSphere Global provides AI-driven software for HS code lookup, UK trade compliance, UK preference origin calculation, EU-UK trade agreement eligibility, and supplier declarations. Get solutions for global and UK import/export compliance." />
+    
+    <!-- Meta Keywords -->
+    <meta name="keywords" content="HS code lookup, HS code search, HS code for commodities, tariff calculation, accurate HS code lookup, HS code for UK trade, UK HS code lookup, HS code for imports/exports, expired commodities, expired goods trade, commodity expiration details, expired products insights, import export expired commodities, expired commodity lookup, EU-UK trade agreement eligibility, EU-UK preferential trade agreements, EU-UK trade compliance, UK-EU trade agreement, EU-UK tariffs eligibility, UK-EU preferential origin, request supplier declaration, supplier declaration for trade, UK origin declaration, EU supplier declaration, supplier origin declaration, UK preference origin declaration, UK preference origin, UK origin rules, UK preference origin calculation, trade origin UK, origin rules for UK trade, TradeSphere global HS codes, global HS codes, TradeSphere HS code lookup, AI-powered HS code search, global trade tariff solution, TradeSphere tariff compliance, TradeSphere Global, TradeSphere Global UK, TradeSphere Global software, TradeSphere UK trade compliance, UK HS code lookup, UK preference origin, UK tariff calculation, UK trade compliance software, AI-driven UK trade tariffs, TradeSphere UK solution, UK import export compliance" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="TradeSphere Global - UK Trade Compliance, HS Code Lookup & EU-UK Tariff Calculation Software" />
+    <meta property="og:description" content="TradeSphere Global provides AI-powered solutions for UK trade compliance, HS code lookup, UK preference origin calculation, EU-UK trade agreement eligibility, and supplier declarations." />
+    <meta property="og:image" content="https://trade-sphereglobal.com/assets/tradesphere-banner.jpg" />
+    <meta property="og:url" content="https://trade-sphereglobal.com/" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Body and Background */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #F5F5F5;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            overflow-x: hidden;
+        }
+        
+        /* Background Particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://cdn.pixabay.com/photo/2018/08/14/13/23/universe-3608030_1280.jpg') no-repeat center center / cover;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            margin: 40px auto;
+            width: 80%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .intro-section h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #FFD700;
+            text-shadow: 0 0 20px #FFD700;
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #E0E0E0;
+        }
+
+        .intro-section ul {
+            list-style-type: none;
+            padding: 0;
+            color: #FFD700;
+        }
+
+        .intro-section ul li {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-section ul li::before {
+            content: "\f00c";
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-right: 10px;
+            color: #FFD700;
+        }
+
+        /* Login Section */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            animation: slideUp 1.5s ease-in-out;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #FFF;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 10px #FFD700;
+            outline: none;
+        }
+
+        .login-btn {
+            background: linear-gradient(90deg, #FFD700, #FF8C00);
+            border: none;
+            color: #121212;
+            font-size: 1.1rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.5s, transform 0.3s;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(90deg, #FF8C00, #FFD700);
+            transform: translateY(-5px);
+        }
+
+        .forgot-password {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* Popup Styling */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .popup-content p {
+            margin-bottom: 20px;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+        }
+
+        .popup-content input:focus {
+            border-color: #FFD700;
+            outline: none;
+        }
+
+        .popup-content button {
+            background: linear-gradient(90deg, #FFD700, #FF8C00);
+            border: none;
+            color: #121212;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.5s, transform 0.3s;
+        }
+
+        .popup-content button:hover {
+            background: linear-gradient(90deg, #FF8C00, #FFD700);
+            transform: translateY(-5px);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #FFD700;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .forgot-password {
+        display: block;
+        margin-top: 10px;
+        color: #FFD700;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+    /* Pop-up Container Styling */
+    .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(5, 5, 5, 0.982);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .popup-content {
+        background: #2b2f3a;
+        color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        max-width: 400px;
+        width: 80%;
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-30px);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    .popup-content h3 {
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+
+    .popup-content p {
+        margin-bottom: 15px;
+    }
+
+    .email-link {
+        color: #FFD700;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .email-link:hover {
+        text-decoration: underline;
+    }
+
+    .close-btn {
+        padding: 10px 20px;
+        background: #FFD700;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+        background: #e6c700;
+    }
+
+    </style>
+</head>
+<body>
+    <!-- Intro Section -->
+    <div class="intro-section">
+        <h1>Welcome to Tradesphere Global</h1>
+        <p>AI-Powered UK and EU Trade Tariff Portal</p>
+        <p>
+            At Tradesphere Global, we understand that managing tariffs can be complex and time-consuming. Our platform is designed to simplify this process, providing businesses with the tools they need to stay compliant with ever-changing regulations. We offer a comprehensive suite of features that cater to the needs of businesses engaged in international trade, ensuring that you can navigate the complexities of tariffs with ease. Our commitment to accuracy and reliability sets us apart in the industry, making us a trusted partner in your trade journey. We strive to empower our users with the knowledge and resources necessary to thrive in the global market.
+        </p>
+        <p>
+            Our AI-powered tools allow you to easily search for commodities, access HS code information, and find the origin of products directly from your bill of materials. With our comprehensive database, you can navigate the complexities of international trade with confidence.
+        </p>
+
+        <p>
+            Our user-friendly interface allows you to easily navigate through various tariff codes and updates, ensuring that you can find the information you need quickly and efficiently. With intuitive design and easy access to critical data, you can focus on your core business activities without getting bogged down by administrative tasks. The layout is designed to resemble traditional tariff portals, making it familiar and accessible for all users, regardless of their experience level. This design philosophy ensures that you can maximize your productivity while minimizing the learning curve associated with new software.
+        </p>
+        <p>
+            With real-time updates on tariff changes, you can make informed decisions that impact your business operations. Our platform ensures that you are always aware of the latest developments in trade agreements, allowing you to adapt your strategies accordingly. This feature is crucial for businesses that need to stay ahead in a rapidly changing trade environment, minimizing risks associated with outdated information and ensuring compliance with the latest regulations.
+        </p>
+        <ul>
+            <li>Access to HS code information</li>
+            <li>Search for commodities</li>
+            <li>Find the origin of products from the bill of materials</li>
+            <li>Access to supplier declarations</li>
+            <li>Stay updated on trade agreements with the EU and UK</li>
+            <li>Avoid customs issues with timely information</li>
+        </ul>
+        <img src="/static/assets/images/logo.png" alt="TradeSphere Global Logo - AI for Trade Compliance""Login Logo" style="float: right; cursor: pointer; width: 500px;">
+    </div>
+
+<!-- Login Section -->
+<div class="login-container">
+    <div class="login-card">
+        <h2>Login to Your Account</h2>
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <a href="javascript:void(0);" class="forgot-password" onclick="showPopup()">Forgot Password?</a>
+    </div>
+</div>
+
+
+<!-- Stylish Pop-up Container for Forgot Password -->
+<div class="popup-container" id="forgotPasswordPopup" style="display: none;">
+    <div class="popup-content">
+        <h3>Forgot Password?</h3>
+        <p>Oops! It seems you've forgotten your password. Please contact our support team at:</p>
+        <p>
+            <a href="mailto:tradesphereglobalqueries@gmail.com" class="email-link">
+                tradesphereglobalqueries@gmail.com
+            </a>
+        </p>
+        <button class="close-btn" onclick="closeForgotPasswordPopup()">Close</button>
+    </div>
+</div>
+
+
+
+<!-- JavaScript -->
+<script>
+    function showPopup() {
+        document.getElementById('forgotPasswordPopup').style.display = 'flex';
+    }
+
+    function closeForgotPasswordPopup() {
+        document.getElementById('forgotPasswordPopup').style.display = 'none';
+    }
+</script>
+
+
+
+</body>
+</html>

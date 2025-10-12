@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KlynnAI – Your Trade Assistant</title>
+  <meta name="description" content="AI chatbot for HS codes, trade duties & origin rules – by TradeSphere Global." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="h-screen bg-gray-100 font-['Poppins'] overflow-hidden">
+  <div id="root"></div>
+  <audio id="message-sound" src="/static/assets/sounds/message-blip.mp3" type="audio/mpeg"></audio>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const Chatbot = () => {
+      const [messages, setMessages] = useState([
+        { role: 'bot', content: "Hi there! I'm KlynnAI, here to help with HS codes, trade duties, and tariff classification. Describe an item to start (e.g., 'stainless steel screws')." }
+      ]);
+      const [input, setInput] = useState('');
+      const [isLoading, setIsLoading] = useState(false);
+      const [sessionId, setSessionId] = useState(localStorage.getItem('session_id') || null);
+      const [isDarkMode, setIsDarkMode] = useState(false);
+      const [currentQuestions, setCurrentQuestions] = useState([]);
+      const [currentCandidates, setCurrentCandidates] = useState([]);
+      const chatBodyRef = useRef(null);
+
+      useEffect(() => {
+        if (!sessionId) {
+          const newSessionId = crypto.randomUUID();
+          localStorage.setItem('session_id', newSessionId);
+          setSessionId(newSessionId);
+        }
+      }, []);
+
+      useEffect(() => {
+        if (chatBodyRef.current) {
+          chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+        }
+      }, [messages, currentQuestions, currentCandidates]);
+
+      const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+      };
+
+      const sendMessage = async (answer = input, questionKey = null) => {
+        if (!answer.trim()) return;
+
+        setMessages([...messages, { role: 'user', content: answer }]);
+        setInput('');
+        setIsLoading(true);
+
+        try {
+          const response = await axios.post('/chatbot/ask', {
+            user_input: answer,
+            headers: { 'X-Session-ID': sessionId }
+          });
+          const data = response.data;
+
+          setIsLoading(false);
+
+          if (data.error) {
+            setMessages([...messages, { role: 'user', content: answer }, { role: 'bot', content: `⚠️ ${data.error}` }]);
+            return;
+          }
+
+          const newMessages = [...messages, { role: 'user', content: answer }];
+
+          if (data.status === 'candidates_found' || data.status === 'refining') {
+            setCurrentCandidates(data.candidates || []);
+            setCurrentQuestions(data.questions || []);
+            newMessages.push({ role: 'bot', content: data.response });
+          } else if (data.status === 'final') {
+            setCurrentQuestions([]);
+            setCurrentCandidates([]);
+            newMessages.push({ role: 'bot', content: data.response, result: data.result });
+          } else if (data.status === 'no_matches' || data.status === 'invalid_answer' || data.status === 'feedback_received') {
+            setCurrentQuestions([]);
+            setCurrentCandidates([]);
+            newMessages.push({ role: 'bot', content: data.response });
+          } else {
+            newMessages.push({ role: 'bot', content: data.response });
+          }
+
+          setMessages(newMessages);
+          document.getElementById('message-sound').play().catch(() => {});
+        } catch (error) {
+          setIsLoading(false);
+          setMessages([...messages, { role: 'user', content: answer }, { role: 'bot', content: '❌ Network error. Please check your connection.' }]);
+          console.error('Error:', error);
+        }
+      };
+
+      const handleQuestionAnswer = (questionKey, option) => {
+        setCurrentQuestions(currentQuestions.filter(q => q.key !== questionKey));
+        sendMessage(option, questionKey);
+      };
+
+      const handleFeedback = (feedback) => {
+        sendMessage(feedback);
+      };
+
+      const renderMessage = (msg, index) => {
+        if (msg.result) {
+          return (
+            <div key={index} className={`p-4 rounded-2xl max-w-[85%] ${msg.role === 'user' ? 'bg-blue-500 text-white self-end' : 'bg-blue-100 text-gray-900 self-start'}`}>
+              <div className="font-semibold">HS Code: {msg.result.hs_code}</div>
+              <div>Description: {msg.result.description}</div>
+              <div>Confidence: {(msg.result.confidence * 100).toFixed(1)}%</div>
+              <div>Explanation: {msg.result.explanation}</div>
+              {msg.result.category && <div>Category: {msg.result.category}</div>}
+              <div className="mt-2">
+                <div>Details:</div>
+                <div>CET Duty Rate: {msg.result.details.cet_duty_rate}</div>
+                <div>UKGT Duty Rate: {msg.result.details.ukgt_duty_rate}</div>
+                <div>VAT Rate: {msg.result.details.vat_rate}</div>
+                <div>Rule of Origin EU-UK: {msg.result.details.rule_of_origin_eu_uk}</div>
+                <div>Rule of Origin Japan: {msg.result.details.rule_of_origin_japan}</div>
+              </div>
+              <div className="mt-3">
+                <p>Was this classification correct?</p>
+                <div className="flex gap-2">
+                  <button onClick={() => handleFeedback('yes')} className="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600">Yes</button>
+                  <button onClick={() => handleFeedback('no')} className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600">No</button>
+                  <button onClick={() => handleFeedback('skip')} className="px-3 py-1 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Skip</button>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div key={index} className={`p-4 rounded-2xl max-w-[85%] ${msg.role === 'user' ? 'bg-blue-500 text-white self-end' : 'bg-blue-100 text-gray-900 self-start'}`}>
+            <span dangerouslySetInnerHTML={{ __html: msg.content.replace(/\n/g, '<br>') }} />
+          </div>
+        );
+      };
+
+      const renderCandidates = () => {
+        if (!currentCandidates.length) return null;
+
+        return (
+          <div className="p-4 rounded-2xl bg-blue-50 max-w-[85%] self-start">
+            <h3 className="font-semibold text-lg">Top Candidates:</h3>
+            {currentCandidates.map((cand, index) => (
+              <div key={index} className="mt-2">
+                <div>{cand.rank}. {cand.hs_code} {cand.category ? `[${cand.category}]` : ''}</div>
+                <div>{cand.description}</div>
+                <div>Confidence: {(cand.confidence * 100).toFixed(1)}%</div>
+                <div>CET Duty: {cand.details.cet_duty_rate}</div>
+                <div>UKGT Duty: {cand.details.ukgt_duty_rate}</div>
+                <div>VAT: {cand.details.vat_rate}</div>
+              </div>
+            ))}
+          </div>
+        );
+      };
+
+      const renderQuestions = () => {
+        if (!currentQuestions.length) return null;
+
+        return (
+          <div className="p-4 rounded-2xl bg-blue-50 max-w-[85%] self-start">
+            <h3 className="font-semibold text-lg">Help me narrow it down:</h3>
+            {currentQuestions.map((q, index) => (
+              <div key={q.key} className="mt-3">
+                <p>{q.question}</p>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {q.options.map((option, optIndex) => (
+                    <button
+                      key={optIndex}
+                      onClick={() => handleQuestionAnswer(q.key, option)}
+                      className="px-3 py-1 bg-blue-200 text-gray-900 rounded-lg hover:bg-blue-300"
+                    >
+                      {option}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => handleQuestionAnswer(q.key, 'skip')}
+                    className="px-3 py-1 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300"
+                  >
+                    Skip
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      };
+
+      return (
+        <div className={`h-full flex flex-col rounded-3xl shadow-2xl ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-400 text-white p-4 flex justify-between items-center rounded-t-3xl">
+            <h3 className="flex items-center text-lg font-semibold">
+              <svg className="mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="22" height="22">
+                <path d="M12 2a2 2 0 012 2v1h5a1 1 0 011 1v9a5 5 0 01-5 5h-2v2h3a1 1 0 110 2H8a1 1 0 110-2h3v-2H9a5 5 0 01-5-5V6a1 1 0 011-1h5V4a2 2 0 012-2zm7 5H5v9a3 3 0 003 3h8a3 3 0 003-3V7z"/>
+              </svg>
+              KlynnAI
+            </h3>
+            <button onClick={toggleDarkMode} className="text-2xl bg-transparent border-none cursor-pointer">
+              {isDarkMode ? '☀️' : '🌙'}
+            </button>
+          </div>
+          <div ref={chatBodyRef} className={`flex-1 overflow-y-auto p-4 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-50'} scroll-smooth`}>
+            {messages.map((msg, index) => renderMessage(msg, index))}
+            {renderCandidates()}
+            {renderQuestions()}
+            {isLoading && (
+              <div className="flex mt-2 ml-1">
+                <span className="animate-[blink_1.4s_infinite] text-2xl text-cyan-400 mr-1">.</span>
+                <span className="animate-[blink_1.4s_0.2s_infinite] text-2xl text-cyan-400 mr-1">.</span>
+                <span className="animate-[blink_1.4s_0.4s_infinite] text-2xl text-cyan-400">.</span>
+              </div>
+            )}
+          </div>
+          <div className={`flex p-4 border-t ${isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'}`}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
+              placeholder="E.g., I'm importing bolts from China..."
+              className={`flex-1 p-3 text-sm border rounded-2xl focus:outline-none ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-900 border-gray-300'}`}
+              aria-label="Type your message"
+              autoFocus
+            />
+            <button
+              onClick={() => sendMessage()}
+              className="ml-2 p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700"
+              aria-label="Send"
+            >
+              ➤
+            </button>
+          </div>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Chatbot />, document.getElementById('root'));
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes blink {
+        0%, 80%, 100% { opacity: 0; }
+        40% { opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

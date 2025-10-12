@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TradeSphere Global - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    /* Animation: Corporate Slide Up + Blur */
+    @keyframes slideFade {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+        filter: blur(4px);
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    .animate-slideup {
+      opacity: 0;
+      animation: slideFade 0.9s ease-out forwards;
+    }
+
+    .animate-slideup.delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .animate-slideup.delay-400 {
+      animation-delay: 0.4s;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(79, 70, 229, 0.1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .plan-card { 
+      transition: all 0.3s ease; 
+      border: 2px solid transparent; 
+    }
+    .plan-card:hover, .plan-card.selected {
+      border-color: #4f46e5; 
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(79, 70, 229, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 scroll-smooth relative">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <a href="/home" class="text-2xl font-bold text-indigo-700">TradeSphere Global</a>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium text-indigo-800">
+        <a href="/our-story.html" class="hover:text-blue-500">Our Story</a>
+        <a href="/solutions.html" class="hover:text-blue-500">Solutions</a>
+        <a href="/pricing.html" class="hover:text-indigo-600">Pricings</a>
+        <a href="/blogs.html" class="hover:text-blue-500">Blogs</a>
+        <a href="/contact_page" class="hover:text-blue-500">Contact</a>
+        <a href="/register" class="bg-indigo-700 text-white px-4 py-2 rounded-lg hover:bg-indigo-800 transition">Start Free Trial</a>
+      </nav>
+      <button class="md:hidden text-indigo-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <div class="glass-card rounded-2xl p-8 max-w-6xl w-full mx-4 grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left Column - Hero Lottie -->
+      <div class="hidden lg:flex flex-col justify-center" data-aos="fade-right">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_iv4dsx3q.json"
+                       background="transparent" speed="1" style="width:100%;height:100%;" loop autoplay></lottie-player>
+        <div class="mt-8 text-center">
+          <h3 class="text-xl font-semibold text-indigo-800 mb-4">Global Trade Compliance Made Simple</h3>
+          <p class="text-indigo-600">AI-powered solutions for seamless cross-border trade across UK, EU & Japan</p>
+        </div>
+      </div>
+
+      <!-- Right Column - Login Form -->
+      <div data-aos="fade-left">
+        <h2 class="text-3xl font-bold text-indigo-800 text-center mb-2">Welcome Back</h2>
+        <p class="text-indigo-600 text-center mb-8">Sign in to access your TradeSphere dashboard</p>
+
+        {% if error %}
+          <p class="text-center text-red-600 font-semibold mb-4 p-3 bg-red-50 rounded-lg">{{ error }}</p>
+        {% endif %}
+
+        <form action="/login" method="POST" class="space-y-5">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="text" name="username" placeholder="Email or Phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"/>
+          <input type="password" name="password" placeholder="Password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"/>
+          <div class="flex items-center justify-between">
+            <label class="flex items-center text-sm text-gray-600">
+              <input type="checkbox" class="rounded text-indigo-600 focus:ring-indigo-500 mr-2"> Remember me
+            </label>
+            <button type="button" onclick="openForgotModal()" class="text-sm text-indigo-700 hover:text-indigo-800 font-medium transition">Forgot Password?</button>
+          </div>
+          <div class="g-recaptcha" data-sitekey="6LdUYZkrAAAAAKEbG4FN8Azb__EAoRSZAuYX_Kfy"></div>
+          <button type="submit" class="w-full bg-indigo-700 text-white font-semibold py-3 rounded-lg hover:bg-indigo-800 transition">Login to Dashboard</button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+          <p class="text-sm text-gray-600">Don't have an account? <a href="/register" class="text-indigo-700 font-medium hover:text-indigo-800 transition">Start Free Trial</a></p>
+        </div>
+
+        <!-- Quick Pricing Cards -->
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="plan-card bg-white p-4 rounded-lg border border-gray-200 text-center hover:shadow-lg transition">
+            <h4 class="font-bold text-indigo-800">Trade Essentials</h4>
+            <div class="my-2"><span class="text-2xl font-extrabold text-indigo-700">$350</span><span class="text-gray-500">/month</span></div>
+            <p class="text-xs text-green-600 font-medium">25% OFF on annual billing</p>
+            <a href="/pricing.html" class="inline-block mt-3 text-sm text-indigo-700 font-medium hover:text-indigo-800 transition">View details</a>
+          </div>
+          <div class="plan-card bg-white p-4 rounded-lg border border-gray-200 text-center hover:shadow-lg transition">
+            <h4 class="font-bold text-indigo-800">TradeSphere Elite</h4>
+            <div class="my-2"><span class="text-2xl font-extrabold text-indigo-700">$500</span><span class="text-gray-500">/month</span></div>
+            <p class="text-xs text-green-600 font-medium">25% OFF on annual billing</p>
+            <a href="/pricing.html" class="inline-block mt-3 text-sm text-indigo-700 font-medium hover:text-indigo-800 transition">View details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Forgot Password Modal -->
+<div id="forgotModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+  <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md relative">
+    
+    <!-- Close button -->
+    <button onclick="closeForgotModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition text-lg">✖</button>
+     
+    <!-- Heading -->
+    <h2 class="text-2xl font-bold text-center text-indigo-800 mb-2">Reset Your Password</h2>
+    <p class="text-center text-gray-500 mb-6">Enter your registered email and we’ll send you reset instructions.</p>
+
+    <!-- Form -->
+    <form id="forgotForm" method="POST" class="space-y-4">
+      <input 
+        type="email" 
+        id="forgotEmail" 
+        name="email" 
+        placeholder="Enter your email" 
+        required 
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+      />
+      
+      <button 
+        type="submit" 
+        id="forgotBtn"
+        class="w-full bg-indigo-700 text-white font-semibold py-3 rounded-lg hover:bg-indigo-800 transition flex items-center justify-center gap-2 disabled:opacity-70"
+      >
+        <span id="forgotBtnText">Send Reset Instructions</span>
+      </button>
+    </form>
+
+    <!-- Feedback message -->
+    <div id="forgotMessage" class="mt-4 text-center hidden p-3 rounded-lg"></div>
+  </div>
+</div>
+
+<script>
+  const forgotForm = document.getElementById("forgotForm");
+  const forgotBtn = document.getElementById("forgotBtn");
+  const forgotBtnText = document.getElementById("forgotBtnText");
+  const forgotMessage = document.getElementById("forgotMessage");
+
+  forgotForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Show loading
+    forgotBtnText.innerHTML = '<div class="spinner"></div> Please wait...';
+    forgotBtn.disabled = true;
+
+    // Simulate backend request (replace with fetch/ajax to backend)
+    setTimeout(() => {
+      forgotBtnText.innerHTML = 'Send Reset Instructions';
+      forgotBtn.disabled = false;
+
+      // Show confirmation
+      forgotMessage.classList.remove("hidden");
+      forgotMessage.classList.remove("bg-red-100", "text-red-700");
+      forgotMessage.classList.add("bg-green-100", "text-green-700");
+      forgotMessage.innerHTML = "Reset link sent successfully. Please check your inbox (or spam folder) in a few minutes.";
+    }, 2000);
+  });
+
+  function closeForgotModal() {
+    document.getElementById("forgotModal").classList.add("hidden");
+    forgotMessage.classList.add("hidden");
+  }
+</script>
+
+<style>
+  /* Spinner style */
+  .spinner {
+    border: 3px solid #ffffff;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 text-sm">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8">
+
+      <!-- Company Intro -->
+      <div class="md:col-span-2">
+        <h5 class="text-yellow-400 font-semibold mb-2">KrisLynx & TradeSphere Global</h5>
+        <p class="mb-2">
+          <strong>KrisLynx LLP</strong> is your AI/IT innovation partner — igniting tomorrow's solutions with intelligence, insight, and integrity. From enterprise AI to compliance tools, we engineer modern systems that simplify and empower businesses globally.
+        </p>
+        <p>
+          <strong>TradeSphere Global</strong> is our flagship platform simplifying supplier declarations and tariff compliance across UK, EU, Japan & more.
+        </p>
+      </div>
+
+      <!-- Explore -->
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3">Explore</h6>
+        <ul class="space-y-2">
+          <li><a href="/" class="hover:underline text-gray-300">Home</a></li>
+          <li><a href="/solutions.html" class="hover:underline text-gray-300">Services</a></li>
+          <li><a href="/our-story.html" class="hover:underline text-gray-300">About</a></li>
+          <li><a href="/industries.html" class="hover:underline text-gray-300">Industries</a></li>
+        </ul>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3">Products</h6>
+        <ul class="space-y-2">
+          <li>
+            <a href="https://trade-sphereglobal.com" target="_blank" class="hover:underline text-gray-300">
+              TradeSphere Global
+            </a>
+          </li>
+          <li><span class="text-gray-400">AI Insights (Coming Soon)</span></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3">Resources</h6>
+        <ul class="space-y-2">
+          <li><a href="/contact_page" class="hover:underline text-gray-300">Contact</a></li>
+          <li><a href="/privacy-policy" class="hover:underline text-gray-300">Privacy Policy</a></li>
+          <li><a href="/terms-of-service" class="hover:underline text-gray-300">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h6 class="text-cyan-400 font-semibold mb-3">Contact</h6>
+        <p class="mb-1">
+          <a href="mailto:connect@trade-sphereglobal.com" class="text-blue-400 hover:underline">connect@trade-sphereglobal.com</a>
+        </p>
+        <p>Kurnool, Andhra Pradesh, India</p>
+        <p><a href="tel:+919381757484" class="hover:underline text-gray-300">+91 93817 57484</a></p>
+        <p>
+          <a href="https://www.krislynx.com" target="_blank" class="hover:underline text-gray-300">Explore KrisLynx</a>
+        </p>
+        <p>
+          <a href="https://www.linkedin.com/company/krislynx" target="_blank" class="hover:underline text-gray-300">LinkedIn: @KrisLynx</a>
+        </p>
+        <p class="italic mt-2 text-gray-400">Building trust globally. Delivering locally.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-700 mt-10 pt-4 px-6 text-center md:text-left text-xs flex flex-col md:flex-row justify-between items-center gap-2 text-gray-400">
+      <span>© 2025 KrisLynx LLP. All rights reserved.</span>
+      <div class="flex gap-4">
+        <span>SSL Secure</span>
+        <span>ISO Compliant</span>
+        <span>AI-Ready</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Chat CTA -->
+  <button onclick="toggleChat()" class="fixed bottom-6 right-6 bg-purple-700 hover:bg-purple-800 text-white p-4 rounded-full shadow-lg z-50">
+    💬
+  </button>
+
+  <!-- FLOATING CHATBOT -->
+  <div id="chatbot" class="hidden fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 z-50 flex flex-col">
+    <div class="bg-purple-700 text-white px-4 py-2 font-semibold rounded-t-lg">KlynnAI – Trade Assistant</div>
+    
+    <div id="chat-messages" class="p-3 space-y-2 text-sm text-gray-800 h-64 overflow-y-auto">
+      <div class="bg-gray-100 p-2 rounded">Hi! I'm KlynnAI. Ask anything about TradeSphere Global or choose a question below</div>
+    </div>
+
+    <div class="p-2 border-t text-sm text-gray-700">
+      <div class="flex flex-wrap gap-2 mb-2">
+        <button onclick="askBot('What is TradeSphere Global?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">What is TradeSphere Global?</button>
+        <button onclick="askBot('What does KlynnAI do?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">What does KlynnAI do?</button>
+        <button onclick="askBot('How does origin check work?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">How does origin check work?</button>
+        <button onclick="askBot('Is this ready for production?')" class="bg-purple-100 text-purple-800 px-2 py-1 rounded hover:bg-purple-200">Is this ready for production?</button>
+      </div>
+      <input id="user-input" type="text" placeholder="Type your question..." class="w-full border rounded px-2 py-1 mb-1" onkeydown="if(event.key==='Enter'){askBot(this.value)}">
+    </div>
+  </div>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({once:true, duration:700, easing:'ease-in-out'});
+
+    function openForgotModal() { document.getElementById("forgotModal").classList.remove("hidden"); }
+    function closeForgotModal() { document.getElementById("forgotModal").classList.add("hidden"); }
+
+    document.getElementById("forgotForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+      const email = document.getElementById("forgotEmail").value;
+      const messageBox = document.getElementById("forgotMessage");
+      try {
+        const response = await fetch("/forgot-password", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({email}) });
+        const data = await response.json();
+        messageBox.classList.remove("hidden");
+        if(response.ok){
+          messageBox.className="mt-4 text-green-700 bg-green-50 p-3 rounded-lg text-center";
+          messageBox.textContent=data.message||"Password reset instructions sent to your email.";
+        } else {
+          messageBox.className="mt-4 text-red-700 bg-red-50 p-3 rounded-lg text-center";
+          messageBox.textContent=data.error||"Error sending reset instructions.";
+        }
+      } catch(err){
+        messageBox.className="mt-4 text-red-700 bg-red-50 p-3 rounded-lg text-center";
+        messageBox.textContent="Something went wrong. Please try again later.";
+      }
+    });
+
+    // Chatbot functions
+    function toggleChat() {
+      document.getElementById('chatbot').classList.toggle('hidden');
+    }
+
+    function askBot(question) {
+      if (!question.trim()) return;
+      const chatBox = document.getElementById('chat-messages');
+      
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = "text-right";
+      userMsg.innerHTML = `<div class="inline-block bg-purple-100 text-purple-800 px-2 py-1 rounded mb-1">${question}</div>`;
+      chatBox.appendChild(userMsg);
+
+      // Clear input
+      document.getElementById('user-input').value = '';
+
+      // Bot response (match simplified)
+      let answer = "I'm still learning! Please ask something else.";
+
+      if (question.toLowerCase().includes("what is tradesphere")) {
+        answer = "TradeSphere Global is a project by KrisLynx LLP to simplify UK–EU trade compliance using AI tools.";
+      } else if (question.toLowerCase().includes("klynnai")) {
+        answer = "KlynnAI is the AI assistant for HS code lookup, rule-of-origin checks, VAT guidance, and auto-filling trade forms.";
+      } else if (question.toLowerCase().includes("origin check")) {
+        answer = "Origin check uses smart rules for EU–UK and UK–Japan agreements to determine trade eligibility and request supplier declarations.";
+      } else if (question.toLowerCase().includes("production")) {
+        answer = "Yes, this is built with real backend logic, secure uploads, PostgreSQL DB, and can scale to 10,000+ users.";
+      } else if (question.toLowerCase().includes("features")) {
+        answer = "Features include HS Code Lookup, Tariff Data, Origin Check, Supplier Upload, Excel Export, and Auto Duty Estimate.";
+      } else if (question.toLowerCase().includes("tech stack")) {
+        answer = "Frontend: HTML + Tailwind, Backend: Python Flask/FastAPI, DB: PostgreSQL on Render. Data preloaded from CSV.";
+      } else if (question.toLowerCase().includes("demo")) {
+        answer = "Demo builds are available. You can request a trial via our landing page contact form.";
+      }
+
+      // Add bot response
+      const botMsg = document.createElement('div');
+      botMsg.className = "text-left";
+      botMsg.innerHTML = `<div class="inline-block bg-gray-100 px-2 py-1 rounded mb-1">${answer}</div>`;
+      chatBox.appendChild(botMsg);
+
+      // Auto-scroll to bottom
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KrisLynx | Igniting Tomorrow’s Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+  
+  <style>
+/* === Reset & Base === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: #030303f6;
+  color: #000000e8;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: #0ee2f1;
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+  color: #fffffc;
+}
+
+section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.container {
+  background: #000000;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgb(0, 0, 0);
+  padding: 3rem;
+  margin-bottom: 4rem;
+}
+/* === Header === */
+.site-header {
+  background-color: #000; /* Elegant black header */
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #0ee2f1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #0ee2f1;
+}
+
+/* === Hero Section === */
+.full-screen-hero {
+  background-color: #000;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.full-screen-hero img {
+  max-width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* === About Section === */
+.about {
+  background: linear-gradient(135deg, #030303, #0a0a0afb);
+}
+
+.about-box {
+  display: flex;
+  gap: 2.5rem;
+  background: #030303;
+  border-left: 6px solid #f78c0a;
+  border-radius: 10px;
+  box-shadow: 0 6px 30px rgba(2, 2, 2, 0.05);
+  padding: 2.5rem;
+  align-items: center;
+}
+
+.about-box img {
+  width: 320px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  color: #f5810c;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  color: #f1f1f1;
+}
+
+
+/* === Services === */
+.services-section {
+  background: linear-gradient(135deg, #000000, #000000);
+  text-align: center;
+}
+
+.service-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.service-item {
+  background: #000000;
+  border: 1px solid #110202;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 4px 18px rgb(10, 10, 10);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.07);
+}
+
+.service-item h3 {
+  color: #09f1f1;
+  margin-bottom: 1rem;
+}
+
+/* === Why Choose Us === */
+.why-choose-section {
+  background: linear-gradient(135deg, #000000, #010d18);
+  text-align: center;
+}
+
+.why-choose-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #eb8407;
+  margin: 0.5rem auto 0;
+}
+
+.why-choose-section p {
+  max-width: 850px;
+  margin: 0 auto;
+  color: #f1f5f5;
+  font-size: 1.05rem;
+}
+
+/* === Mission & Vision === */
+.mission-vision-section {
+  background: #0a0a0a;
+  text-align: center;
+}
+
+.mv-box {
+  background: #0e0000;
+  border-left: 5px solid #ec8405;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 20px rgb(0, 0, 0);
+}
+
+.mv-box h3 {
+  color: #075ee9;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* === Founder Section === */
+.founder {
+  background: linear-gradient(135deg, #000000, #05030ffb);
+  text-align: center;
+}
+
+.founder-box {
+  background: #030000;
+  padding: 2.5rem;
+  border-left: 5px solid #eb8509;
+  border-radius: 10px;
+  max-width: 720px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgb(0, 0, 0);
+}
+
+.founder-box img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+}
+
+.founder-box h3 {
+  color: #05c2f1;
+  margin-bottom: 1rem;
+}
+
+/* === Contact Section === */
+.contact {
+  background: linear-gradient(135deg, #050505, #0e0d0d);
+  text-align: center;
+}
+
+.contact h2 {
+  color: #0af5e1;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.85rem;
+  background: #080000;
+  border: 1px solid #ccc;
+  color: #f0bb0c;
+  border-radius: 6px;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.contact-form button {
+  padding: 0.9rem 1.8rem;
+  background: #111111;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #12e90b;
+}
+
+/* === Footer === */
+.footer {
+  background-color: #e0daec69;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #2c2c2c;
+}
+.whats-new {
+  padding: 5rem 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+/* === What's New Section === */
+.whats-new-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+}
+
+.project-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.project-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  text-align: left;
+  position: relative;
+}
+
+.project-box img.logo-bg {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  opacity: 0.1;
+}
+
+.project-content h3 {
+  color: #2a2a2a;
+  margin-bottom: 1rem;
+}
+
+.project-content p {
+  color: #4a4a4a;
+  font-size: 1rem;
+}
+
+
+
+  </style>
+</head><header class="site-header">
+    <div class="header-container">
+      <a href="#" class="logo">RKLS GROUPS</a>
+      <nav class="main-nav">
+
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#" id="whatsNewLink">What's New</a></li>
+
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          
+          <!-- other links -->
+        </ul>
+      </nav>
+      
+
+    </div>
+  </header>
+  
+<body>
+  <div class="full-screen-hero">
+    <img src="KrisLynx.png" alt="KrisLynx Logo">
+    <p class="tagline"></p>
+  </div>
+
+
+  <section class="about-section">
+    <div class="about-box">
+      <div class="about-text">
+        <h2>About us</h2>
+        <p>
+          KrisLynx is a legacy-inspired technology company where <strong>tradition meets transformation</strong>. Our foundation is built on timeless values — <strong>integrity</strong>, <strong>craftsmanship</strong>, and deep-rooted client relationships. 
+        </p>
+        <p>
+          While we stay true to heritage, we boldly innovate with <strong>purpose-driven digital solutions</strong>, handcrafted with precision and pride. We don't just build systems — we sculpt progress, code vision, and engineer trust. Welcome to KrisLynx — where the past powers the future.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  <section class="services-section">
+    <h2>Our Services</h2>
+    <div class="service-items">
+      <div class="service-item">
+        <h3>Custom Software Development</h3>
+        <p>Tailor-made software solutions designed to solve specific business challenges.</p>
+      </div>
+      <div class="service-item">
+        <h3>Cloud Integration</h3>
+        <p>Seamlessly migrate and manage your infrastructure with reliable cloud services.</p>
+      </div>
+      <div class="service-item">
+        <h3>Cybersecurity Solutions</h3>
+        <p>Protect your digital assets with state-of-the-art security frameworks and audits.</p>
+      </div>
+      <div class="service-item">
+        <h3>IT Consultancy</h3>
+        <p>Strategic planning and expert advice to help you align IT with business goals.</p>
+      </div>
+      <div class="service-item">
+        <h3>Legacy System Modernization</h3>
+        <p>Transform outdated systems into agile, high-performance platforms.</p>
+      </div>
+      <div class="service-item">
+        <h3>UX/UI Design</h3>
+        <p>Elegant, user-centered design experiences that engage and inspire.</p>
+      </div>
+    </div>
+    <section class="whats-new-section" id="whatsNewSection" style="display: none;">
+
+
+      <h2>What’s New</h2>
+      <div class="project-boxes">
+    
+        <!-- SELFMATE Project -->
+        <div class="project-box">
+          <img src="selfmate-high-resolution-color-logo (1).png" alt="SELFMATE Logo" class="logo-bg">
+          <div class="project-content">
+            <h3>Coming Soon: SELFMATE - Your Personalized Digital Twin</h3>
+            <p>We're thrilled to introduce SELFMATE, your ultimate personalization companion. It creates your digital twin and brings the world to you with tailored assistance, insights, and smart recommendations. Coming soon to Google Play Store.</p>
+          </div>
+        </div>
+    
+        <!-- YOURS HOME Project -->
+        <div class="project-box">
+          <img src="yourshome.png" alt="Yours Home Logo" class="logo-bg">
+          <div class="project-content">
+            <h3>Coming Soon: Yours Home Charitable Trust by RKLS Groups</h3>
+            <p>Yours Home is a charitable initiative dedicated to helping orphans and the elderly in India. RKLS pledges 17% of profits to this noble cause. Details coming soon.</p>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+    
+  </section>
+
+  <section class="why-choose-section">
+    <h2>Why Choose Us</h2>
+    <p>
+      At KrisLynx, we honor the <strong>wisdom of tradition</strong> while driving forward with innovation. Our philosophy blends <strong>timeless principles</strong> with modern precision, ensuring our clients benefit from both trust and transformation.
+    </p>
+    <p>
+      From meticulous development practices to meaningful client relationships, every solution is crafted with <strong>care, clarity, and vision</strong>. Partner with us — where passion meets performance and innovation is an art.
+    </p>
+  </section>
+  </section>
+  
+  </section>
+  
+
+  <section class="mission-vision-section">
+    <h2>Our Mission & Vision</h2>
+    <div class="mission-vision-boxes">
+      <div class="mv-box">
+        <h3>Our Mission</h3>
+        <p>
+          To empower businesses with reliable, refined, and timeless technology solutions that embody both innovation and integrity. We aim to bridge tradition with tomorrow, ensuring that every client benefits from our unwavering commitment to quality, precision, and purpose.
+        </p>
+      </div>
+      <div class="mv-box">
+        <h3>Our Vision</h3>
+        <p>
+          To become a beacon of trust and excellence in the global IT landscape, known for harmonizing classic values with cutting-edge advancements — crafting digital legacies that stand the test of time.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="founder">
+    <div class="founder-box">
+      <img src="IMG_20250204_084734.jpg" alt="Madhu Krishna">
+      <h3>Madhu Krishna</h3>
+      <p>Founder of KrisLynx, Madhu is a driven computer science enthusiast and entrepreneur. With strong skills in Java, C++, Python, and web development, he brings deep technical insight and visionary leadership to every project. His passion for innovation, adaptability to emerging tech, and dedication to excellence fuel the company's mission to deliver impactful digital solutions.</p>
+    </div>
+  </section>
+  <section class="contact">
+    <h2>Get in Touch</h2>
+    <p>Have a project in mind or just want to say hello? We're all ears.</p>
+    <div class="contact-box">
+      <div class="contact-info">
+        <p><strong>Email:</strong> connect@krislynx.com</p>
+        <p><strong>Phone:</strong> +91-90000-00000</p>
+        <p><strong>Location:</strong> Hyderabad, India</p>
+      </div>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div><p id="success-message" style="display:none; color:#90ee90; margin-top:1rem;">Thank you! We'll get back to you shortly.</p>
+    <form class="contact-form" onsubmit="showSuccessMessage(event)">
+
+        <footer style="background:#111; color:#aaa; text-align:center; padding:1.5rem; font-size:0.95rem; border-top:1px solid #333;">
+            <p>&copy; 2025 <span style="color:#26d4d4;"><strong>KrisLynx</strong></span> — Igniting Tomorrow’s Solutions.</p>
+          </footer>
+        
+
+  </section>
+  <script>
+    function showSuccessMessage(event) {
+      event.preventDefault(); // prevent page reload
+      document.getElementById('success-message').style.display = 'block';
+      event.target.reset(); // clear form fields
+    }
+  </script>
+
+<script>
+  const whatsNewLink = document.getElementById("whatsNewLink");
+  const whatsNewSection = document.getElementById("whatsNewSection");
+
+  whatsNewLink.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    if (whatsNewSection.style.display === "block") {
+      whatsNewSection.style.display = "none";
+    } else {
+      whatsNewSection.style.display = "block";
+      whatsNewSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+</script>
+
+    
+</body>
+</html>

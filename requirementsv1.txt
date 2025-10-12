@@ -1,0 +1,87 @@
+﻿google-auth
+google-auth-oauthlib
+google-api-python-client
+appdirs==1.4.4
+atomicwrites==1.4.1
+attrs==24.3.0
+beautifulsoup4==4.9.1
+black==19.10b0
+blinker==1.9.0
+certifi==2024.12.14
+cffi==1.17.1
+chardet==3.0.4
+click==8.1.8
+colorama==0.4.6
+coverage==7.6.10
+elastic-apm==6.23.0
+Flask==2.2.5
+gevent==24.11.1
+greenlet==3.1.1
+gunicorn==20.0.4
+idna==2.10
+itsdangerous==2.1.2
+Jinja2==3.0.3
+MarkupSafe==3.0.2
+more-itertools==10.5.0
+openai==0.28
+packaging==24.2
+pathspec==0.12.1
+pluggy==0.13.1
+py==1.11.0
+pycparser==2.22
+pytest==5.4.2
+pytest-cov==2.8.1
+regex==2024.11.6
+requests==2.23.0
+sentry-sdk==0.14.4
+soupsieve==2.6
+toml==0.10.2
+typed-ast==1.5.5
+urllib3==1.25.11
+wcwidth==0.2.13
+Werkzeug==3.1.3
+whitenoise==5.0.1
+wrapt==1.17.0
+xlrd==1.2.0
+XlsxWriter==1.2.8
+zope.event==5.0
+zope.interface==7.2
+python-dotenv
+python-dotenv
+cryptography
+pandas
+pandas
+matplotlib
+requests
+fpdf
+ujson  # Optional, if needed
+openpyxl
+pyttsx3
+SpeechRecognition==3.14.1  # Or the installed version
+psycopg2-binary
+SQLAlchemy
+Flask
+gunicorn
+
+# PostgreSQL support
+psycopg2-binary
+
+# ORM and DB integration
+Flask-SQLAlchemy
+
+# Authentication and encryption
+bcrypt
+email-validator
+Werkzeug
+
+# Google OAuth and API support
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+flask-cors
+
+# Optional: If you're switching from MySQL, remove the below
+# mysql-connector-python
+flask_login
+dotenv

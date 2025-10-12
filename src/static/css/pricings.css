@@ -1,0 +1,136 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212; /* Ultra-dark background */
+  color: #F5F5F5; /* Light text */
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Section Styling */
+.pricing-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.pricing-title {
+  font-size: 2.5rem;
+  color: #FFC107; /* Gold title */
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 8px rgba(255, 193, 7, 0.5); /* Glow effect */
+}
+
+.pricing-subtitle {
+  font-size: 1.2rem;
+  color: #F5F5F5;
+  margin-bottom: 30px;
+}
+
+/* Pricing Container */
+.pricing-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Pricing Cards */
+.pricing-card {
+  background-color: #1E1E1E; /* Slightly lighter dark background */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+}
+
+.pricing-header h2 {
+  color: #FFC107;
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.pricing-header .price {
+  font-size: 1.8rem;
+  color: #F5F5F5;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Features List */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.features-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.95rem;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  background-color: #444;
+  color: #FFC107;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #FFC107;
+  color: #121212;
+}
+
+.btn:focus {
+  outline: 2px solid #FFC107;
+  outline-offset: 2px;
+}
+
+.btn:active {
+  background-color: #FF9800;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pricing-container {
+      grid-template-columns: 1fr;
+  }
+
+  .pricing-title {
+      font-size: 2rem;
+  }
+
+  .pricing-subtitle {
+      font-size: 1rem;
+  }
+}
+#chatbot-ui {
+  display: none;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+}

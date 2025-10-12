@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        /* Reset and general styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        /* Container for the pop-up message */
+        .popup-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 2.5em;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+
+        /* Subheading and message */
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Button style */
+        .back-btn {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animation for pop-up effect */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <h1>Thank You for Contacting Us!</h1>
+        <p>Your message has been sent successfully.</p>
+        <p>Our team will contact you shortly. Please keep an eye on your inbox!</p>
+        <a href="/" class="back-btn">Go Back to Home</a>
+    </div>
+</body>
+</html>
