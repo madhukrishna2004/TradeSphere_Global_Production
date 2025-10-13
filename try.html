@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kolors Virtual Try-On</title>
+
+  <!-- Gradio JS module -->
+  <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.43.0/gradio.js"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    gradio-app {
+      width: 100%;
+      max-width: 900px;
+      height: 600px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Embed Kolors Virtual Try-On -->
+  <gradio-app src="https://kwai-kolors-kolors-virtual-try-on.hf.space"></gradio-app>
+
+</body>
+</html>
