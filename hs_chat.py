@@ -14,6 +14,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import pickle
+import gzip
 from difflib import get_close_matches
 
 # Suppress sklearn warning
@@ -23,8 +24,6 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn.feature_
 # Configuration
 # ---------------------------
 
-import logging
-
 def setup_logging(log_path='chat.log'):
     logger = logging.getLogger('klynnai')
     logger.setLevel(logging.INFO)
@@ -32,6 +31,7 @@ def setup_logging(log_path='chat.log'):
     handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logger.handlers = [handler]  # Clear any existing handlers (e.g., Elastic APM)
     return logger
+
 # Sync with hs_train.py v4.3.1
 STOPWORDS = set("""
 a an and the of for in on with without to from by as or nor not other otherwise
@@ -174,20 +174,32 @@ def preprocess_query(query: str, answers: Dict[str, str] = None) -> str:
         query += " " + " ".join(f"{k}:{normalize_synonyms(v)}" for k, v in answers.items())
     return query
 
+def build_corpus(commodity: str, description: str) -> str:
+    corpus = normalize_text(f"{commodity} {description}")
+    facets = extract_facets(corpus)
+    if facets["materials"]:
+        corpus += " " + " ".join(f"material:{m}" for m in facets["materials"])
+    if facets["uses"]:
+        corpus += " " + " ".join(f"use:{u}" for u in facets["uses"])
+    if facets["features"]:
+        corpus += " " + " ".join(f"feature:{f}" for f in facets["features"])
+    return corpus
+
 # ---------------------------
 # Chat Engine
 # ---------------------------
 
 class HSCodeAssistant:
     def __init__(self, bundle: Dict[str, Any]):
-        required_keys = ['df_records', 'embeddings', 'keyword_index', 'chapters_map', 'category_map', 'embedding_model', 'category_templates']
+        required_keys = ['df_records', 'embeddings', 'keyword_index', 'chapters_map', 'category_map', 'category_templates']
         missing = [k for k in required_keys if k not in bundle]
         if missing:
             raise ValueError(f"Model bundle missing required keys: {missing}")
         
         self.bundle = bundle
         self.df = pd.DataFrame(bundle['df_records'])
-        self.embedding_model = bundle['embedding_model']
+        # Load SentenceTransformer model
+        self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
         self.category_templates = bundle['category_templates']
         self.conversation_memory = []
         self.feedback_data = []
@@ -198,12 +210,14 @@ class HSCodeAssistant:
         self.df["subheading"] = self.df["commodity"].str.extract(r'(\d{6})')[0]
         
         # Initialize TF-IDF vectorizer
+        # Regenerate corpus for TF-IDF
+        self.df["corpus"] = [build_corpus(row["commodity"], row["description"]) for _, row in self.df.iterrows()]
         self.tfidf = TfidfVectorizer(
             tokenizer=tokenize,
             stop_words=list(STOPWORDS),
             max_features=10000
         )
-        self.tfidf_matrix = self.tfidf.fit_transform(self.df['description'])
+        self.tfidf_matrix = self.tfidf.fit_transform(self.df['corpus'])
         
         # Cache for query embeddings
         self.embedding_cache = {}
@@ -213,10 +227,11 @@ class HSCodeAssistant:
         if processed_query in self.embedding_cache:
             query_embedding = self.embedding_cache[processed_query]
         else:
-            query_embedding = self.embedding_model.encode([processed_query], convert_to_tensor=False, show_progress_bar=True)
+            query_embedding = self.embedding_model.encode([processed_query], convert_to_tensor=False, show_progress_bar=False).astype(np.float16)
             self.embedding_cache[processed_query] = query_embedding
         
-        semantic_similarities = cosine_similarity(query_embedding, self.bundle['embeddings'])[0]
+        # Ensure embeddings are float16 for consistency
+        semantic_similarities = cosine_similarity(query_embedding, self.bundle['embeddings'].astype(np.float16))[0]
         
         # TF-IDF scoring
         query_tfidf = self.tfidf.transform([processed_query])
@@ -253,7 +268,7 @@ class HSCodeAssistant:
             for key, value in answers.items():
                 normalized_value = normalize_synonyms(value)
                 for idx in range(len(self.df)):
-                    desc = normalize_text(self.df.iloc[idx]["description"])
+                    desc = normalize_text(self.df.iloc[idx]["corpus"])  # Use corpus instead of description
                     if normalized_value in desc or any(normalized_value in d for d in desc.split()):
                         answer_boost[idx] += 0.5
                     # Specific boost for milk + human consumption
@@ -276,7 +291,7 @@ class HSCodeAssistant:
         idx = np.argsort(-combined_scores)[:top_k]
         return idx.tolist(), combined_scores[idx]
 
-    def propose_intelligent_questions(self, cand_idx: List[int], answered_keys: set, answers: Dict[str, str], max_q: int = 3) -> List[Dict[str, Any]]:
+    def propose_intelligent_questions(self, cand_idx: List[int], answered_keys: set, answers: Dict[str, str], max_q: int = 3) -> List[Dict]:
         if len(cand_idx) <= 1:
             return []
         
@@ -286,8 +301,8 @@ class HSCodeAssistant:
             row = self.df.iloc[i]
             candidate_info.append({
                 'hs_code': row['commodity'],
-                'description': row['description'],
-                'tokens': set(tokenize(row['description']))
+                'description': row['corpus'],  # Use corpus
+                'tokens': set(tokenize(row['corpus']))
             })
         
         questions = []
@@ -401,8 +416,7 @@ class HSCodeAssistant:
     def refine_with_answers(self, cand_idx: List[int], answers: Dict[str, str]) -> List[int]:
         kept = []
         for i in cand_idx:
-            desc = normalize_text(self.df.iloc[i]["description"])
-            desc = normalize_synonyms(desc)
+            desc = normalize_text(self.df.iloc[i]["corpus"])  # Use corpus
             score = 0
             total_checks = 0
             
@@ -430,12 +444,12 @@ class HSCodeAssistant:
         return kept if kept else cand_idx[:5]
 
     def explain_confidence(self, candidate_idx: int, query: str, answers: Dict[str, str]) -> Dict[str, Any]:
-        candidate_desc = self.df.iloc[candidate_idx]["description"]
+        candidate_desc = self.df.iloc[candidate_idx]["corpus"]  # Use corpus
         candidate_hs = self.df.iloc[candidate_idx]["commodity"]
         
         processed_query = preprocess_query(query, answers)
-        query_embedding = self.embedding_model.encode([processed_query], convert_to_tensor=False)
-        candidate_embedding = self.bundle['embeddings'][candidate_idx].reshape(1, -1)
+        query_embedding = self.embedding_model.encode([processed_query], convert_to_tensor=False).astype(np.float16)
+        candidate_embedding = self.bundle['embeddings'][candidate_idx].reshape(1, -1).astype(np.float16)
         semantic_sim = cosine_similarity(query_embedding, candidate_embedding)[0][0]
         
         query_tfidf = self.tfidf.transform([processed_query])
@@ -517,7 +531,7 @@ class HSCodeAssistant:
         print("-" * 100)
         for n, i in enumerate(idxs[:limit], 1):
             row = self.df.iloc[i]
-            facets = extract_facets(row['description'])
+            facets = extract_facets(row['corpus'])  # Use corpus
             category = detect_category(facets) or "N/A"
             score_text = f"{scores[n-1]:.1f}%" if scores is not None and len(scores) > n-1 else "N/A"
             desc = row['description'][:57] + "..." if len(row['description']) > 57 else row['description']
@@ -647,7 +661,7 @@ def interactive_chat(bundle: Dict[str, Any], logger: logging.Logger, log_path: O
                 print(f"Category: {confidence['category'].title()}")
             
             print(f"\n📊 Details:")
-            for col in ['cet_duty_rate', 'ukgt_duty_rate', 'VAT Rate']:
+            for col in ['cet_duty_rate', 'ukgt_duty_rate']:
                 if col in row and pd.notna(row[col]):
                     print(f"   {col}: {row[col]}")
             
@@ -699,7 +713,7 @@ def interactive_chat(bundle: Dict[str, Any], logger: logging.Logger, log_path: O
 
 def main():
     parser = argparse.ArgumentParser(description="HS Code Classification Chatbot")
-    parser.add_argument("--model", required=True, help="Path to trained model .pkl")
+    parser.add_argument("--model", required=True, help="Path to trained model .pkl.gz")
     parser.add_argument("--log", help="Path to store chat logs (JSONL)")
     
     args = parser.parse_args()
@@ -707,7 +721,8 @@ def main():
     try:
         logger = setup_logging(args.log)
         logger.info(f"Loading model from {args.model}")
-        with open(args.model, "rb") as f:
+        # Load compressed pickle file
+        with gzip.open(args.model, "rb") as f:
             bundle = pickle.load(f)
         
         bundle['model_path'] = args.model

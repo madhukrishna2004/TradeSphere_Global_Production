@@ -2,14 +2,16 @@ import os
 import json
 import logging
 import pickle
+import gzip
 from datetime import datetime
 from flask import Flask, Blueprint, request, jsonify, session, render_template
 from cryptography.fernet import Fernet
 from dotenv import load_dotenv
 import openai
 import re
-from hs_chat import HSCodeAssistant  # Reference hs_chat.py v4.4.2
+from hs_chat import HSCodeAssistant  # Reference updated hs_chat.py v4.4.1
 import numpy as np
+
 # Disable Elastic APM to prevent ConnectTimeoutError
 try:
     import elasticapm
@@ -23,7 +25,7 @@ app.secret_key = os.urandom(24)  # For session management
 chatbot_bp = Blueprint("chatbot", __name__, template_folder="templates", static_folder="static")
 
 # Config Paths
-MODEL_PATH = "tariff_model.pkl"
+MODEL_PATH = "tariff_model.pkl.gz"  # Updated to .pkl.gz
 CACHE_FILE = "cache.pkl"
 LOG_PATH = "chat.log"
 FEEDBACK_PATH = "feedback.jsonl"
@@ -70,7 +72,7 @@ except Exception as e:
 
 # Load Model
 try:
-    with open(MODEL_PATH, "rb") as f:
+    with gzip.open(MODEL_PATH, "rb") as f:  # Updated to handle .pkl.gz
         bundle = pickle.load(f)
     bundle['model_path'] = MODEL_PATH
     hs_assistant = HSCodeAssistant(bundle)
@@ -128,8 +130,7 @@ def format_hscode_results(row, confidence: dict) -> dict:
         "category": category.title() if isinstance(category, str) else category,
         "details": {
             "cet_duty_rate": row.get('cet_duty_rate', 'N/A'),
-            "ukgt_duty_rate": row.get('ukgt_duty_rate', 'N/A'),
-            "vat_rate": row.get('VAT Rate', 'N/A')
+            "ukgt_duty_rate": row.get('ukgt_duty_rate', 'N/A')
         }
     }
 
@@ -163,7 +164,8 @@ def interactive_hscode_handler(session_id: str, user_input: str, cache: dict) ->
                 "scores": scores.tolist(),
                 "answers": {},
                 "answered_keys": set(),
-                "round": 0
+                "round": 0,
+                "questions": questions  # Store questions for validation
             })
             cache[session_id] = session_data
             save_cache()
@@ -216,7 +218,7 @@ def interactive_hscode_handler(session_id: str, user_input: str, cache: dict) ->
             for key, value in user_answers.items():
                 if value in ['skip', 'none', 'unknown']:
                     continue
-                # Validate against options directly
+                # Validate against options
                 for q in session_data.get("questions", []):
                     if q["key"] == key and q.get("options"):
                         if value not in q["options"]:

@@ -11,6 +11,7 @@ import pickle
 import sys
 import os
 from pathlib import Path
+import gzip
 
 # ---------------------------
 # Configuration
@@ -155,7 +156,7 @@ def df_required_subset(df: pd.DataFrame) -> pd.DataFrame:
     missing = [c for c in cols if c not in df.columns]
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
-    return df[cols].copy()
+    return df[["commodity", "description", "cet_duty_rate", "ukgt_duty_rate"]].copy()  # Keep only essential columns
 
 # ---------------------------
 # Training
@@ -182,14 +183,12 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
         logger.info(f"Loading Excel data from {excel_path}")
         df_raw = pd.read_excel(excel_path, sheet_name="Sheet1")
         df = df_required_subset(df_raw)
-        df = df.copy()
         df["commodity"] = df["commodity"].astype(str)
         df["description"] = df["description"].astype(str)
 
         def build_corpus(row):
             corpus = normalize_text(f"{row['commodity']} {row['description']}")
             facets = extract_facets(corpus)
-            # Add facet-based context to improve embeddings
             if facets["materials"]:
                 corpus += " " + " ".join(f"material:{m}" for m in facets["materials"])
             if facets["uses"]:
@@ -198,7 +197,8 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
                 corpus += " " + " ".join(f"feature:{f}" for f in facets["features"])
             return corpus
 
-        df["corpus"] = df.apply(build_corpus, axis=1)
+        # Generate corpus for indexing, but don't store in DataFrame
+        corpus_list = [build_corpus(row) for _, row in df.iterrows()]
         
         # Create hierarchical information
         df["chapter"] = df["commodity"].str.extract(r'(\d{2})')[0]
@@ -208,10 +208,10 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
         logger.info("Generating sentence embeddings...")
         embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
         embeddings = embedding_model.encode(
-            df["corpus"].tolist(), 
+            corpus_list, 
             convert_to_tensor=False, 
             show_progress_bar=True
-        )
+        ).astype(np.float16)  # Convert to float16
 
         # Apply feedback weights to embeddings
         if feedback_path:
@@ -228,7 +228,7 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
         subheadings_map = defaultdict(list)
         category_map = defaultdict(list)
         
-        for i, (chapter, heading, subheading, corpus) in enumerate(zip(df["chapter"], df["heading"], df["subheading"], df["corpus"])):
+        for i, (chapter, heading, subheading, corpus) in enumerate(zip(df["chapter"], df["heading"], df["subheading"], corpus_list)):
             if pd.notna(chapter):
                 chapters_map[chapter].append(i)
             if pd.notna(heading):
@@ -245,7 +245,8 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
         # Build keyword inverted index
         logger.info("Building keyword index...")
         keyword_index = defaultdict(list)
-        for i, corpus in enumerate(df["corpus"]):
+        min_freq = 2  # Only keep keywords appearing in at least 2 documents
+        for i, corpus in enumerate(corpus_list):
             tokens = set(tokenize(corpus))
             # Include synonyms and facets in index
             for token in tokens:
@@ -264,12 +265,12 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
                 keyword_index[f"use:{use}"].append(i)
             for feature in facets["features"]:
                 keyword_index[f"feature:{feature}"].append(i)
+        keyword_index = {k: v for k, v in keyword_index.items() if len(v) >= min_freq}
 
-        # Create bundle
+        # Create bundle without embedding_model
         bundle = {
             'version': "4.3.1",
-            'df_records': df.to_dict(orient="records"),
-            'embedding_model': embedding_model,
+            'df_records': df[["commodity", "description", "cet_duty_rate", "ukgt_duty_rate"]].to_dict(orient="records"),
             'embeddings': embeddings,
             'stopwords': list(STOPWORDS),
             'materials': MATERIALS,
@@ -283,12 +284,13 @@ def train_model(excel_path: str, out_pkl: str, logger: logging.Logger, feedback_
             'category_templates': CATEGORY_TEMPLATES
         }
 
-        logger.info(f"Saving model to {out_pkl}")
-        with open(out_pkl, "wb") as f:
+        # Save with gzip compression
+        logger.info(f"Saving compressed model to {out_pkl}.gz")
+        with gzip.open(f"{out_pkl}.gz", "wb") as f:
             pickle.dump(bundle, f)
 
         logger.info(f"Model contains {len(df)} HS codes")
-        return out_pkl
+        return f"{out_pkl}.gz"
 
     except FileNotFoundError as e:
         logger.error(f"Excel file not found: {e}")
@@ -317,7 +319,7 @@ def main():
         logger = setup_logging(log_path)
         model_path = train_model(args.excel, args.out, logger, args.feedback)
         print(f"✅ Model successfully trained and saved to: {model_path}")
-        with open(model_path, "rb") as f:
+        with gzip.open(model_path, "rb") as f:
             bundle = pickle.load(f)
         print(f"📊 Model contains: {len(bundle['df_records'])} HS codes")
     except Exception as e:
