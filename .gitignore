@@ -127,7 +127,7 @@ node_modules/
 
 # Ignore large ML model files (specific ones)
 tariff_modelv2.pkl
-tariff_model.pkl
+ 
 tariff_modelv1.pkl
 # Very large files (>50 MB)
 hs_code_indexv1.faiss
