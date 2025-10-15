@@ -12,3 +12,4 @@
 {"timestamp": "2025-10-14T00:29:30.761263", "query": "screws", "correct_hs": "73181562", "user_answers": {"material": "copper", "use": "construction", "feature": "hexagonal", "term:stainless": "yes"}, "user_feedback": "yes"}
 {"timestamp": "2025-10-14T01:00:30.878517", "query": "hs code for lawn mower", "correct_hs": "84331110", "user_answers": {"power_type": "electric", "machine_function": "cutting", "use": "lawn"}, "user_feedback": "yes"}
 {"timestamp": "2025-10-14T01:00:57.391729", "query": "hs code for lawn mower", "correct_hs": "84331110", "user_answers": {"power_type": "electric", "machine_function": "cutting", "use": "lawn"}, "user_feedback": "yes"}
+{"timestamp": "2025-10-15T16:06:11.968238", "query": "screws", "correct_hs": "73181562", "user_answers": {"material": "copper", "use": "construction", "feature": "hexagonal", "term:stainless": "yes"}, "user_feedback": "yes"}

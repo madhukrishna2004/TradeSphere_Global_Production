@@ -1,15 +1,23 @@
 services:
+  # 🌐 Frontend (Node.js)
   - type: web
     name: my-web-app
     env: node
-      - type: web
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    branch: main
+    autoDeploy: true
+    region: oregon
+
+  # ⚙️ Backend (Flask API)
+  - type: web
     name: my-backend
     env: python
     buildCommand: |
       pip install --upgrade pip setuptools wheel
       pip install --force-reinstall numpy==1.26.4 --no-cache-dir
       pip install -r requirements.txt
-    startCommand: gunicorn main:app
+    startCommand: gunicorn main:app --bind 0.0.0.0:$PORT
     runtime: python
     branch: main
     autoDeploy: true
@@ -17,18 +25,3 @@ services:
     envVars:
       - key: FLASK_ENV
         value: production
-
-  - type: web
-    name: my-backend
-    env: python
-    buildCommand: |
-      pip install -r requirements.txt
-    startCommand: gunicorn main:app
-    runtime: python
-    branch: main
-    autoDeploy: true
-    region: oregon
-    envVars:
-      - key: FLASK_ENV
-        value: production
-
