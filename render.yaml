@@ -22,7 +22,7 @@ services:
       pip install --upgrade pip setuptools wheel
       pip install --force-reinstall numpy==1.26.4 --no-cache-dir
       pip install -r requirements.txt
-    startCommand: gunicorn main:app --workers 1 --threads 2 --timeout 0 --bind 0.0.0.0:$PORT
+    startCommand: gunicorn main:app --workers 1 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT
     runtime: python
     branch: main
     autoDeploy: true
@@ -30,5 +30,3 @@ services:
     envVars:
       - key: FLASK_ENV
         value: production
-      - key: PORT
-        value: 10000
